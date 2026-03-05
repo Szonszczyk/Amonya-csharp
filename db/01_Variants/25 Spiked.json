@@ -1,0 +1,24 @@
+{
+    "Spiked": {
+        "FlavourText": "- Do you know of that little animal, with spikes, what is it called... ?\n- Hedgehog? Porcupine?\n- Huh? Ohh, yes... that one!\n- And what is wrong with it?\n- See this bullet? It is like an explosive porcupine!",
+        "Description": "A grenade round with no explosive damage, instead dispersing lethal 12.7x108mm BZT-44M projectiles upon detonation",
+		"Explanation": "Functions as a fragmentation trap. Anyone caught in its line of sight during detonation risks severe or lethal injury",
+		"ShortName": "SPK",
+        "Properties": {
+            "FuzeArmTimeSec": 0,
+            "ExplosionStrength": 0,
+            "MinExplosionDistance": 1,
+            "MaxExplosionDistance": 4,
+            "FragmentType": "5d2f2ab648f03550091993ca",
+            "FragmentsCount": 180
+        },
+        "Bullets": {
+            "40x46mm M386 (HE) grenade": "40x46Q3"
+        },
+        "WeaponCategories": [
+            "ALL"
+        ],
+        "Price": 1.4,
+        "Color": "#425454"
+    }
+}

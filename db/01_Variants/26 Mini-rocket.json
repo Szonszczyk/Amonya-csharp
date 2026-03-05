@@ -1,0 +1,48 @@
+{
+    "Mini-rocket": {
+        "FlavourText": "It's a bird! It's a plane! It's a... slug? *kaboom*",
+        "Description": "Explosive shotgun slug inspired by the 30x29mm VOG-30 grenade, with slightly reduced explosive performance",
+		"Explanation": "The fourth bullet type of explosive ammunition for normal weapons. Offers higher velocity and improved effective range compared to other variants, but suffers from reduced accuracy by being able to be used only by limited number of weapon categories",
+		"ShortName": "M-RC",
+        "Properties": {
+            "AmmoLifeTimeSec": 40,
+            "AmmoTooltipClass": "Universal",
+            "ArmorDamage": 95,
+            "ArmorDistanceDistanceDamage": {
+                "x": 1,
+                "y": 4,
+                "z": 20
+            },
+            "ExplosionStrength": 70,
+            "ExplosionType": "smallgrenade_expl",
+            "FuzeArmTimeSec": 0.1,
+            "HeavyBleedingDelta": 0,
+            "LightBleedingDelta": 0,
+            "MinExplosionDistance": 4,
+            "MaxExplosionDistance": 8,
+            "PenetrationChanceObstacle": 0,
+            "PenetrationDamageMod": 0,
+            "RicochetChance": 0,
+            "AmmoType": "grenade",
+            "CasingSounds": "127rifle",
+            "Damage": 95,
+            "PenetrationPower": 1,
+            "InitialSpeed": 185,
+            "HasGrenaderComponent": true,
+            "DurabilityBurnModificator": 1
+        },
+        "Bullets": {
+            "12/70 lead slug": "1270Q6",
+            "20/70 Star slug": "2070Q7",
+            "23x75mm Barrikada slug": "23x75Q2",
+            "40x46mm M433 (HEDP) grenade": "40x46Q4"
+        },
+        "WeaponCategories": [
+            "Shotguns",
+            "Revolvers",
+            "Grenade launchers"
+        ],
+        "Price": 5,
+        "Color": "#70db95"
+    }
+}

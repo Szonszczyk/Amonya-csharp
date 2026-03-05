@@ -1,0 +1,25 @@
+{
+    "Cluster Bomb": {
+        "FlavourText": "Shoot it into corridor and watch your frames drop. Shoot it into the window and your PC will explode!",
+        "Description": "Grenade variant without fuze time, but having multiple high-explosive fragments after initial detonation",
+		"Explanation": "This can kill multiple targets close by and inside of bulding. But keep in mind the explosive fragments that can kill you too",
+		"ShortName": "CBB",
+        "Properties": {
+            "AmmoLifeTimeSec": 120,
+            "FuzeArmTimeSec": 0,
+            "ExplosionStrength": 80,
+            "MinExplosionDistance": 1,
+            "MaxExplosionDistance": 4,
+            "FragmentType": "c6a27e7427123c17d88ba9b8",
+            "FragmentsCount": 30
+        },
+        "Bullets": {
+            "40x46mm M406 (HE) grenade": "40x46Q5"
+        },
+        "WeaponCategories": [
+            "ALL"
+        ],
+        "Price": 4,
+        "Color": "#e010a5"
+    }
+}

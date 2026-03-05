@@ -1,0 +1,27 @@
+{
+    "Heavy": {
+        "FlavourText": "A buckshot shell loaded with fewer, larger pellets. Each pellet carries greater stopping power, but fewer projectiles reduce the spread and coverage",
+        "Description": "Buckshot bullet that features halfed the number of pellets, but tripled damage and increased penetration",
+		"Explanation": "Good buckshot bullet on close-range engagements but is very pricey",
+		"ShortName": "HVY",
+        "Properties": {
+            "BuckshotBullets": "-50%",
+            "ProjectileCount": "-50%",
+            "Damage": "+200%",
+            "ArmorDamage": "+50%",
+            "PenetrationPower": "+50%",
+            "Weight": "+50%"
+        },
+        "Bullets": {
+            "12/70 6.5mm Express buckshot": "1270Q4",
+            "20/70 7.3mm buckshot": "2070Q4",
+            "23x75mm Shrapnel-25 buckshot": "23x75Q2",
+            "40x46mm M576 (MP-APERS) grenade": "40x46Q4"
+        },
+        "WeaponCategories": [
+            "ALL"
+        ],
+        "Price": 2,
+        "Color": "#4b5e54"
+    }
+}

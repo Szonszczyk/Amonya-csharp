@@ -1,0 +1,32 @@
+{
+    "308ME": {
+        "Category": "Assault",
+        "QuestForStart": "308MEQ3",
+        "Caliber": {
+            "Id": "Caliber784x49",
+            "Name": ".308 Marlin Express",
+            "ShortName": ".308 Marlin"
+        },
+        "Mod": "com.wtt.contentbackport",
+        "Quests": {
+            "308MEQ1": {
+                "Unlocks": [
+                    ".308 ME LOKT"
+                ],
+                "Diff": "2",
+                "Trader": 1
+            },
+            "308MEQ2": {
+                "Unlocks": [
+                    ".308 ME"
+                ],
+                "Diff": "5",
+                "Trader": 2
+            },
+            "308MEQ3": {
+                "Diff": "8",
+                "Trader": 3
+            }
+        }
+    }
+}

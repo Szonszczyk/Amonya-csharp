@@ -1,0 +1,30 @@
+{
+    "Mini-nuke": {
+        "FlavourText": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "Description": "It's a big boom",
+		"Explanation": "Definitely a big boom. Low initial speed and long fuze time included!",
+		"ShortName": "NKE",
+        "Properties": {
+            "AmmoLifeTimeSec": 120,
+            "ExplosionStrength": 100,
+            "FuzeArmTimeSec": 1,
+            "InitialSpeed": 67,
+            "DurabilityBurnModificator": "+4000%",
+            "BulletDiameterMilimeters": "+2000%",
+            "BulletMassGram": "+2000%",
+            "SpeedRetardation": 0.000015,
+            "MinExplosionDistance": 20,
+            "MaxExplosionDistance": 40,
+            "MaxFragmentsCount": 46,
+            "Damage": "69420"
+        },
+        "Bullets": {
+            "40x46mm M433 (HEDP) grenade": "40x46Q6"
+        },
+        "WeaponCategories": [
+            "Grenade launchers"
+        ],
+        "Price": 29,
+        "Color": "#ad099d"
+    }
+}

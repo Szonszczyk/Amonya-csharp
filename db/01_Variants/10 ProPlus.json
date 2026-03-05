@@ -1,0 +1,45 @@
+{
+    "Pro+": {
+        "FlavourText": "With Amonya+ subscription you can gain access to special Pro+ bullet type that is simply better than the regular ones",
+        "Description": "Bullet with slightly increased damage and penetration without chance to deal a bleeding",
+		"Explanation": "Just the best bullet in the game",
+		"ShortName": "+",
+        "Properties": {
+            "Damage": "+19%",
+            "PenetrationPower": "+19%",
+            "HeavyBleedingDelta": 0,
+            "LightBleedingDelta": 0
+        },
+        "Bullets": {
+            "5.45x39mm BS gs": "545x39Q8",
+            "5.56x45mm SSA AP":  "556x45Q8",
+            "6.8x51mm SIG Hybrid": "68x51Q3",
+            ".300 Blackout AP": "300Q7",
+            "7.62x39mm MAI AP": "762x39Q8",
+            "7.62x51mm M993": "762x51Q8",
+            "7.62x54mm R BS gs": "762x54Q8",
+            ".338 Lapua Magnum AP": "338Q5",
+            "9x39mm BP gs": "9x39Q7",
+            ".366 TKM AP-M": "366Q5",
+            "12.7x55mm PS12B": "127x55Q4",
+            "12/70 AP-20 armor-piercing slug": "1270Q8",
+            "20/70 Poleva-6u slug": "2070Q5",
+            "23x75mm Barrikada slug": "23x75Q3",
+            "4.6x30mm AP SX": "46x30Q6",
+            "5.7x28mm SS190": "57x28Q6",
+            "7.62x25mm TT Pst gzh": "762x25Q5",
+            "9x18mm PM PBM gzh": "9x18Q7",
+            "9x19mm PBP gzh": "9x19Q8",
+            "9x21mm 7N42 Zubilo": "9x21Q7",
+            ".357 Magnum FMJ": "357Q5",
+            ".45 ACP AP": "45ACPQ6",
+            ".50 AE FMJ": "50AEQ5",
+            ".50 BMG M903 SLAP": "127x99Q5"
+        },
+        "WeaponCategories": [
+            "ALL"
+        ],
+        "Price": 1.33,
+        "Color": "#4d004d"
+    }
+}

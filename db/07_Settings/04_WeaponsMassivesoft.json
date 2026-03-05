@@ -1,0 +1,7 @@
+﻿{
+	"BaseWeaponExceptions": [
+		"f546b7974a7dd485d05db42e", // SIG MCX VIRTUS 5.56x45mm Assault Rifle (GRY)
+		"0ede740e6e16c60f8c610c58", // SIG MCX VIRTUS .300 Blackout Assault rifle (BK)
+		"b6c589ec25350853409e47cc"  // CMMG MK47 DISSENT 7.62x39mm Assault Rifle (TacYL ALT VERSION)
+	]
+}

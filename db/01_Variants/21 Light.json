@@ -1,0 +1,26 @@
+{
+    "Light": {
+        "FlavourText": "A buckshot cartridge loaded with hardened pellets and a boosted powder charge, designed for extremely high muzzle velocity",
+        "Description": "Buckshot bullet that features tripled initial speed but decreased number of pellets and lowered damage",
+		"Explanation": "Buckshot bullet effective against lightly armored targets on medium distances",
+		"ShortName": "LHT",
+        "Properties": {
+            "BuckshotBullets": "-1",
+            "ProjectileCount": "-1",
+            "Damage": "-15%",
+            "InitialSpeed": "+200%",
+            "Weight": "-50%"
+        },
+        "Bullets": {
+            "12/70 Piranha": "1270Q6",
+            "20/70 flechette": "2070Q6",
+            "23x75mm Shrapnel-10 buckshot": "23x75Q2",
+            "40x46mm M576 (MP-APERS) grenade": "40x46Q4"
+        },
+        "WeaponCategories": [
+            "ALL"
+        ],
+        "Price": 1.5,
+        "Color": "#9ab5a7"
+    }
+}

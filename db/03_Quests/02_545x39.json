@@ -1,0 +1,72 @@
+{
+    "545x39": {
+        "Category": "Assault",
+        "QuestForStart": "Introduction",
+        "Caliber": {
+            "Id": "Caliber545x39",
+            "Name": "5.45x39mm",
+            "ShortName": "5.45x39"
+        },
+        "Quests": {
+            "545x39Q1": {
+                "Unlocks": [
+                    "5.45x39mm HP"
+                ],
+                "Diff": "1",
+                "Trader": 1
+            },
+            "545x39Q2": {
+                "Unlocks": [
+                    "5.45x39mm PRS gs",
+                    "5.45x39mm SP",
+                    "5.45x39mm US gs"
+                ],
+                "Diff": "2",
+                "Trader": 1
+            },
+            "545x39Q3": {
+                "Unlocks": [
+                    "5.45x39mm T gs",
+                    "5.45x39mm FMJ",
+                    "5.45x39mm PS gs"
+                ],
+                "Diff": "3",
+                "Trader": 1
+            },
+            "545x39Q4": {
+                "Unlocks": [
+                    "5.45x39mm PP gs",
+                    "5.45x39mm BT gs",
+                    "5.45x39mm PPBS gs Igolnik"
+                ],
+                "Diff": "4",
+                "Trader": 1
+            },
+            "545x39Q5": {
+                "Unlocks": [
+                    "5.45x39mm 7N40"
+                ],
+                "Diff": "5",
+                "Trader": 2
+            },
+            "545x39Q6": {
+                "Unlocks": [
+                    "5.45x39mm BP gs"
+                ],
+                "Diff": "6",
+                "Trader": 2
+            },
+            "545x39Q7": {
+                "Unlocks": [
+                    "5.45x39mm BS gs"
+                ],
+                "Diff": "7",
+                "Trader": 3
+            },
+            "545x39Q8": {
+                "Diff": "8",
+                "Trader": 4
+            }
+        }
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "23x75": {
+        "Category": "Shotgun",
+        "QuestForStart": "1270Q2",
+        "Caliber": {
+            "Id": "Caliber23x75",
+            "Name": "23x75mm Shotgun",
+            "ShortName": "23x75 Shotgun"
+        },
+        "Quests": {
+            "23x75Q1": {
+                "Unlocks": [
+                    "23x75mm Zvezda flashbang round",
+                    "23x75mm Shrapnel-10 buckshot",
+                    "23x75mm Shrapnel-25 buckshot"
+                ],
+                "Diff": "2",
+                "Trader": 1
+            },
+            "23x75Q2": {
+                "Unlocks": [
+                    "23x75mm Barrikada slug"
+                ],
+                "Diff": "7",
+                "Trader": 2
+            },
+            "23x75Q3": {
+                "Diff": "8",
+                "Trader": 3
+            }
+        }
+    }
+}

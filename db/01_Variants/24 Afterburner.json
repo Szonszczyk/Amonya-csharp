@@ -1,0 +1,29 @@
+{
+    "Afterburner": {
+        "FlavourText": "Everyone is wishing for more fire in their lives!",
+        "Description": "A high-velocity round that sacrifices raw damage for increased penetration, higher muzzle velocity and significantly higher heat buildup",
+		"Explanation": "A budget-friendly option for most weapons, as an alternative to Full-auto rounds",
+		"ShortName": "AFB",
+        "Properties": {
+            "Damage": "-8",
+            "PenetrationPower": "+16",
+            "InitialSpeed": "+50%",
+            "HeatFactor": "+100%"
+        },
+        "Bullets": {
+            "5.45x39mm PP gs": "545x39Q5",
+            "7.62x39mm PS gzh": "762x39Q5",
+            "9x39mm SPP gs": "9x39Q5",
+            "12.7x55mm PS12": "127x55Q2",
+            "5.56x45mm MK 318 Mod 0 (SOST)": "556x45Q5",
+            "6.8x51mm SIG Hybrid": "68x51Q2",
+            ".300 Blackout AP": "300Q5",
+            "7.62x51mm BCP FMJ": "762x51Q5"
+        },
+        "WeaponCategories": [
+            "ALL"
+        ],
+        "Price": 0.65,
+        "Color": "#e35424"
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "Ratshot Mk2": {
+        "FlavourText": "A specialized cartridge loaded with tiny pellets designed for pest control and close-quarters fun. Useless against armor, terrifying against rats.",
+        "Description": "Buckshot bullet that features low penetration and armor damage, small initial speed and bullet, low accuracy but with lowered heat buildup and recoil",
+		"Explanation": "Buckshot bullet for normal guns. In addition, it is very cost-efficient!",
+		"ShortName": "RT2",
+        "Properties": {
+            "AmmoType": "buckshot",
+            "ProjectileCount": 8,
+            "Damage": "-50%",
+            "ArmorDamage": 30,
+            "PenetrationPower": 18,
+            "PenetrationChanceObstacle": 0.12,
+            "BallisticCoeficient": 0.015,
+            "InitialSpeed": 400,
+            "RicochetChance": 0,
+            "AmmoAccr": -15,
+            "AmmoRec": 5,
+            "HeatFactor": "-1",
+            "BulletDiameterMilimeters": "-50%",
+            "BulletMassGram": "-75%",
+            "AmmoTooltipClass": "SoftTargets",
+            "FragmentationChance": 0,
+            "BuckshotBullets": 8
+        },
+        "Bullets": {
+            "5.56x45mm M855": "556x45Q3",
+            "5.45x39mm BT gs": "545x39Q3",
+            "7.62x51mm M61": "762x51Q3",
+            ".300 Blackout CBJ": "300Q3",
+            "9x39mm PAB-9 gs": "9x39Q3",
+            ".366 TKM AP-M": "366Q3",
+            "12.7x55mm PS12B": "127x55Q2"
+        },
+        "WeaponCategories": [
+            "ALL"
+        ],
+        "Price": 0.3,
+        "Color": "#f99f9f"
+    }
+}

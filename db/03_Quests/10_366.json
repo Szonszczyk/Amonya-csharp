@@ -1,0 +1,45 @@
+{
+    "366": {
+        "Category": "Assault",
+        "QuestForStart": "545x39Q1",
+        "Caliber": {
+            "Id": "Caliber366TKM",
+            "Name": ".366 TKM",
+            "ShortName": ".366"
+        },
+        "Quests": {
+            "366Q1": {
+                "Unlocks": [
+                    ".366 TKM Geksa"
+                ],
+                "Diff": "1",
+                "Trader": 1
+            },
+            "366Q2": {
+                "Unlocks": [
+                    ".366 TKM FMJ"
+                ],
+                "Diff": "2",
+                "Trader": 1
+            },
+            "366Q3": {
+                "Unlocks": [
+                    ".366 TKM EKO"
+                ],
+                "Diff": "4",
+                "Trader": 1
+            },
+            "366Q4": {
+                "Unlocks": [
+                    ".366 TKM AP-M"
+                ],
+                "Diff": "6",
+                "Trader": 2
+            },
+            "366Q5": {
+                "Diff": "8",
+                "Trader": 2
+            }
+        }
+    }
+}

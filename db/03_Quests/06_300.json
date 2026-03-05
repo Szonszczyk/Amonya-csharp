@@ -1,0 +1,59 @@
+{
+    "300": {
+        "Category": "Assault",
+        "QuestForStart": "556x45Q2",
+        "Caliber": {
+            "Id": "Caliber762x35",
+            "Name": ".300 Blackout",
+            "ShortName": ".300"
+        },
+        "Quests": {
+            "300Q1": {
+                "Unlocks": [
+                    ".300 Whisper"
+                ],
+                "Diff": "1",
+                "Trader": 1
+            },
+            "300Q2": {
+                "Unlocks": [
+                    ".300 Blackout V-Max"
+                ],
+                "Diff": "2",
+                "Trader": 1
+            },
+            "300Q3": {
+                "Unlocks": [
+                    ".300 Blackout BCP FMJ"
+                ],
+                "Diff": "3",
+                "Trader": 1
+            },
+            "300Q4": {
+                "Unlocks": [
+                    ".300 Blackout M62 Tracer"
+                ],
+                "Diff": "4",
+                "Trader": 1
+            },
+            "300Q5": {
+                "Unlocks": [
+                    ".300 Blackout CBJ"
+                ],
+                "Diff": "5",
+                "Trader": 2
+            },
+            "300Q6": {
+                "Unlocks": [
+                    ".300 Blackout AP"
+                ],
+                "Diff": "7",
+                "Trader": 2
+            },
+            "300Q7": {
+                "Diff": "8",
+                "Trader": 4
+            }
+        }
+    }
+}

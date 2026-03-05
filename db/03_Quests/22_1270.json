@@ -1,0 +1,76 @@
+{
+    "1270": {
+        "Category": "Shotgun",
+        "QuestForStart": "Introduction",
+        "Caliber": {
+            "Id": "Caliber12g",
+            "Name": "12/70 Shotgun",
+            "ShortName": "12/70 Shotgun"
+        },
+        "Quests": {
+            "1270Q1": {
+                "Unlocks": [
+                    "12/70 Dual Sabot slug",
+                    "12/70 RIP"
+                ],
+                "Diff": "1",
+                "Trader": 1
+            },
+            "1270Q2": {
+                "Unlocks": [
+                    "12/70 Grizzly 40 slug",
+                    "12/70 Poleva-3 slug",
+                    "12/70 Poleva-6u slug",
+                    "12/70 6.5mm Express buckshot"
+                ],
+                "Diff": "2",
+                "Trader": 1
+            },
+            "1270Q3": {
+                "Unlocks": [
+                    "12/70 FTX Custom Lite slug",
+                    "12/70 lead slug",
+                    "12/70 7mm buckshot",
+                    "12/70 SuperFormance HP slug"
+                ],
+                "Diff": "3",
+                "Trader": 1
+            },
+            "1270Q4": {
+                "Unlocks": [
+                    "12/70 Copper Sabot Premier HP slug",
+                    "12/70 makeshift .50 BMG slug",
+                    "12/70 5.25mm buckshot"
+                ],
+                "Diff": "4",
+                "Trader": 1
+            },
+            "1270Q5": {
+                "Unlocks": [
+                    "12/70 8.5mm Magnum buckshot",
+                    "12/70 Piranha"
+                ],
+                "Diff": "5",
+                "Trader": 2
+            },
+            "1270Q6": {
+                "Unlocks": [
+                    "12/70 AP-20 armor-piercing slug"
+                ],
+                "Diff": "6",
+                "Trader": 2
+            },
+            "1270Q7": {
+                "Unlocks": [
+                    "12/70 flechette"
+                ],
+                "Diff": "7",
+                "Trader": 3
+            },
+            "1270Q8": {
+                "Diff": "8",
+                "Trader": 4
+            }
+        }
+    }
+}

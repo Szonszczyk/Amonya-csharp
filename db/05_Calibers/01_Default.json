@@ -1,0 +1,138 @@
+{
+	"Caliber545x39": {
+		"Name": "5.45x39mm",
+		"Id": "545x39",
+		"ShortName": "5.45x39"
+	},
+	"Caliber556x45NATO": {
+		"Name": "5.56x45mm NATO",
+		"Id": "556x45",
+		"ShortName": "5.56x45"
+	},
+	"Caliber68x51": {
+		"Name": "6.8x51mm",
+		"Id": "68x51",
+		"ShortName": "6.8x51"
+	},
+	"Caliber762x35": {
+		"Name": ".300 Blackout",
+		"Id": "300",
+		"ShortName": ".300"
+	},
+	"Caliber762x39": {
+		"Name": "7.62x39mm",
+		"Id": "762x39",
+		"ShortName": "7.62x39"
+	},
+	"Caliber762x51": {
+		"Name": "7.62x51mm NATO",
+		"Id": "762x51",
+		"ShortName": "7.62x51"
+	},
+	"Caliber762x54R": {
+		"Name": "7.62x54mmR",
+		"Id": "762x54",
+		"ShortName": "7.62x54R"
+	},
+	"Caliber86x70": {
+		"Name": ".338 Lapua Magnum",
+		"Id": "338",
+		"ShortName": ".338"
+	},
+	"Caliber9x39": {
+		"Name": "9x39mm",
+		"Id": "9x39",
+		"ShortName": "9x39"
+	},
+	"Caliber366TKM": {
+		"Name": ".366 TKM",
+		"Id": "366",
+		"ShortName": ".366"
+	},
+	"Caliber127x55": {
+		"Name": "12.7x55mm STs-130",
+		"Id": "127x55",
+		"ShortName": "12.7x55"
+	},
+	"Caliber762x25TT": {
+		"Name": "7.62x25mm Tokarev",
+		"Id": "762x25",
+		"ShortName": "7.62x25"
+	},
+	"Caliber9x18PM": {
+		"Name": "9x18mm Makarov",
+		"Id": "9x18",
+		"ShortName": "9x18"
+	},
+	"Caliber9x19PARA": {
+		"Name": "9x19mm Parabellum",
+		"Id": "9x19",
+		"ShortName": "9x19"
+	},
+	"Caliber9x21": {
+		"Name": "9x21mm Gyurza",
+		"Id": "9x21",
+		"ShortName": "9x21"
+	},
+	"Caliber9x33R": {
+		"Name": ".357 Magnum",
+		"Id": "357",
+		"ShortName": ".357"
+	},
+	"Caliber1143x23ACP": {
+		"Name": ".45 ACP",
+		"Id": "45ACP",
+		"ShortName": ".45"
+	},
+	"Caliber46x30": {
+		"Name": "4.6x30mm HK",
+		"Id": "46x30",
+		"ShortName": "4.6x30"
+	},
+	"Caliber57x28": {
+		"Name": "5.7x28mm FN",
+		"Id": "57x28",
+		"ShortName": "5.7x28"
+	},
+	"Caliber12g": {
+		"Name": "12/70 Shotgun",
+		"Id": "1270",
+		"ShortName": "12/70 Shotgun"
+	},
+	"Caliber20g": {
+		"Name": "20/70 Shotgun",
+		"Id": "2070",
+		"ShortName": "20/70 Shotgun"
+	},
+	"Caliber23x75": {
+		"Name": "23x75mm Shotgun",
+		"Id": "23x75",
+		"ShortName": "23x75 Shotgun"
+	},
+	"Caliber40x46": {
+		"Name": "40x46mm Grenade",
+		"Id": "40x46",
+		"ShortName": "40x46 Grenade"
+	},
+	"Caliber127x33": {
+		"Name": ".50 Action Express",
+		"Id": "50AE",
+		"ShortName": ".50 AE"
+	},
+	"Caliber127x99": {
+		"Name": ".50 BMG NATO",
+		"Id": "127x99",
+		"ShortName": ".50 BMG"
+	},
+	"Caliber40mmRU": {
+		"Incorrect": true
+	},
+	"Caliber26x75": {
+		"Incorrect": true
+	},
+	"Caliber20x1mm": {
+		"Name": "20x1mm Disk",
+		"Id": "20x1",
+		"ShortName": "20x1mm"
+	}
+}

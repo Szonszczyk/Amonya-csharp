@@ -1,0 +1,67 @@
+{
+    "9x18": {
+        "Category": "Pistol",
+        "QuestForStart": "9x19Q1",
+        "Caliber": {
+            "Id": "Caliber9x18PM",
+            "Name": "9x18mm Makarov",
+            "ShortName": "9x18"
+        },
+        "Quests": {
+            "9x18Q1": {
+                "Unlocks": [
+                    "9x18mm PM SP8 gzh",
+                    "9x18mm PM SP7 gzh",
+                    "9x18mm PM PSV"
+                ],
+                "Diff": "1",
+                "Trader": 1
+            },
+            "9x18Q2": {
+                "Unlocks": [
+                    "9x18mm PM P gzh",
+                    "9x18mm PM PSO gzh",
+                    "9x18mm PM PRS gs"
+                ],
+                "Diff": "2",
+                "Trader": 1
+            },
+            "9x18Q3": {
+                "Unlocks": [
+                    "9x18mm PM PS gs PPO",
+                    "9x18mm PM PPe gzh",
+                    "9x18mm PM PPT gzh"
+                ],
+                "Diff": "3",
+                "Trader": 1
+            },
+            "9x18Q4": {
+                "Unlocks": [
+                    "9x18mm PM Pst gzh",
+                    "9x18mm PM RG028 gzh",
+                    "9x18mm PM BZhT gzh"
+                ],
+                "Diff": "4",
+                "Trader": 1
+            },
+            "9x18Q5": {
+                "Unlocks": [
+                    "9x18mm PM PBM gzh"
+                ],
+                "Diff": "5",
+                "Trader": 2
+            },
+            "9x18Q6": {
+                "Unlocks": [
+                    "9x18mm PMM PstM gzh"
+                ],
+                "Diff": "7",
+                "Trader": 3
+            },
+            "9x18Q7": {
+                "Diff": "8",
+                "Trader": 4
+            }
+        }
+    }
+}

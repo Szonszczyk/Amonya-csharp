@@ -1,0 +1,10 @@
+﻿{
+	"BaseWeaponExceptions": [
+		"66a545898022784400d6c836" // "IWI Tavor X95 5.56x45 assault rifle (OD)"
+	],
+	"CopyWeaponExceptions": {
+		"66a544c956621d3364f6085e": "66a545898022784400d6c836", // "IWI Tavor X95 5.56x45 assault rifle (FDE)" of "IWI Tavor X95 5.56x45 assault rifle (OD)"
+		"66839591f4d0cba7b041b2af": "5447a9cd4bdc2dbd208b4567", // WTT-Armory | Patriot of "Colt M4A1 5.56x45 assault rifle"
+        "675ceb83e25d80bc676e15a6": "665fe0e865683281eb8e7ed6"  // WTT-Armory | "Springfield Armory DS Prodigy 9x19mm Handgun Flat Dark Earth" of "Prodigy"
+	}
+}

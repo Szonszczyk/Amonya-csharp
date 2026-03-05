@@ -1,0 +1,29 @@
+{
+    "Heavy Duty": {
+        "FlavourText": "Engineered for sharpshooters who demand maximum punch at any range",
+        "Description": "Extremely fast, high-penetration ammunition with boosted damage and armor damage. Comes at the cost of heavy recoil",
+		"Explanation": "Best used with DMRs and sniper rifles, but usable in other weapons if you can handle increased recoil",
+		"ShortName": "HDY",
+        "Properties": {
+            "PenetrationPower": 59,
+            "InitialSpeed": 1200,
+            "AmmoRec": "+80",
+            "ArmorDamage": "+25%",
+            "Damage": "+20%"
+        },
+        "Bullets": {
+            "7.62x51mm BCP FMJ": "762x51Q5",
+            ".338 Lapua Magnum UCW": "338Q3",
+            "7.62x54mm R FMJ": "762x54Q5",
+            ".50 AE Copper Solid": "50AEQ3",
+            ".357 Magnum FMJ": "357Q3",
+            "9x39mm FMJ": "9x39Q5",
+            ".50 BMG M21": "127x99Q3"
+        },
+        "WeaponCategories": [
+            "ALL"
+        ],
+        "Price": 2.2,
+        "Color": "#333333"
+    }
+}

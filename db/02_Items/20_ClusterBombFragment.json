@@ -1,0 +1,17 @@
+{
+    "Cluster Bomb Fragment": {
+        "Description": "Part of Amonya mod. It is fragment for Cluster Bomb ammo variant",
+        "ShortName": "CBF",
+        "ItemTplToClone": "5ede4739e0350d05467f73e8",
+        "Properties": {
+            "FragmentsCount": 0,
+			"InitialSpeed": 120,
+			"ExplosionStrength": 80,
+			"MinExplosionDistance": 1,
+            "MaxExplosionDistance": 4,
+			"FuzeArmTimeSec": 0,
+			"AmmoLifeTimeSec": 1.5
+        },
+        "HandbookPriceRoubles": 1
+    }
+}

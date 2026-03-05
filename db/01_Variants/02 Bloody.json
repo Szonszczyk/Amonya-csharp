@@ -1,0 +1,28 @@
+{
+    "Bloody": {
+        "FlavourText": "A cruel round designed to leave enemies bleeding out long after impact",
+        "Description": "Guaranteed light bleeding, with a 50% chance of heavy bleeding with slightly decreased penetration power. Virtually useless against armor",
+		"Explanation": "Effective against unarmored or high-health targets, especially when time is on your side",
+		"ShortName": "♥",
+        "Properties": {
+            "LightBleedingDelta": 1,
+            "HeavyBleedingDelta": 0.5,
+            "PenetrationPower": "-15%",
+            "ArmorDamage": 0
+        },
+        "Bullets": {
+            "7.62x25mm TT LRN": "762x25Q3",
+            "9x18mm PM SP7 gzh": "9x18Q3",
+            "9x19mm RIP": "9x19Q3",
+            "9x21mm PE gzh": "9x21Q3",
+            ".45 ACP RIP": "45ACPQ3",
+            "4.6x30mm Action SX": "46x30Q3",
+            "5.7x28mm R37.F": "57x28Q3"
+        },
+        "WeaponCategories": [
+            "ALL"
+        ],
+        "Price": 0.65,
+        "Color": "#ff3399"
+    }
+}

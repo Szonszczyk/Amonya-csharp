@@ -1,0 +1,29 @@
+{
+    "Hypersonic": {
+        "FlavourText": "Fast bullets means that your enemy will be dead faster? Is that right?",
+        "Description": "Bullet with insane initial speed but with increased recoil",
+		"Explanation": "Normal bullet with insane initial speed for easier hitting enemies on long distances or in motion",
+		"ShortName": "HPS",
+        "Properties": {
+            "InitialSpeed": 2000,
+            "AmmoRec": "+13"
+        },
+        "Bullets": {
+            "7.62x51mm M80": "762x51Q4",
+            "5.45x39mm 7N40": "545x39Q5",
+            "5.56x45mm M855A1":  "556x45Q5",
+            "7.62x39mm PP gzh": "762x39Q5",
+            "7.62x54mm R LPS gzh": "762x54Q3",
+            "9x39mm PAB-9 gs": "9x39Q4",
+            "12.7x55mm PS12": "127x55Q2",
+            ".357 Magnum FMJ": "357Q4"
+        },
+        "WeaponCategories": [
+            "Assault carbines",
+            "DMRs",
+            "Revolvers"
+        ],
+        "Price": 2.48,
+        "Color": "#f1e90e"
+    }
+}

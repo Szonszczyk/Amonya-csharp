@@ -1,0 +1,66 @@
+{
+    "762x51": {
+        "Category": "Assault",
+        "QuestForStart": "556x45Q1",
+        "Caliber": {
+            "Id": "Caliber762x51",
+            "Name": "7.62x51mm NATO",
+            "ShortName": "7.62x51"
+        },
+        "Quests": {
+            "762x51Q1": {
+                "Unlocks": [
+                    "7.62x51mm Ultra Nosler"
+                ],
+                "Diff": "1",
+                "Trader": 1
+            },
+            "762x51Q2": {
+                "Unlocks": [
+                    "7.62x51mm TCW SP"
+                ],
+                "Diff": "2",
+                "Trader": 1
+            },
+            "762x51Q3": {
+                "Unlocks": [
+                    "7.62x51mm BCP FMJ"
+                ],
+                "Diff": "3",
+                "Trader": 1
+            },
+            "762x51Q4": {
+                "Unlocks": [
+                    "7.62x51mm M80"
+                ],
+                "Diff": "4",
+                "Trader": 1
+            },
+            "762x51Q5": {
+                "Unlocks": [
+                    "7.62x51mm M62 Tracer"
+                ],
+                "Diff": "5",
+                "Trader": 2
+            },
+            "762x51Q6": {
+                "Unlocks": [
+                    "7.62x51mm M61"
+                ],
+                "Diff": "6",
+                "Trader": 2
+            },
+            "762x51Q7": {
+                "Unlocks": [
+                    "7.62x51mm M993"
+                ],
+                "Diff": "7",
+                "Trader": 3
+            },
+            "762x51Q8": {
+                "Diff": "8",
+                "Trader": 4
+            }
+        }
+    }
+}

@@ -1,0 +1,40 @@
+{
+    "Armor-cracking": {
+        "FlavourText": "Engineered to shred through ceramic and steel, leaving protection meaningless and enemies with fear",
+        "Description": "A high-penetration round with double armor damage. Excellent against heavy armor, but comes with drastically reduced damage output",
+		"Explanation": "Designed for neutralizing heavily armored opponents. Best used in combination with anti-personnel rounds for maximum efficiency",
+		"ShortName": "AC",
+        "Properties": {
+            "PenetrationPower": "+15%",
+            "Damage": "-70%",
+            "ArmorDamage": "+100%"
+        },
+        "Bullets": {
+            "7.62x51mm M993": "762x51Q3",
+            "5.45x39mm PPBS gs Igolnik": "545x39Q3",
+            "5.56x45mm M995":  "556x45Q3",
+            "7.62x39mm MAI AP": "762x39Q3",
+            ".300 Blackout AP": "300Q3",
+            "9x39mm BP gs": "9x39Q3",
+            "12.7x55mm PS12B": "127x55Q1",
+            "7.62x25mm TT Pst gzh": "762x25Q2",
+            "9x19mm PBP gzh": "9x19Q3",
+            ".45 ACP AP": "45ACPQ3",
+            "4.6x30mm AP SX": "46x30Q2",
+            "9x18mm PM PBM gzh": "9x18Q1",
+            "9x21mm 7N42 Zubilo": "9x21Q1",
+            "12/70 AP-20 armor-piercing slug": "1270Q2",
+            "20/70 TSS Armor Piercing Slug": "2070Q2",
+            "23x75mm Barrikada slug":  "23x75Q1"
+        },
+        "WeaponCategories": [
+            "Assault carbines",
+            "Assault rifles",
+            "SMGs",
+            "LMGs",
+            "Shotguns"
+        ],
+        "Price": 0.64,
+        "Color": "#88828b"
+    }
+}

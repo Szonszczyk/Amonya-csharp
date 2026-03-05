@@ -1,0 +1,59 @@
+{
+    "9x21": {
+        "Category": "Pistol",
+        "QuestForStart": "9x19Q2",
+        "Caliber": {
+            "Id": "Caliber9x21",
+            "Name": "9x21mm Gyurza",
+            "ShortName": "9x21"
+        },
+        "Quests": {
+            "9x21Q1": {
+                "Unlocks": [
+                    "9x21mm PE gzh"
+                ],
+                "Diff": "1",
+                "Trader": 1
+            },
+            "9x21Q2": {
+                "Unlocks": [
+                    "9x21mm P gzh"
+                ],
+                "Diff": "2",
+                "Trader": 1
+            },
+            "9x21Q3": {
+                "Unlocks": [
+                    "9x21mm PS gzh"
+                ],
+                "Diff": "3",
+                "Trader": 1
+            },
+            "9x21Q4": {
+                "Unlocks": [
+                    "9x21mm 7U4"
+                ],
+                "Diff": "4",
+                "Trader": 1
+            },
+            "9x21Q5": {
+                "Unlocks": [
+                    "9x21mm BT gzh"
+                ],
+                "Diff": "5",
+                "Trader": 2
+            },
+            "9x21Q6": {
+                "Unlocks": [
+                    "9x21mm 7N42 Zubilo"
+                ],
+                "Diff": "7",
+                "Trader": 3
+            },
+            "9x21Q7": {
+                "Diff": "8",
+                "Trader": 4
+            }
+        }
+    }
+}

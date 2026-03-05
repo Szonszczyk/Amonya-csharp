@@ -1,0 +1,24 @@
+{
+    "Avada Kedavra": {
+        "FlavourText": "Hey, I know that reference!",
+        "Description": "Bullet that will 1-hit your enemy but with low initial speed",
+		"Explanation": "Specialized bullet with 1-hit potencial only for Bolt-action rifles, if you can deal with relatively low initial bullet speed",
+		"ShortName": "AVK",
+        "Properties": {
+            "Damage": 4999,
+            "PenetrationPower": 95,
+            "InitialSpeed": 150,
+            "ArmorDamage": "+200%"
+        },
+        "Bullets": {
+            "7.62x51mm TCW SP": "762x51Q5",
+            ".338 Lapua Magnum AP": "338Q3",
+            "7.62x54mm R BS gs": "762x54Q5"
+        },
+        "WeaponCategories": [
+            "Bolt-action rifles"
+        ],
+        "Price": 3,
+        "Color": "#004d1a"
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "Ratshot": {
+        "FlavourText": "A specialized cartridge loaded with tiny pellets designed for pest control and close-quarters fun. Useless against armor, terrifying against rats.",
+        "Description": "Buckshot bullet for normal guns. Features almost no penetration and armor damage, small initial speed and bullet, low accuracy but with lowered heat buildup and recoil. It's dirt cheep!",
+		"Explanation": "Almost free bullet for early-game ratting",
+		"ShortName": "RAT",
+        "Properties": {
+            "AmmoType": "buckshot",
+            "ProjectileCount": 8,
+            "Damage": 12,
+            "ArmorDamage": "-80%",
+            "PenetrationPower": "-90%",
+            "PenetrationChanceObstacle": 0.01,
+            "BallisticCoeficient": 0.015,
+            "InitialSpeed": 300,
+            "RicochetChance": 0,
+            "AmmoAccr": -25,
+            "AmmoRec": 1,
+            "HeatFactor": "-1",
+            "BulletDiameterMilimeters": "-50%",
+            "BulletMassGram": "-75%",
+            "AmmoTooltipClass": "SoftTargets",
+            "FragmentationChance": 0,
+            "BuckshotBullets": 8
+        },
+        "Bullets": {
+            "5.56x45mm Warmageddon": "Introduction",
+            "5.45x39mm US gs": "Introduction",
+            "7.62x25mm TT LRN": "Introduction",
+            "9x19mm QuakeMaker": "Introduction"
+        },
+        "WeaponCategories": [
+            "ALL"
+        ],
+        "Price": 0.00001,
+        "Color": "#fcb103"
+    }
+}

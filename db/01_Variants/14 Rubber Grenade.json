@@ -1,0 +1,46 @@
+{
+    "Rubber Grenade": {
+        "FlavourText": "Grenade that is not explosive, but hurts very much",
+        "Description": "Grenade missing explosive component but with increased velocity, penetration and damage",
+		"Explanation": "Normal bullet for 40x46 grenade launchers if you can deal with aiming it in proper way",
+		"ShortName": "RB",
+        "Properties": {
+            "AmmoTooltipClass": "ArmorPiercing",
+            "ArmorDistanceDistanceDamage": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "ExplosionStrength": 0,
+            "ExplosionType": "",
+            "FragmentType": "5996f6d686f77467977ba6cc",
+            "FuzeArmTimeSec": 0,
+            "HeavyBleedingDelta": 0.5,
+            "LightBleedingDelta": 0.5,
+            "MinExplosionDistance": 0,
+            "MaxExplosionDistance": 0,
+            "PenetrationChanceObstacle": 0.75,
+            "PenetrationDamageMod": 0.175,
+            "RicochetChance": 0.38,
+            "AmmoType": "bullet",
+            "ArmorDamage": 0,
+            "Damage": 500,
+            "PenetrationPower": 40,
+            "InitialSpeed": 400,
+            "HasGrenaderComponent": false,
+            "DurabilityBurnModificator": "-50%",
+            "ShowBullet": true,
+            "ShowHitEffectOnExplode": false,
+            "BallisticCoeficient": 0.28,
+            "SpeedRetardation": 0.000015
+        },
+        "Bullets": {
+            "40x46mm M386 (HE) grenade": "40x46Q2"
+        },
+        "WeaponCategories": [
+            "ALL"
+        ],
+        "Price": 0.64,
+        "Color": "#3aba9a"
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "50AE": {
+        "Category": "Pistol",
+        "QuestForStart": "9x19Q3",
+        "Caliber": {
+            "Id": "Caliber127x33",
+            "Name": ".50 Action Express",
+            "ShortName": ".50AE"
+        },
+        "Quests": {
+            "50AEQ1": {
+                "Unlocks": [
+                    ".50 AE JHP"
+                ],
+                "Diff": "1",
+                "Trader": 1
+            },
+            "50AEQ2": {
+                "Unlocks": [
+                    ".50 AE Hawk JSP"
+                ],
+                "Diff": "2",
+                "Trader": 1
+            },
+            "50AEQ3": {
+                "Unlocks": [
+                    ".50 AE Copper Solid"
+                ],
+                "Diff": "4",
+                "Trader": 1
+            },
+            "50AEQ4": {
+                "Unlocks": [
+                    ".50 AE FMJ"
+                ],
+                "Diff": "6",
+                "Trader": 2
+            },
+            "50AEQ5": {
+                "Diff": "8",
+                "Trader": 3
+            }
+        }
+    }
+}

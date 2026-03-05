@@ -1,0 +1,54 @@
+{
+    "57x28": {
+        "Category": "Pistol",
+        "QuestForStart": "9x19Q3",
+        "Caliber": {
+            "Id": "Caliber57x28",
+            "Name": "5.7x28mm FN",
+            "ShortName": "5.7x28"
+        },
+        "Quests": {
+            "57x28Q1": {
+                "Unlocks": [
+                    "5.7x28mm R37.X",
+                    "5.7x28mm SS198LF",
+                    "5.7x28mm SB193"
+                ],
+                "Diff": "1",
+                "Trader": 1
+            },
+            "57x28Q2": {
+                "Unlocks": [
+                    "5.7x28mm R37.F"
+                ],
+                "Diff": "2",
+                "Trader": 1
+            },
+            "57x28Q3": {
+                "Unlocks": [
+                    "5.7x28mm SS197SR"
+                ],
+                "Diff": "3",
+                "Trader": 1
+            },
+            "57x28Q4": {
+                "Unlocks": [
+                    "5.7x28mm L191"
+                ],
+                "Diff": "4",
+                "Trader": 1
+            },
+            "57x28Q5": {
+                "Unlocks": [
+                    "5.7x28mm SS190"
+                ],
+                "Diff": "6",
+                "Trader": 2
+            },
+            "57x28Q6": {
+                "Diff": "8",
+                "Trader": 3
+            }
+        }
+    }
+}

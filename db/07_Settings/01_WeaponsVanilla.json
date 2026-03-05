@@ -1,0 +1,8 @@
+{
+	"BaseWeaponExceptions": [
+		"579204f224597773d619e051", // "Makarov PM (t) 9x18PM pistol",
+        "5926bb2186f7744b1c6c6e60", // "HK MP5 9x19 submachine gun (Navy 3 Round Burst)"
+        "5ae08f0a5acfc408fb1398a1", // "Mosin 7.62x54R bolt-action rifle (Sniper)"
+		"5bfd297f0db834001a669119"  // "Mosin 7.62x54R bolt-action rifle (Infantry)"
+	]
+}

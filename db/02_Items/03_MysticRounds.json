@@ -1,0 +1,14 @@
+{
+    "Mystic Rounds": {
+        "Description": "These bullets don't make any sense\nThey feel real, yet flicker between existing and not existing when you aren't looking directly at them\nSome say they're used in weapons powered by forces beyond comprehension, but considering no gun in Tarkov can fire them, you remain skeptical\nHowever, there is someone-an eccentric collector with an almost supernatural obsession for ammo-who might want these in exchange for something… unusual",
+        "ShortName": "Mystic R.",
+        "ItemTplToClone": "5d2f2ab648f03550091993ca",
+        "Properties": {
+			"StackMaxSize": 2,
+            "Height": 2,
+            "Width": 1
+        },
+        "HandbookPriceRoubles": 20000,
+        "Color": "#1A3A6F"
+    }
+}

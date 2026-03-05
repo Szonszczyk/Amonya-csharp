@@ -1,0 +1,46 @@
+{
+    "Mortar": {
+        "FlavourText": "\"Use this, do the crime\"",
+        "Description": "Explosive bullet with very low initial speed allowing you to shoot enemies even behind buildings",
+		"Explanation": "Specialized High-explosive bullet to kill enemies behind covers or call an artillery strike on boss position",
+		"ShortName": "HT",
+        "Properties": {
+            "AmmoLifeTimeSec": 40,
+            "AmmoTooltipClass": "HighExplosive",
+            "ArmorDistanceDistanceDamage": {
+                "x": 0.25,
+                "y": 1.5,
+                "z": 5.5
+            },
+            "ExplosionStrength": 10,
+            "ExplosionType": "smallgrenade_expl",
+            "FuzeArmTimeSec": 0.7,
+            "HeavyBleedingDelta": 0,
+            "LightBleedingDelta": 0,
+            "MinExplosionDistance": 1,
+            "MaxExplosionDistance": 4,
+            "PenetrationChanceObstacle": 0,
+            "PenetrationDamageMod": 0,
+            "RicochetChance": 0,
+            "AmmoType": "grenade",
+            "CasingSounds": "127rifle",
+            "ArmorDamage": 30,
+            "Damage": 60,
+            "PenetrationPower": 10,
+            "InitialSpeed": 24,
+            "HasGrenaderComponent": true,
+            "DurabilityBurnModificator": "+100%"
+        },
+        "Bullets": {
+            "5.45x39mm PRS gs": "545x39Q5",
+            "7.62x39mm T-45M1 gzh": "762x39Q5"
+        },
+        "WeaponCategories": [
+            "Assault carbines",
+            "Assault rifles",
+            "LMGs"
+        ],
+        "Price": 3.56,
+        "Color": "#99ff99"
+    }
+}

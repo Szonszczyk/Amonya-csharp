@@ -1,0 +1,45 @@
+{
+    "357": {
+        "Category": "Pistol",
+        "QuestForStart": "9x19Q4",
+        "Caliber": {
+            "Id": "Caliber9x33R",
+            "Name": ".357 Magnum",
+            "ShortName": ".357"
+        },
+        "Quests": {
+            "357Q1": {
+                "Unlocks": [
+                    ".357 Magnum SP"
+                ],
+                "Diff": "1",
+                "Trader": 1
+            },
+            "357Q2": {
+                "Unlocks": [
+                    ".357 Magnum HP"
+                ],
+                "Diff": "2",
+                "Trader": 1
+            },
+            "357Q3": {
+                "Unlocks": [
+                    ".357 Magnum JHP"
+                ],
+                "Diff": "4",
+                "Trader": 1
+            },
+            "357Q4": {
+                "Unlocks": [
+                    ".357 Magnum FMJ"
+                ],
+                "Diff": "6",
+                "Trader": 2
+            },
+            "357Q5": {
+                "Diff": "8",
+                "Trader": 3
+            }
+        }
+    }
+}

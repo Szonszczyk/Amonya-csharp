@@ -1,0 +1,70 @@
+{
+    "2070": {
+        "Category": "Shotgun",
+        "QuestForStart": "1270Q1",
+        "Caliber": {
+            "Id": "Caliber20g",
+            "Name": "20/70 Shotgun",
+            "ShortName": "20/70 Shotgun"
+        },
+        "Quests": {
+            "2070Q1": {
+                "Unlocks": [
+                    "20/70 5.6mm buckshot",
+                    "20/70 Devastator slug"
+                ],
+                "Diff": "1",
+                "Trader": 1
+            },
+            "2070Q2": {
+                "Unlocks": [
+                    "20/70 6.2mm buckshot",
+                    "20/70 Poleva-3 slug"
+                ],
+                "Diff": "2",
+                "Trader": 1
+            },
+            "2070Q3": {
+                "Unlocks": [
+                    "20/70 7.5mm buckshot",
+                    "20/70 Star slug"
+                ],
+                "Diff": "3",
+                "Trader": 1
+            },
+            "2070Q4": {
+                "Unlocks": [
+                    "20/70 7.3mm buckshot",
+                    "20/70 Poleva-6u slug"
+                ],
+                "Diff": "4",
+                "Trader": 1
+            },
+            "2070Q5": {
+                "Unlocks": [
+                    "20/70 Dangerous Game Slug"
+                ],
+                "Diff": "5",
+                "Trader": 2
+            },
+            "2070Q6": {
+                "Unlocks": [
+                    "20/70 flechette"
+                ],
+                "Diff": "6",
+                "Trader": 2
+            },
+            "2070Q7": {
+                "Unlocks": [
+                    "20/70 TSS Armor Piercing Slug"
+                ],
+                "Diff": "7",
+                "Trader": 3
+            },
+            "2070Q8": {
+                "Diff": "8",
+                "Trader": 4
+            }
+        }
+    }
+}

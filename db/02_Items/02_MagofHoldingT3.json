@@ -1,0 +1,37 @@
+{
+    "Pocket Sized Mag of Holding": {
+        "Description": "A strangely shaped container that holds far more ammo than it should\nDespite looking like a regular magazine, it refuses to fit into any weapon\nSome SCAV found it buried in a stash, thinking he scored the ultimate high-capacity mag\nWhen he tried to use it, the rounds simply vanished instead of feeding into the chamber\nFrustrated, he tossed it aside-only to realize later that it still worked as a magazine, just not in the way he expected\nIt became the go-to pouch for stashing extra ammo",
+        "ShortName": "MoH-S",
+        "ItemTplToClone": "55d485be4bdc2d962f8b456f",
+        "Properties": {
+            "LoadUnloadModifier": -90,
+			"CheckTimeModifier": 0,
+			"MalfunctionChance": 0,
+			"ExtraSizeDown": 0,
+			"Ergonomics": 0,
+            "Height": 1,
+            "Width": 1,
+			"Weight": -5
+        },
+        "Changes": {
+            "Cartridges": {
+                "Count": 1000,
+                "Filter": [ "5485a8684bdc2da71d8b4567" ]
+            }
+        },
+        "Barter": {
+            "TraderId": "ee840a5ba014e9c5478d5ccd",
+            "LoyalLevel": 1,
+            "UnlimitedCount": true,
+            "StackObjectsCount": 5,
+            "BarterPrice": {
+                "Arcane Rounds": 2
+            }
+        },
+        "HandbookPriceRoubles": 100000,
+        "Color": "#2E4A2E",
+        "CustomItemConfig": {
+            "AddToSpecialSlots": true
+        }
+    }
+}

@@ -1,0 +1,46 @@
+{
+    "Artillery": {
+        "FlavourText": "\"The most hated tank type in certain game\"",
+        "Description": "Explosive bullet with low initial speed allowing you to shoot enemies behind cover",
+		"Explanation": "Specialized High-explosive bullet to kill enemies behind covers or call an artillery strike on boss position",
+		"ShortName": "HE",
+        "Properties": {
+            "AmmoLifeTimeSec": 40,
+            "AmmoTooltipClass": "HighExplosive",
+            "ArmorDistanceDistanceDamage": {
+                "x": 0.25,
+                "y": 1.5,
+                "z": 5.5
+            },
+            "ExplosionStrength": 10,
+            "ExplosionType": "smallgrenade_expl",
+            "FuzeArmTimeSec": 0.8,
+            "HeavyBleedingDelta": 0,
+            "LightBleedingDelta": 0,
+            "MinExplosionDistance": 1,
+            "MaxExplosionDistance": 4,
+            "PenetrationChanceObstacle": 0,
+            "PenetrationDamageMod": 0,
+            "RicochetChance": 0,
+            "AmmoType": "grenade",
+            "CasingSounds": "127rifle",
+            "ArmorDamage": 20,
+            "Damage": 40,
+            "PenetrationPower": 10,
+            "InitialSpeed": 45,
+            "HasGrenaderComponent": true,
+            "DurabilityBurnModificator": "+100%"
+        },
+        "Bullets": {
+            "5.56x45mm M856": "556x45Q5",
+            "7.62x51mm M80": "762x51Q5"
+        },
+        "WeaponCategories": [
+            "Assault carbines",
+            "Assault rifles",
+            "LMGs"
+        ],
+        "Price": 5,
+        "Color": "#ffff99"
+    }
+}

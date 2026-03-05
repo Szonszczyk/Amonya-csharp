@@ -1,0 +1,29 @@
+{
+    "Tazer": {
+        "FlavourText": "Shock your enemies... or your dog, I don't care!",
+        "Description": "Bullet with low initial speed, very low range but with increadibly good damage",
+		"Explanation": "Speciallised bullet that will decimate your enemy if it gets too close to you",
+		"ShortName": "TZR",
+        "Properties": {
+            "Damage": "+600%",
+            "PenetrationPower": 9,
+            "InitialSpeed": 400,
+            "AmmoLifeTimeSec": 0.15,
+            "BulletDiameterMilimeters": "+3200%",
+            "BulletMassGram": "+3200%",
+            "BallisticCoeficient": 2000
+        },
+        "Bullets": {
+            "9x18mm PMM PstM gzh": "9x18Q4",
+            "9x21mm PS gzh": "9x21Q4",
+            "7.62x25mm TT P gl": "762x25Q4",
+            ".45 ACP Hydra-Shok": "45ACPQ4",
+            "4.6x30mm FMJ SX": "46x30Q4"
+        },
+        "WeaponCategories": [
+            "Pistols"
+        ],
+        "Price": 1.01,
+        "Color": "#3291a8"
+    }
+}

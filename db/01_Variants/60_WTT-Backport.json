@@ -1,0 +1,28 @@
+{
+  "Heavy Duty": {
+    "Bullets": {
+      "9.3x64mm FMJ": "93x64Q2"
+    }
+  },
+  "Avada Kedavra": {
+    "Bullets": {
+      ".308 ME LOKT": "308MEQ2"
+    }
+  },
+  "Pro+": {
+    "Bullets": {
+      "9.3x64mm 7N33": "93x64Q4",
+      ".308 ME": "308MEQ3"
+    }
+  },
+  "Railgun": {
+    "Bullets": {
+      "9.3x64mm SP": "93x64Q3"
+    }
+  },
+  "Ratshot Mk2": {
+    "Bullets": {
+      ".308 ME LOKT": "308MEQ1"
+    }
+  }
+}

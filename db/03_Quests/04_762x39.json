@@ -1,0 +1,68 @@
+{
+    "762x39": {
+        "Category": "Assault",
+        "QuestForStart": "545x39Q2",
+        "Caliber": {
+            "Id": "Caliber762x39",
+            "Name": "7.62x39mm",
+            "ShortName": "7.62x39"
+        },
+        "Quests": {
+            "762x39Q1": {
+                "Unlocks": [
+                    "7.62x39mm HP"
+                ],
+                "Diff": "1",
+                "Trader": 1
+            },
+            "762x39Q2": {
+                "Unlocks": [
+                    "7.62x39mm SP",
+                    "7.62x39mm FMJ"
+                ],
+                "Diff": "2",
+                "Trader": 1
+            },
+            "762x39Q3": {
+                "Unlocks": [
+                    "7.62x39mm US gzh",
+                    "7.62x39mm T-45M1 gzh"
+                ],
+                "Diff": "3",
+                "Trader": 1
+            },
+            "762x39Q4": {
+                "Unlocks": [
+                    "7.62x39mm PS gzh"
+                ],
+                "Diff": "4",
+                "Trader": 1
+            },
+            "762x39Q5": {
+                "Unlocks": [
+                    "7.62x39mm PP gzh"
+                ],
+                "Diff": "5",
+                "Trader": 2
+            },
+            "762x39Q6": {
+                "Unlocks": [
+                    "7.62x39mm MAI AP"
+                ],
+                "Diff": "6",
+                "Trader": 2
+            },
+            "762x39Q7": {
+                "Unlocks": [
+                    "7.62x39mm BP gzh"
+                ],
+                "Diff": "7",
+                "Trader": 3
+            },
+            "762x39Q8": {
+                "Diff": "8",
+                "Trader": 4
+            }
+        }
+    }
+}

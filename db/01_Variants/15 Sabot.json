@@ -1,0 +1,23 @@
+{
+    "Sabot": {
+        "FlavourText": "It's a slug, but on a diet. Goes fast, hates armor, and has unresolved anger issues",
+        "Description": "A high-speed sabot slug designed to penetrate armor with precision, but has lower damage",
+		"Explanation": "Shotgun slug to use on long distances",
+		"ShortName": "SAB",
+        "Properties": {
+            "Damage": "-38%",
+            "PenetrationPower": 61,
+            "InitialSpeed": 950
+        },
+        "Bullets": {
+            "12/70 AP-20 armor-piercing slug": "1270Q6",
+            "20/70 TSS Armor Piercing Slug": "2070Q6",
+            "23x75mm Barrikada slug":  "23x75Q2"
+        },
+        "WeaponCategories": [
+            "ALL"
+        ],
+        "Price": 2,
+        "Color": "#513c91"
+    }
+}

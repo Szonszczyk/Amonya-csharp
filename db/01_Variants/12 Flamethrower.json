@@ -1,0 +1,29 @@
+{
+    "Flamethrower": {
+        "FlavourText": "Fire that hurts a lot, but you can outrun it",
+        "Description": "Big bullet with low initial speed but with increased damage",
+		"Explanation": "Specialised bullet ideally for use on short distances and stationary targets",
+		"ShortName": "FL",
+        "Properties": {
+            "InitialSpeed": 85,
+            "Damage": "+150%",
+            "BulletDiameterMilimeters": "+500%",
+            "BulletMassGram": "+500%"
+        },
+        "Bullets": {
+            "7.62x25mm TT LRNPC": "762x25Q1",
+            "9x18mm PM SP8 gzh": "9x18Q1",
+            "9x19mm PSO gzh": "9x19Q1",
+            "9x21mm PE gzh": "9x21Q1",
+            ".45 ACP Lasermatch FMJ": "45ACPQ1",
+            "4.6x30mm Action SX": "46x30Q1",
+            "5.7x28mm R37.X": "57x28Q1"
+        },
+        "WeaponCategories": [
+            "SMGs",
+            "Pistols"
+        ],
+        "Price": 1.15,
+        "Color": "#fc0303"
+    }
+}

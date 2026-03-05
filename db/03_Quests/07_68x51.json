@@ -1,0 +1,31 @@
+{
+    "68x51": {
+        "Category": "Assault",
+        "QuestForStart": "762x51Q1",
+        "Caliber": {
+            "Id": "Caliber68x51",
+            "Name": "6.8x51mm",
+            "ShortName": "6.8x51"
+        },
+        "Quests": {
+            "68x51Q1": {
+                "Unlocks": [
+                    "6.8x51mm SIG FMJ"
+                ],
+                "Diff": "2",
+                "Trader": 1
+            },
+            "68x51Q2": {
+                "Unlocks": [
+                    "6.8x51mm SIG Hybrid"
+                ],
+                "Diff": "7",
+                "Trader": 2
+            },
+            "68x51Q3": {
+                "Diff": "8",
+                "Trader": 3
+            }
+        }
+    }
+}

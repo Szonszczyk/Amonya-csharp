@@ -1,0 +1,59 @@
+{
+    "9x39": {
+        "Category": "Assault",
+        "QuestForStart": "762x39Q2",
+        "Caliber": {
+            "Id": "Caliber9x39",
+            "Name": "9x39mm",
+            "ShortName": "9x39"
+        },
+        "Quests": {
+            "9x39Q1": {
+                "Unlocks": [
+                    "9x39mm FMJ"
+                ],
+                "Diff": "1",
+                "Trader": 1
+            },
+            "9x39Q2": {
+                "Unlocks": [
+                    "9x39mm SP-5 gs"
+                ],
+                "Diff": "2",
+                "Trader": 1
+            },
+            "9x39Q3": {
+                "Unlocks": [
+                    "9x39mm SPP gs"
+                ],
+                "Diff": "3",
+                "Trader": 1
+            },
+            "9x39Q4": {
+                "Unlocks": [
+                    "9x39mm PAB-9 gs"
+                ],
+                "Diff": "4",
+                "Trader": 1
+            },
+            "9x39Q5": {
+                "Unlocks": [
+                    "9x39mm SP-6 gs"
+                ],
+                "Diff": "5",
+                "Trader": 2
+            },
+            "9x39Q6": {
+                "Unlocks": [
+                    "9x39mm BP gs"
+                ],
+                "Diff": "7",
+                "Trader": 3
+            },
+            "9x39Q7": {
+                "Diff": "8",
+                "Trader": 4
+            }
+        }
+    }
+}

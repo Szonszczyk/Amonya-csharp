@@ -1,0 +1,38 @@
+{
+    "Anti-personnel": {
+        "FlavourText": "A predator's choice. Made to punish the weak and unarmored",
+        "Description": "High-damage round with minimal penetration. No armor damage and no bleeding chance",
+		"Explanation": "Optimized for use against lightly armored targets. Pairs well with armor-cracking ammunition in belts for versatility",
+		"ShortName": "ANT",
+        "Properties": {
+            "LightBleedingDelta": 0,
+            "HeavyBleedingDelta": 0,
+            "PenetrationPower": "-70%",
+            "Damage": "+40%",
+            "ArmorDamage": 0
+        },
+        "Bullets": {
+            "7.62x51mm Ultra Nosler": "762x51Q3",
+            "5.45x39mm HP": "545x39Q3",
+            "5.56x45mm Warmageddon":  "556x45Q3",
+            "7.62x39mm HP": "762x39Q3",
+            ".300 Whisper": "300Q3",
+            "9x39mm FMJ": "9x39Q3",
+            "12.7x55mm PS12A": "127x55Q1",
+            "7.62x25mm TT LRNPC": "762x25Q2",
+            "9x19mm QuakeMaker": "9x19Q3",
+            ".45 ACP Hydra-Shok": "45ACPQ3",
+            "4.6x30mm Action SX": "46x30Q2",
+            "9x18mm PM PSV": "9x18Q1",
+            "9x21mm PE gzh": "9x21Q1"
+        },
+        "WeaponCategories": [
+            "Assault carbines",
+            "Assault rifles",
+            "SMGs",
+            "LMGs"
+        ],
+        "Price": 2.25,
+        "Color": "#999966"
+    }
+}

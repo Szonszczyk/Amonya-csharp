@@ -1,0 +1,6 @@
+{
+	"BaseWeaponExceptions": [
+		"68c2940aecc41cc5490bd40e", // "Custom Guns NL545 (GP) 5.45x39 assault rifle"
+        "68c16b9ab6b75a8a480520a6" // "Custom Guns NL545 (DI) 5.45x39 assault rifle"
+	]
+}

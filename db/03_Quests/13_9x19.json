@@ -1,0 +1,68 @@
+{
+    "9x19": {
+        "Category": "Pistol",
+        "QuestForStart": "Introduction",
+        "Caliber": {
+            "Id": "Caliber9x19PARA",
+            "Name": "9x19mm Parabellum",
+            "ShortName": "9x19"
+        },
+        "Quests": {
+            "9x19Q1": {
+                "Unlocks": [
+                    "9x19mm PSO gzh",
+                    "9x19mm Green Tracer"
+                ],
+                "Diff": "1",
+                "Trader": 1
+            },
+            "9x19Q2": {
+                "Unlocks": [
+                    "9x19mm QuakeMaker"
+                ],
+                "Diff": "2",
+                "Trader": 1
+            },
+            "9x19Q3": {
+                "Unlocks": [
+                    "9x19mm Luger CCI"
+                ],
+                "Diff": "3",
+                "Trader": 1
+            },
+            "9x19Q4": {
+                "Unlocks": [
+                    "9x19mm FMJ M882",
+                    "9x19mm Pst gzh"
+                ],
+                "Diff": "4",
+                "Trader": 1
+            },
+            "9x19Q5": {
+                "Unlocks": [
+                    "9x19mm RIP"
+                ],
+                "Diff": "5",
+                "Trader": 2
+            },
+            "9x19Q6": {
+                "Unlocks": [
+                    "9x19mm PBP gzh"
+                ],
+                "Diff": "6",
+                "Trader": 2
+            },
+            "9x19Q7": {
+                "Unlocks": [
+                    "9x19mm AP 6.3"
+                ],
+                "Diff": "7",
+                "Trader": 3
+            },
+            "9x19Q8": {
+                "Diff": "8",
+                "Trader": 4
+            }
+        }
+    }
+}

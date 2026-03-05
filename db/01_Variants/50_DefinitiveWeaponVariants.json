@@ -1,0 +1,22 @@
+{
+  "Railgun": {
+    "Bullets": {
+      "12.7x108mm BZT-44M": "127x108Q2"
+    }
+  },
+  "Avada Kedavra": {
+    "Bullets": {
+      "12.7x108mm B-32": "127x108Q2"
+    }
+  },
+  "Pro+": {
+    "Bullets": {
+      "12.7x108mm B-32": "127x108Q3"
+    }
+  },
+  "Spiked": {
+    "Bullets": {
+      "30x29mm VOG-30": "30x29Q2"
+    }
+  }
+}

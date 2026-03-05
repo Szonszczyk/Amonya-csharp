@@ -1,0 +1,38 @@
+{
+    "Crate Sized Mag of Holding": {
+        "Description": "An enormous, ridiculously spacious ammo container shaped like an oversized magazine\nIt defies weight, space, and common sense, capable of holding entire arsenals of different kinds of ammunition\nSome SCAV discovered it in a ruined warehouse and, assuming it was a drum mag for some foreign weapon, tried loading it into his weapon\nWhen the gun refused to reload, he gave up, only to realize later that he could still use it to store his ammo, just not the way he originally intended",
+        "ShortName": "MoH-L",
+        "ItemTplToClone": "5cbdc23eae9215001136a407",
+        "Properties": {
+            "LoadUnloadModifier": -94,
+		    "CheckTimeModifier": 0,
+		    "MalfunctionChance": 0,
+		    "ExtraSizeDown": 0,
+		    "Ergonomics": 0,
+            "Height": 2,
+            "Width": 2,
+		    "Weight": -15
+        },
+        "Changes": {
+            "Cartridges": {
+                "Count": 5000,
+                "Filter": [ "5485a8684bdc2da71d8b4567" ]
+            }
+        },
+        "Barter": {
+            "TraderId": "ee840a5ba014e9c5478d5ccd",
+            "LoyalLevel": 3,
+            "UnlimitedCount": true,
+            "StackObjectsCount": 5,
+            "BarterPrice": {
+                "Eldritch Rounds": 2,
+                "Satchel Sized Mag of Holding": 1
+            }
+        },
+        "HandbookPriceRoubles": 400000,
+        "Color": "#733D25",
+        "CustomItemConfig": {
+            "AddToSpecialSlots": true
+        }
+    }
+}

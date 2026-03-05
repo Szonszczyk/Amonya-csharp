@@ -1,0 +1,36 @@
+{
+    "Lucky Shot": {
+        "FlavourText": "At close range, you’re lucky. At long range, you’d better hope you are",
+        "Description": "A buckshot round designed for bolt-action rifles. Accuracy becomes a gamble - you might miss entirely or land multiple hits in a single shot",
+		"Explanation": "Devastating at close range. At medium to long distances, effectiveness becomes unpredictable due to pellet spread",
+		"ShortName": "RNG",
+        "Properties": {
+            "AmmoType": "buckshot",
+            "ProjectileCount": 12,
+            "Damage": "-33%",
+            "PenetrationPower": "+20%",
+            "PenetrationChanceObstacle": 0.12,
+            "InitialSpeed": 500,
+            "RicochetChance": 0,
+            "AmmoAccr": -35,
+            "AmmoRec": 5,
+            "HeatFactor": "-1",
+            "BulletDiameterMilimeters": "-50%",
+            "BulletMassGram": "-75%",
+            "AmmoTooltipClass": "SoftTargets",
+            "FragmentationChance": 0,
+            "BuckshotBullets": 12
+        },
+        "Bullets": {
+            "7.62x51mm M80": "762x51Q3",
+            ".338 Lapua Magnum FMJ": "338Q2",
+            "7.62x54mm R SNB gzh": "762x54Q3",
+            ".366 TKM AP-M": "366Q2"
+        },
+        "WeaponCategories": [
+            "Bolt-action rifles"
+        ],
+        "Price": 0.7,
+        "Color": "#8CFF9E"
+    }
+}

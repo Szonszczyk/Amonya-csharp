@@ -1,0 +1,53 @@
+{
+    "40x46": {
+        "Category": "Grenade",
+        "QuestForStart": "Introduction",
+        "Caliber": {
+            "Id": "Caliber40x46",
+            "Name": "40x46mm Grenade",
+            "ShortName": "40x46 Grenade"
+        },
+        "Quests": {
+            "40x46Q1": {
+                "Unlocks": [
+                    "40x46mm M386 (HE) grenade",
+                    "40x46mm M576 (MP-APERS) grenade"
+                ],
+                "Diff": "1",
+                "Trader": 2
+            },
+            "40x46Q2": {
+                "Unlocks": [
+                    "40x46mm M433 (HEDP) grenade"
+                ],
+                "Diff": "2",
+                "Trader": 2
+            },
+            "40x46Q3": {
+                "Unlocks": [
+                    "40x46mm M406 (HE) grenade"
+                ],
+                "Diff": "3",
+                "Trader": 2
+            },
+            "40x46Q4": {
+                "Unlocks": [
+                    "40x46mm M381 (HE) grenade"
+                ],
+                "Diff": "4",
+                "Trader": 3
+            },
+            "40x46Q5": {
+                "Unlocks": [
+                    "40x46mm M441 (HE) grenade"
+                ],
+                "Diff": "5",
+                "Trader": 3
+            },
+            "40x46Q6": {
+                "Diff": "8",
+                "Trader": 4
+            }
+        }
+    }
+}

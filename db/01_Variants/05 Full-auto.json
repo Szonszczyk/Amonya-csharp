@@ -1,0 +1,35 @@
+{
+    "Full-auto": {
+        "FlavourText": "Cheap, reliable, and made for spraying down a room without draining your wallet!",
+        "Description": "Reduced damage with lower recoil",
+		"Explanation": "A budget-friendly choice for full-auto weapons, balancing cost and control at the expense of damage",
+		"ShortName": "FA",
+        "Properties": {
+            "Damage": "-15%",
+            "AmmoRec": "-25"
+        },
+        "Bullets": {
+            "7.62x51mm M80": "762x51Q4",
+            "5.45x39mm 7N40": "545x39Q4",
+            "5.56x45mm M855A1": "556x45Q4",
+            "7.62x39mm PP gzh": "762x39Q4",
+            ".300 Blackout CBJ": "300Q4",
+            "6.8x51mm SIG Hybrid": "68x51Q2",
+            "9x39mm PAB-9 gs": "9x39Q4",
+            "9x18mm PMM PstM gzh": "9x18Q4",
+            "9x19mm AP 6.3": "9x19Q4",
+            ".45 ACP Match FMJ": "45ACPQ4",
+            "4.6x30mm FMJ SX": "46x30Q4",
+            "5.7x28mm L191": "57x28Q4"
+        },
+        "WeaponCategories": [
+            "Assault carbines",
+            "Assault rifles",
+            "SMGs",
+            "LMGs",
+            "DMRs"
+        ],
+        "Price": 0.5,
+        "Color": "#33cccc"
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "Satchel Sized Mag of Holding": {
+        "Description": "This oddly proportioned ammo container defies all logic\nIt holds an absurd amount of rounds, yet weighs almost nothing when empty\nA SCAV scavenged it from an abandoned hideout, convinced it was some experimental military prototype\nAfter forcing it into a rifle, he found that the bullets stored inside refused to chamber-just vanishing instead\nWhile utterly useless as a firearm mag, it proved to be an excellent way to carry extra ammo",
+        "ShortName": "MoH-M",
+        "ItemTplToClone": "55d482194bdc2d1d4e8b456b",
+        "Properties": {
+            "LoadUnloadModifier": -92,
+            "CheckTimeModifier": 0,
+			"MalfunctionChance": 0,
+			"ExtraSizeDown": 0,
+			"Ergonomics": 0,
+            "Height": 2,
+            "Width": 1,
+			"Weight": -10
+        },
+        "Changes": {
+            "Cartridges": {
+                "Count": 2500,
+                "Filter": [ "5485a8684bdc2da71d8b4567" ]
+            }
+        },
+        "Barter": {
+            "TraderId": "ee840a5ba014e9c5478d5ccd",
+            "LoyalLevel": 2,
+            "UnlimitedCount": true,
+            "StackObjectsCount": 5,
+            "BarterPrice": {
+                "Mystic Rounds": 2,
+                "Pocket Sized Mag of Holding": 1
+            }
+        },
+        "HandbookPriceRoubles": 200000,
+        "Color": "#1A3A6F",
+        "CustomItemConfig": {
+            "AddToSpecialSlots": true
+        }
+    }
+}

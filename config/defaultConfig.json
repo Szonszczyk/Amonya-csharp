@@ -1,0 +1,84 @@
+{
+    // Config of Szonszczyk - Amonya
+
+    // DO NOT CHANGE ANYTHING IN defaultConfig.json
+    // Run server once or make a copy of this file and rename it to "config.json"
+    // Make changes only in config.json to avoid losing them after updates!
+
+    // [BETA] Removes all mentions of the "Pony" trader from lore and sanitizes related pictures
+    "EnableNonPonyMode": false, // true/false - default: false
+
+    // Setup of ammo being sold by Amonya
+    "AmmoPrice": {
+        // Price multiplier for bullets sold by Amonya
+        "Multiplier": 0.7, // float number - default: 0.7
+        // If false, the trader shares a global purchase limit (Max) per refresh.
+        // If true, each player can buy up to Max bullets independently.
+        "UnlimitedCount": false, // true/false - default: false
+        // Maximum amount that can be bought per trader refresh
+        "Max": 1000 // integer number - default: 1000
+    },
+
+    // Enable/Disable bullet quests added to Amonya
+    // Disabling this will remove all bullet quests and make variant bullets available from the beginning
+    // WARNING: Change this ONLY BEFORE starting or progressing any Amonya quests
+    "EnableBulletQuests": true, // true/false - default: true
+
+    // Enable/Disable bullet variant type from appearing in Amonya quests/assort
+    // This will NOT remove these bullets entirely from the game (they can still appear in daily quests)
+    "EnableBulletVariants": true, // true/false - default: true
+    "EnableBullets": {
+        /*01 */"Armor-cracking": true, // true/false - default: true
+        /*02 */"Bloody": true,
+        /*03 */"Heavy Duty": true,
+        /*04 */"Anti-personnel": true,
+        /*05 */"Full-auto": true,
+        /*06 */"Railgun": true,
+        /*07 */"Artillery": true,
+        /*08 */"Mortar": true,
+        /*09 */"Avada Kedavra": true,
+        /*10 */"Pro+": true,
+        /*11 */"Hypersonic": true,
+        /*12 */"Sparkle": true,
+        /*13 */"Close Quarters": true,
+        /*14 */"Rubber Grenade": true,
+        /*15 */"Sabot": true,
+        /*16 */"Flamethrower": true,
+        /*17 */"Ratshot": true,
+        /*18 */"Laser": true,
+        /*19 */"Ratshot Mk2": true,
+        /*20 */"Heavy": true,
+        /*21 */"Light": true,
+        /*22 */"Mini-nuke": true,
+        /*23 */"Cluster Bomb": true,
+        /*24 */"Afterburner": true,
+        /*25 */"Spiked": true,
+        /*26 */"Mini-rocket": true,
+        /*27 */"Lucky Shot": true
+    },
+
+    // Bullet names are displayed in 1x1 inventory slots and can be difficult to read
+    // You can configure a short display name format for bullet variants (shown in equipment/inventory)
+
+    // Available tags:
+    // - <variant_fullname>  - e.g. "Lucky Shot"
+    // - <variant_shortname> - e.g. "RNG"
+    // - <caliber_shortname> - e.g. "5.45x39"
+    // - <caliber_amonyaid>  - e.g. "545x39"
+    "BulletVariantsShortName": "<variant_shortname> <caliber_shortname>",
+    // Default: "<variant_shortname> <caliber_shortname>"
+    // In game example: "RNG 5.45x39"
+    // If using https://forge.sp-tarkov.com/mod/2586/caliber-under-ammo-name : use "<variant_shortname>" or "<variant_fullname>"
+
+    // Change stack size of certain calibers
+    // Use BSG caliber names - you can find them in db/05_Calibers
+    "CaliberStacks": {
+        "Caliber127x108": 60, // integer number - default: 60
+        "Caliber40x46": 5, // integer number - default: 5
+        "Caliber30x29": 5 // integer number - default: 5
+    },
+
+    // The mod checks for ColorConverterAPI before changing colors and tracers
+    // If set to false, the mod will assume ColorConverterAPI is always loaded
+    "CheckColorConverterAPI": true // true/false - default: true
+}

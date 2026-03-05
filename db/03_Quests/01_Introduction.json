@@ -1,0 +1,13 @@
+{
+	"Introduction": {
+		"Category": "Pistol",
+        "QuestForStart": "",
+        "Quests": {
+            "Introduction": {
+                "Unlocks": [],
+                "Diff": "0",
+                "Trader": 1
+            }
+        }
+    }
+}

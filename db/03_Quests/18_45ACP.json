@@ -1,0 +1,52 @@
+{
+    "45ACP": {
+        "Category": "Pistol",
+        "QuestForStart": "Introduction",
+        "Caliber": {
+            "Id": "Caliber1143x23ACP",
+            "Name": ".45 ACP",
+            "ShortName": ".45"
+        },
+        "Quests": {
+            "45ACPQ1": {
+                "Unlocks": [
+                    ".45 ACP Lasermatch FMJ"
+                ],
+                "Diff": "1",
+                "Trader": 1
+            },
+            "45ACPQ2": {
+                "Unlocks": [
+                    ".45 ACP Match FMJ"
+                ],
+                "Diff": "2",
+                "Trader": 1
+            },
+            "45ACPQ3": {
+                "Unlocks": [
+                    ".45 ACP Hydra-Shok"
+                ],
+                "Diff": "3",
+                "Trader": 1
+            },
+            "45ACPQ4": {
+                "Unlocks": [
+                    ".45 ACP RIP"
+                ],
+                "Diff": "4",
+                "Trader": 1
+            },
+            "45ACPQ5": {
+                "Unlocks": [
+                    ".45 ACP AP"
+                ],
+                "Diff": "6",
+                "Trader": 2
+            },
+            "45ACPQ6": {
+                "Diff": "8",
+                "Trader": 3
+            }
+        }
+    }
+}

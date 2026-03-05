@@ -1,0 +1,280 @@
+{
+	// You can setup here what is needed for quest completion and what are rewards for completing it
+	"Difficulties": {
+		"0": { // Only used by Introduction quest
+			"Requires": {
+				"AnyKills": 3, // All kills made by any weapon
+				"Roubles": 5000, // Below categories are being setup in next section of this config
+				"Fabric": 1,
+				"ScavStuff": 1,
+				"EverydayObjects": 1
+			},
+			"Rewards": {
+				"Experience": 2500
+			}
+		},
+		"1": {
+			"Requires": {
+				"Kills": 5, // Kills made with weapons of given caliber
+				"Roubles": 10000,
+				"EverydayObjects": 1,
+				"Tools": 1
+			},
+			"Rewards": {
+				"Experience": 5000
+			}
+		},
+		"2": {
+			"Requires": {
+				"Kills": 10,
+				"Roubles": 50000,
+				"Fabric": 1,
+				"Tools": 1,
+				"Electronics": 1
+			},
+			"Rewards": {
+				"Experience": 10000,
+				"TraderStanding": 0.01
+			}
+		},
+		"3": {
+			"Requires": {
+				"Kills": 20,
+				"Roubles": 150000,
+				"Gunpowder": 1,
+				"ScavStuff": 1,
+				"EverydayObjects": 1,
+				"Info": 1,
+				"Antique": 1
+			},
+			"Rewards": {
+				"Experience": 20000,
+				"TraderStanding": 0.01,
+				"MagicAmmoT3": 1 // Magic ammo is used to barter for Mag of Holding (T1 > T3)
+			}
+		},
+		"4": {
+			"Requires": {
+				"Kills": 30,
+				"Dollars": 20000,
+				"Gunpowder": 2,
+				"Fabric": 2,
+				"Electronics": 2,
+				"Info": 1,
+				"Antique": 2
+			},
+			"Rewards": {
+				"Experience": 40000,
+				"TraderStanding": 0.01,
+				"MagicAmmoT3": 1
+			}
+		},
+		"5": {
+			"Requires": {
+				"Boss": 10, // Boss kills made with weapons of given caliber, have a mod boss to add? You can add them in "BossNames" section in the bottom of this config
+				"PMC": 30,  // PMC kills made with weapons of given caliber
+				"Kills": 60,
+				"Gunpowder": 3,
+				"ScavStuff": 3,
+				"Electronics": 2,
+				"Info": 1,
+				"Antique": 2,
+				"Figurines": 1,
+				"Valuables": 1
+			},
+			"Rewards": {
+				"Experience": 50000,
+				"TraderStanding": 0.02,
+				"MagicAmmoT2": 1
+			}
+		},
+		"6": {
+			"Requires": {
+				"Mastery": 80, // Amount of kills to be split to weapon categories of given weapon
+				"Gunpowder": 3,
+				"EverydayObjects": 3,
+				"Tools": 3,
+				"Info": 1,
+				"Antique": 2,
+				"Figurines": 1,
+				"Valuables": 1
+			},
+			"Rewards": {
+				"Experience": 100000,
+				"TraderStanding": 0.03,
+				"MagicAmmoT2": 1
+			}
+		},
+		"7": {
+			"Requires": {
+				"Collector": 120, // Amount of kills to be split to weapon base types
+				"Electronics": 3,
+				"Info": 3,
+				"Antique": 2,
+				"Figurines": 2,
+				"Valuables": 2,
+				"TarkoPops": 1
+			},
+			"Rewards": {
+				"Experience": 200000,
+				"TraderStanding": 0.04,
+				"MagicAmmoT1": 1
+			}
+		},
+		"8": {
+			"Requires": {
+				"Kills": 200
+			},
+			"Rewards": {
+				"Experience": 300000,
+				"TraderStanding": 0.05,
+				"MagicAmmoT1": 1
+			}
+		}
+	},
+	// Setup of different barter categories (Handover items after completing killing section)
+	// If you want to add new category, remember to add text for it to db/06_Locales!
+	"RequiresCategories": {
+		"Roubles": [ // I can't easily use them but I love when number goes up on my bank account!
+			"5449016a4bdc2d6f028b456f"
+		],
+		"Dollars": [ // I can't easily use them but I love when number goes up on my bank account!
+			"5696686a4bdc2da3298b456a"
+		],
+		"Euros": [ // I can't easily use them but I love when number goes up on my bank account!
+			"569668774bdc2da2298b4568"
+		],
+		"GPCoins": [ // I can't easily use them but I love when number goes up on my bank account!
+			"5d235b4d86f7742e017bc88a"
+		],
+		"Gunpowder": [ // I need them for creating my ammo!
+			"590c5a7286f7747884343aea", // Gunpowder "Kite"
+			"5d6fc78386f77449d825f9dc", // Gunpowder "Eagle"
+			"5d6fc87386f77449db3db94e"  // Gunpowder "Hawk"
+		],
+		"Fabric": [ // I need these to patch my hoodie!
+			"5e2af4d286f7746d4159f07a", // Aramid fiber fabric
+			"5e2af41e86f774755a234b67", // Cordura polyamide fabric
+			"5e2af47786f7746d404f3aaa", // Fleece fabric
+			"5e2af4a786f7746d3f3c3400"  // Ripstop fabric
+		],
+		"ScavStuff": [ // I need these for trades with scavs
+			"573475fb24597737fb1379e1", // Apollo Soyuz cigarettes
+			"573476d324597737da2adc13", // Malboro Cigarettes
+			"5734770f24597738025ee254", // Strike Cigarettes
+			"573476f124597737e04bf328", // Wilston cigarettes
+			"6389c6463485cf0eeb260715", // Pack of Arseniy buckwheat
+			"5e2af51086f7746d3f3c3402", // UZRGM grenade fuze
+			"5d1b3f2d86f774253763b735"  // Disposable syringe
+		],
+		"EverydayObjects": [ // So I can clean myself!
+			"59e361e886f774176c10a2a5", // Bottle of hydrogen peroxide
+			"6389c6c7dbfd5e4b95197e68", // Aquapeps water purification tablets
+			"5e2af02c86f7746d420957d4", // Pack of chlorine
+			"59e3556c86f7741776641ac2", // Ox bleach
+			"5d4041f086f7743cac3f22a7", // Ortodontox toothpaste
+			"5c13cef886f774072e618e82", // Toilet paper
+			"5d40412b86f7743cb332ac3a", // Schaman shampoo
+			"59e358a886f7741776641ac3", // Clin window cleaner
+			"5e2aef7986f7746d3f3c33f5", // Repellent
+			"59e3596386f774176c10a2a2"  // PAID AntiRoach spray
+		],
+		"Tools": [ // I can use them with my mouth
+			"56742c2e4bdc2d95058b456d", // Zibbo lighter
+			"5d1b31ce86f7742523398394", // Round pliers
+			"590c2d8786f774245b1f03f3", // Screwdriver
+			"590c2b4386f77425357b6123", // Pliers
+			"5d40425986f7743185265461", // Nippers
+			"5d4042a986f7743185265463", // Flat screwdriver (Long)
+			"5d63d33b86f7746ea9275524", // Flat screwdriver
+			"62a0a098de7ac8199358053b"  // Awl
+		],
+		"Electronics": [ // I want to know how they works!
+			"5c1265fc86f7743f896a21c2", // Broken GPhone X smartphone
+			"5d1b309586f77425227d1676", // Broken LCD
+			"6389c70ca33d8c4cdf4932c6", // Electronic components
+			"5672cb724bdc2dc2088b456b", // Geiger-Muller counter
+			"57347baf24597738002c6178", // RAM stick
+			"590a3d9c86f774385926e510", // Ultraviolet lamp
+			"5672cb124bdc2d1a0f8b4568", // AA Battery
+			"5909e99886f7740c983b9984", // USB Adapter
+			"5672cb304bdc2dc2088b456a", // D Size battery
+			"5af0561e86f7745f5f3ad6ac"  // Portable Powerbank
+		],
+		"Info": [ // I need all the Tarkov information I can get!
+			"6389c92d52123d5dd17f8876", // Advanced Electronic Materials textbook
+			"62a09e73af34e73a266d932a", // BakeEzy cook book
+			"590c645c86f77412b01304d9", // Diary
+			"62a0a16d0b9d3c46de5b6e97", // Military flash drive
+			"590c37d286f77443be3d7827", // SAS drive
+			"590c621186f774138d11ea29", // Secure Flash drive
+			"590c651286f7741e566b6461", // Slim diary
+			"590c392f86f77444754deb29"  // SSD drive
+		],
+		"Antique": [ // Tarkov region has a lot of history so I want to delve deep into it!
+			"590de71386f774347051a052", // Antique teapot
+			"590de7e986f7741b096e5f32", // Antique vase
+			"5bc9c049d4351e44f824d360", // Antique book
+			"5bc9c377d4351e3bac12251b", // Old firesteel
+			"5c1267ee86f77416ec610f72", // Prokill medallion
+			"5bc9c1e2d4351e00367fbcf0"  // Antique axe
+		],
+		"Figurines": [ // Some stuff to put on my shelf!
+			"573478bc24597738002c6175", // Horse figurine
+			"60b0f7057897d47c5b04ab94", // Loot Lord plushie
+			"5bc9bc53d4351e00367fbcee", // Golden rooster
+			"59e3639286f7741777737013", // Bronze lion
+			"5e54f62086f774219b0f1937", // Raven figurine
+			"62a091170b9d3c46de5b6cf2", // Axel parrot
+			"59e3658a86f7741776641ac4"  // Cat figurine
+		],
+		"Valuables": [ // I think they are neat!
+			"62a09cfe4f842e1bd12da3e4", // Golden egg
+			"5f745ee30acaeb0d490d8c5b", // Veritas
+			"6389c88b33a719183c7f63b6", // Ultralink Satellite Internet Station
+			"5d235a5986f77443f6329bc6", // Gold skull ring
+			"5bc9bdb8d4351e003562b8a1", // Silver Badge
+			"59faf7ca86f7740dbe19f6c2", // Roler Submariner gold wrist watch
+			"66b37ea4c5d72b0277488439", // Tamatthi kunai knife replica
+			"66b37eb4acff495a29492407", // Viibiin sneaker
+			"573474f924597738002c6174", // Chainlet
+			"5734758f24597738025ee253"  // Golden neck chain
+		],
+		"TarkoPops": [ // I want to collect them all!
+			"655c652d60d0ac437100fed7", // BEAR operative figurine
+			"655c669103999d3c810c025b", // Cultist figurine
+			"655c67ab0d37ca5135388f4b", // Ded Moroz figurine
+			"655c66e40b2de553b618d4b8", // Politician Mutkevich figurine
+			"655c67782a1356436041c9c5", // Ryzhy figurine
+			"655c673673a43e23e857aebd", // Scav figurine
+			"655c663a6689c676ce57af85", // USEC operative figurine
+			"66572b8d80b1cd4b6a67847f", // Den figurine
+			"66572c82ad599021091c6118", // Killa figurine
+			"66572be36a723f7f005a066e", // Reshala figurine
+			"66572cbdad599021091c611a", // Tagilla figurine
+			"679b9d4b3374fb14f40efe6d", // Count Bloodsucker figurine
+			"679b9cce4e4ed4b3b40ae5c5", // Nailhead figurine
+			"679b9d43597ba2ed120c3d44", // Petya Crooker figurine
+			"679b9d6390622daf9708da76", // Pointy guy figurine
+			"679b9d55708cfcb2060b9ae3"  // Xenoalien figurine
+		]
+	},
+	// Internal boss names setup for quest Boss kills
+	"BossNames": [
+		"bossKilla",
+		"bossTagilla",
+		"bossBully",
+		"bossKojaniy",
+		"bossGluhar",
+		"bossSanitar",
+		"bossKnight",
+		"followerBigPipe",
+		"followerBirdEye",
+		"bossBoar",
+		"bossKolontay",
+		"bosszryachiy",
+		"bosspartisan",
+		"bosskillaagro",
+		"bosstagillaagro"
+	]
+}

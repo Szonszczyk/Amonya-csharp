@@ -1,0 +1,14 @@
+{
+    "Eldritch Rounds": {
+        "Description": "A terrifyingly large stack of bizarre ammunition, completely unfathomable in function\nSome claim these are 'magic bullets' for weapons wielded by spellcasters, but no amount of testing has proven their use\nWhile most traders laugh them off as nonsense, there is one 'person' in Tarkov-someone who knows ammo better than anyone-who might just trade you something extraordinary for them\nYou know who I mean",
+        "ShortName": "Eldritch Rounds",
+        "ItemTplToClone": "5d2f2ab648f03550091993ca",
+        "Properties": {
+			"StackMaxSize": 2,
+            "Height": 2,
+            "Width": 2
+        },
+        "HandbookPriceRoubles": 30000,
+        "Color": "#733D25"
+    }
+}

@@ -1,0 +1,39 @@
+{
+    "93x64": {
+        "Category": "Assault",
+        "QuestForStart": "763x51Q3",
+        "Caliber": {
+            "Id": "Caliber93x64",
+            "Name": "9.3x64mm",
+            "ShortName": "9.3x64"
+        },
+        "Mod": "com.wtt.contentbackport",
+        "Quests": {
+            "93x64Q1": {
+                "Unlocks": [
+                    "9.3x64mm SP"
+                ],
+                "Diff": "1",
+                "Trader": 1
+            },
+            "93x64Q2": {
+                "Unlocks": [
+                    "9.3x64mm FMJ"
+                ],
+                "Diff": "3",
+                "Trader": 1
+            },
+            "93x64Q3": {
+                "Unlocks": [
+                    "9.3x64mm 7N33"
+                ],
+                "Diff": "5",
+                "Trader": 2
+            },
+            "93x64Q4": {
+                "Diff": "8",
+                "Trader": 3
+            }
+        }
+    }
+}

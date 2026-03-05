@@ -1,0 +1,37 @@
+{
+	"Caliber58x42": {
+		"Name": "5.8x42mm",
+		"Id": "58x42",
+		"ShortName": "5.8x42"
+	},
+	"Caliber792x57": {
+		"Name": "7.92x57mm",
+		"Id": "792x57",
+		"ShortName": "7.92x57"
+	},
+	"Caliber762x67B": {
+		"Name": ".300 WM",
+		"Id": "300WM",
+		"ShortName": ".300 WM"
+	},
+	"Caliber86x63": {
+		"Name": ".338 Norma",
+		"Id": "338Norma",
+		"ShortName": ".338 Norma"
+	},
+	"Caliber1036x77": {
+		"Name": ".408 CT",
+		"Id": "408CT",
+		"ShortName": ".408 CT"
+	},
+	"Caliber25x59": {
+		"Name": "25x59mm Grenade",
+		"Id": "25x59",
+		"ShortName": "25x59 Grenade"
+	},
+	"Caliber11x33R": {
+		"Name": ".44 Remington Magnum",
+		"Id": "44Magnum",
+		"ShortName": ".44 Magnum"
+	}
+}

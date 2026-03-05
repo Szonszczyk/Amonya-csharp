@@ -1,0 +1,45 @@
+{
+    "338": {
+        "Category": "Assault",
+        "QuestForStart": "762x51Q2",
+        "Caliber": {
+            "Id": "Caliber86x70",
+            "Name": ".338 Lapua Magnum",
+            "ShortName": ".338"
+        },
+        "Quests": {
+            "338Q1": {
+                "Unlocks": [
+                    ".338 Lapua Magnum TAC-X"
+                ],
+                "Diff": "1",
+                "Trader": 1
+            },
+            "338Q2": {
+                "Unlocks": [
+                    ".338 Lapua Magnum UCW"
+                ],
+                "Diff": "2",
+                "Trader": 1
+            },
+            "338Q3": {
+                "Unlocks": [
+                    ".338 Lapua Magnum FMJ"
+                ],
+                "Diff": "4",
+                "Trader": 1
+            },
+            "338Q4": {
+                "Unlocks": [
+                    ".338 Lapua Magnum AP"
+                ],
+                "Diff": "6",
+                "Trader": 2
+            },
+            "338Q5": {
+                "Diff": "8",
+                "Trader": 3
+            }
+        }
+    }
+}

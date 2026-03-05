@@ -1,0 +1,45 @@
+{
+    "127x99": {
+        "Category": "Assault",
+        "QuestForStart": "556x45Q3",
+        "Caliber": {
+            "Id": "Caliber127x99",
+            "Name": ".50 BMG NATO",
+            "ShortName": ".50 BMG"
+        },
+        "Quests": {
+            "127x99Q1": {
+                "Unlocks": [
+                    ".50 BMG HP"
+                ],
+                "Diff": "1",
+                "Trader": 1
+            },
+            "127x99Q2": {
+                "Unlocks": [
+                    ".50 BMG M21"
+                ],
+                "Diff": "3",
+                "Trader": 1
+            },
+            "127x99Q3": {
+                "Unlocks": [
+                    ".50 BMG M33"
+                ],
+                "Diff": "4",
+                "Trader": 2
+            },
+            "127x99Q4": {
+                "Unlocks": [
+                    ".50 BMG M903 SLAP"
+                ],
+                "Diff": "5",
+                "Trader": 3
+            },
+            "127x99Q5": {
+                "Diff": "8",
+                "Trader": 4
+            }
+        }
+    }
+}

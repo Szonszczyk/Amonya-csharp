@@ -1,0 +1,12 @@
+{
+    "Arcane Rounds": {
+        "Description": "A small handful of strange rounds, seemingly weightless yet perfectly solid\nNo known firearm can chamber them, yet some insist they are meant for 'wizard weapons'\nYou're not sure what that means, but certain individuals—especially that one hoarder with an absurd amount of ammunition—might find them valuable\nIf you've dealt with her before, you probably know exactly who I'm talking about",
+        "ShortName": "Arcane R.",
+        "ItemTplToClone": "5d2f2ab648f03550091993ca",
+        "Properties": {
+			"StackMaxSize": 2
+        },
+        "HandbookPriceRoubles": 10000,
+        "Color": "#2E4A2E"
+    }
+}

@@ -1,0 +1,68 @@
+{
+    "762x54": {
+        "Category": "Assault",
+        "QuestForStart": "545x39Q1",
+        "Caliber": {
+            "Id": "Caliber762x54",
+            "Name": "7.62x54mmR",
+            "ShortName": "7.62x54R"
+        },
+        "Quests": {
+            "762x54Q1": {
+                "Unlocks": [
+                    "7.62x54mm R HP BT"
+                ],
+                "Diff": "1",
+                "Trader": 1
+            },
+            "762x54Q2": {
+                "Unlocks": [
+                    "7.62x54mm R SP BT",
+                    "7.62x54mm R FMJ"
+                ],
+                "Diff": "2",
+                "Trader": 1
+            },
+            "762x54Q3": {
+                "Unlocks": [
+                    "7.62x54mm R T-46M gzh",
+                    "7.62x54mm R LPS gzh"
+                ],
+                "Diff": "3",
+                "Trader": 1
+            },
+            "762x54Q4": {
+                "Unlocks": [
+                    "7.62x54mm R PS gzh"
+                ],
+                "Diff": "4",
+                "Trader": 1
+            },
+            "762x54Q5": {
+                "Unlocks": [
+                    "7.62x54mm R BT gzh"
+                ],
+                "Diff": "5",
+                "Trader": 2
+            },
+            "762x54Q6": {
+                "Unlocks": [
+                    "7.62x54mm R SNB gzh"
+                ],
+                "Diff": "6",
+                "Trader": 2
+            },
+            "762x54Q7": {
+                "Unlocks": [
+                    "7.62x54mm R BS gs"
+                ],
+                "Diff": "7",
+                "Trader": 3
+            },
+            "762x54Q8": {
+                "Diff": "8",
+                "Trader": 4
+            }
+        }
+    }
+}

@@ -1,0 +1,48 @@
+{
+    "762x25": {
+        "Category": "Pistol",
+        "QuestForStart": "Introduction",
+        "Caliber": {
+            "Id": "Caliber762x25TT",
+            "Name": "7.62x25mm Tokarev",
+            "ShortName": "7.62x25"
+        },
+        "Quests": {
+            "762x25Q1": {
+                "Unlocks": [
+                    "7.62x25mm TT LRNPC",
+                    "7.62x25mm TT LRN"
+                ],
+                "Diff": "1",
+                "Trader": 1
+            },
+            "762x25Q2": {
+                "Unlocks": [
+                    "7.62x25mm TT FMJ43",
+                    "7.62x25mm TT AKBS",
+                    "7.62x25mm TT P gl"
+                ],
+                "Diff": "2",
+                "Trader": 1
+            },
+            "762x25Q3": {
+                "Unlocks": [
+                    "7.62x25mm TT PT gzh"
+                ],
+                "Diff": "4",
+                "Trader": 1
+            },
+            "762x25Q4": {
+                "Unlocks": [
+                    "7.62x25mm TT Pst gzh"
+                ],
+                "Diff": "6",
+                "Trader": 2
+            },
+            "762x25Q5": {
+                "Diff": "8",
+                "Trader": 3
+            }
+        }
+    }
+}

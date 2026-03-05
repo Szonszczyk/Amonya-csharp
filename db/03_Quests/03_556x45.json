@@ -1,0 +1,70 @@
+{
+    "556x45": {
+        "Category": "Assault",
+        "QuestForStart": "Introduction",
+        "Caliber": {
+            "Id": "Caliber556x45",
+            "Name": "5.56x45mm NATO",
+            "ShortName": "5.56x45"
+        },
+        "Quests": {
+            "556x45Q1": {
+                "Unlocks": [
+                    "5.56x45mm Warmageddon"
+                ],
+                "Diff": "1",
+                "Trader": 1
+            },
+            "556x45Q2": {
+                "Unlocks": [
+                    "5.56x45mm HP",
+                    "5.56x45mm MK 255 Mod 0 (RRLP)",
+                    "5.56x45mm M856"
+                ],
+                "Diff": "2",
+                "Trader": 1
+            },
+            "556x45Q3": {
+                "Unlocks": [
+                    "5.56x45mm FMJ"
+                ],
+                "Diff": "3",
+                "Trader": 1
+            },
+            "556x45Q4": {
+                "Unlocks": [
+                    "5.56x45mm M855",
+                    "5.56x45mm MK 318 Mod 0 (SOST)"
+                ],
+                "Diff": "4",
+                "Trader": 1
+            },
+            "556x45Q5": {
+                "Unlocks": [
+                    "5.56x45mm M856A1",
+                    "5.56x45mm M855A1"
+                ],
+                "Diff": "5",
+                "Trader": 2
+            },
+            "556x45Q6": {
+                "Unlocks": [
+                    "5.56x45mm SSA AP"
+                ],
+                "Diff": "6",
+                "Trader": 2
+            },
+            "556x45Q7": {
+                "Unlocks": [
+                    "5.56x45mm M995"
+                ],
+                "Diff": "7",
+                "Trader": 3
+            },
+            "556x45Q8": {
+                "Diff": "8",
+                "Trader": 4
+            }
+        }
+    }
+}

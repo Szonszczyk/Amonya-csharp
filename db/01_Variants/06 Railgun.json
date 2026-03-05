@@ -1,0 +1,48 @@
+{
+    "Railgun": {
+        "FlavourText": "A coin flipped by lightning itself, tearing through the battlefield faster than sound",
+        "Description": "Explosive round with high initial speed",
+		"Explanation": "A high-end prototype capable of lethal impact even near the target. Extremely powerful but prohibitively expensive",
+		"ShortName": "ION",
+        "Properties": {
+            "AmmoLifeTimeSec": 4,
+            "AmmoTooltipClass": "HighExplosive",
+            "ArmorDistanceDistanceDamage": {
+                "x": 0.25,
+                "y": 1.5,
+                "z": 5.5
+            },
+            "ExplosionStrength": 10,
+            "ExplosionType": "smallgrenade_expl",
+            "FuzeArmTimeSec": 0,
+            "HeavyBleedingDelta": 0,
+            "LightBleedingDelta": 0,
+            "MinExplosionDistance": 1,
+            "MaxExplosionDistance": 4,
+            "PenetrationChanceObstacle": 0,
+            "PenetrationDamageMod": 0,
+            "RicochetChance": 0,
+            "AmmoType": "grenade",
+            "CasingSounds": "127rifle",
+            "ArmorDamage": 40,
+            "Damage": 120,
+            "PenetrationPower": 10,
+            "InitialSpeed": 301,
+            "HasGrenaderComponent": true,
+            "DurabilityBurnModificator": "+100%",
+            "BallisticCoeficient": 2000
+        },
+        "Bullets": {
+            "7.62x51mm Ultra Nosler": "762x51Q6",
+            ".338 Lapua Magnum TAC-X": "338Q4",
+            "7.62x54mm R HP BT": "762x54Q6",
+            ".50 BMG M33": "127x99Q3"
+        },
+        "WeaponCategories": [
+            "DMRs",
+            "Bolt-action rifles"
+        ],
+        "Price": 33,
+        "Color": "#3333ff"
+    }
+}

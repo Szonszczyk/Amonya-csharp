@@ -1,0 +1,35 @@
+{
+    "Close Quarters": {
+        "FlavourText": "Someone put all the close quarters ideas in one casing and here it is!",
+        "Description": "Bullet that always penetrates obstacles, always ricochets, is bigger and have increased damage and penetration but with lowered initial speed and accuracy",
+		"Explanation": "Good early-game bullet with good penetration and damage, if you can deal with low initial speed",
+		"ShortName": "CQC",
+        "Properties": {
+            "RicochetChance": 1,
+            "AmmoLifeTimeSec": 30,
+            "PenetrationChanceObstacle": 1,
+            "ShowHitEffectOnExplode": true,
+            "InitialSpeed": 250,
+            "BulletDiameterMilimeters": "+100%",
+            "BulletMassGram": "+100%",
+            "Damage": "+15%",
+            "PenetrationPower": 47,
+            "LightBleedingDelta": 0,
+            "HeavyBleedingDelta": 0,
+            "AmmoAccr": -15
+        },
+        "Bullets": {
+            "7.62x51mm TCW SP": "762x51Q2",
+            "5.45x39mm SP": "545x39Q2",
+            "5.56x45mm MK 255 Mod 0 (RRLP)":  "556x45Q2",
+            "7.62x39mm FMJ": "762x39Q2",
+            ".300 Blackout BCP FMJ": "300Q2",
+            "9x39mm PAB-9 gs": "9x39Q2"
+        },
+        "WeaponCategories": [
+            "ALL"
+        ],
+        "Price": 1.69,
+        "Color": "#66ffcc"
+    }
+}

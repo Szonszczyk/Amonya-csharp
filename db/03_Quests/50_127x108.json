@@ -1,0 +1,32 @@
+{
+    "127x108": {
+        "Category": "Assault",
+        "QuestForStart": "545x39Q3",
+        "Caliber": {
+            "Id": "Caliber127x108",
+            "Name": "12.7x108mm",
+            "ShortName": "12.7x108"
+        },
+        "Mod": "com.szonszczyk.definitiveweaponvariants",
+        "Quests": {
+            "127x108Q1": {
+                "Unlocks": [
+                    "12.7x108mm B-32"
+                ],
+                "Diff": "2",
+                "Trader": 1
+            },
+            "127x108Q2": {
+                "Unlocks": [
+                    "12.7x108mm BZT-44M"
+                ],
+                "Diff": "5",
+                "Trader": 2
+            },
+            "127x108Q3": {
+                "Diff": "8",
+                "Trader": 3
+            }
+        }
+    }
+}
