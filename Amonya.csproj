@@ -10,6 +10,7 @@
     <!-- The two lines below will set the output path for the binaries -->
     <OutputPath>bin\$(Configuration)\$(ProjectName)\$(AssemblyName)\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <Authors>Szonszczyk</Authors>
   </PropertyGroup>
 
   <ItemGroup>
