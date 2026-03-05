@@ -6,6 +6,7 @@
     // Make changes only in config.json to avoid losing them after updates!
 
     // [BETA] Removes all mentions of the "Pony" trader from lore and sanitizes related pictures
+    // If Amonya avatar is still the same after changing this option - In SPT Laucher go to Settings and click "Clean Temp Files"
     "EnableNonPonyMode": false, // true/false - default: false
 
     // Setup of ammo being sold by Amonya
