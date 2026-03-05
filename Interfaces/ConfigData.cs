@@ -11,6 +11,7 @@
         public string BulletVariantsShortName { get; set; } = "<variant_shortname> <caliber_shortname>";
         public Dictionary<string, int> CaliberStacks { get; set; } = [];
         public bool CheckColorConverterAPI { get; set; } = true;
+        public bool Debug { get; set; } = false;
     }
 
     public class AmmoPriceConfig

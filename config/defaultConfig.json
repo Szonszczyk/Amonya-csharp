@@ -81,5 +81,8 @@
 
     // The mod checks for ColorConverterAPI before changing colors and tracers
     // If set to false, the mod will assume ColorConverterAPI is always loaded
-    "CheckColorConverterAPI": true // true/false - default: true
+    "CheckColorConverterAPI": true, // true/false - default: true
+
+    // Enable/Disable debug messages
+    "Debug": false // true/false - default: false
 }

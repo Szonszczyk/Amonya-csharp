@@ -14,6 +14,7 @@ namespace Amonya.CustomClasses
     [Injectable(InjectionType.Singleton)]
     public class CustomWeaponsManager(
         ISptLogger<Amonya> logger,
+        ConfigLoader configLoader,
         ItemHelper itemHelper,
         CustomBulletsManager customBulletsManager,
         ModDatabaseLoader modDatabaseLoader
@@ -66,8 +67,6 @@ namespace Amonya.CustomClasses
                     // Check if weapon is incorrect
                     if (CheckIfWeaponIsIncorrect(id)) continue;
 
-                    
-
                     var weapon = new WeaponsDatabase
                     {
                         Name = StripHtml(Locale[$"{id} Name"]),
@@ -112,7 +111,8 @@ namespace Amonya.CustomClasses
 
                     caliberList = [.. caliberList.Distinct()];
                     if (caliberList.Count == 0) {
-                        logger.LogWithColor($"[{GetType().Namespace}] Couldn't determinate caliber of weapon '{weapon.Name}'! Chambers: {hasChamber}, Magazines: {weapon.Magazines.Count}", LogTextColor.Red);
+                        if (configLoader.Config.Debug)
+                            logger.LogWithColor($"[{GetType().Namespace}] Couldn't determinate caliber of weapon '{weapon.Name}'! Chambers: {hasChamber}, Magazines: {weapon.Magazines.Count}", LogTextColor.Red);
                         continue;
                     } else
                     {
@@ -132,12 +132,12 @@ namespace Amonya.CustomClasses
                 }
             }
             var copyWeaponEx = modDatabaseLoader.DbAddSettings.CopyWeaponExceptions;
-            foreach (var (id, weaponCopy) in copyWeapons)
+            var baseWeaponsByName = baseWeapons.GroupBy(kvp => kvp.Value.Name).ToDictionary(g => g.Key, g => g.First().Key);
+            foreach (var (id, weaponCopy) in copyWeapons.ToList())
             {
                 if (copyWeaponEx.TryGetValue(id, out var baseId))
                 {
-                    baseWeapons.TryGetValue(baseId, out var baseWeapon);
-                    if (baseWeapon != null)
+                    if (baseWeapons.TryGetValue(baseId, out var baseWeapon))
                     {
                         baseWeapon.Copies.Add(id);
                     } else
@@ -146,15 +146,20 @@ namespace Amonya.CustomClasses
                     }
                     continue;
                 }
-                var baseWeaponsId = baseWeapons.Where(t => weaponCopy.Name.Contains(t.Value.Name)).ToList();
+                var baseWeaponsId = baseWeaponsByName.Where(t => weaponCopy.Name.Contains(t.Key)).ToList();
                 if (baseWeaponsId.Count != 1)
                 {
-                    logger.LogWithColor($"[{GetType().Namespace}] Weapon determinated copy {id}/{weaponCopy.Name} matches {baseWeaponsId.Count} base weapons instead of 1", LogTextColor.Yellow);
+                    if (configLoader.Config.Debug)
+                        logger.LogWithColor($"[{GetType().Namespace}] Weapon determinated copy {id}/{weaponCopy.Name} matches {baseWeaponsId.Count} base weapons instead of 1", LogTextColor.Yellow);
                 }
                 if (baseWeaponsId.Count > 0)
                 {
-                    var firstBaseWeaponId = baseWeaponsId[0].Key;
-                    baseWeapons[baseWeaponsId.First().Key].Copies.Add(id);
+                    var firstBaseWeaponId = baseWeaponsId[0].Value;
+                    baseWeapons[firstBaseWeaponId].Copies.Add(id);
+                } else
+                {
+                    baseWeapons.Add(id, weaponCopy);
+                    copyWeapons.Remove(id);
                 }
             }
             AllWeapons = baseWeapons.Concat(copyWeapons).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
@@ -181,7 +186,8 @@ namespace Amonya.CustomClasses
 
             HashSet<string> calibers = [];
 
-            var magazine = Items[mongoId];
+            Items.TryGetValue(mongoId, out var magazine);
+            if (magazine is null) return null;
             var filterInCartridges = magazine?.Properties?.Cartridges?.FirstOrDefault()?.Properties?.Filters?.FirstOrDefault()?.Filter;
             if (filterInCartridges is null) return null;
             foreach (var bullet in filterInCartridges)
@@ -337,7 +343,8 @@ namespace Amonya.CustomClasses
                 var magazinesToAddBulletTo = GetMagazines(bullet.Caliber, bullet.Categories, true);
                 foreach (var magazineId in magazinesToAddBulletTo)
                 {
-                    var magazine = Items[magazineId];
+                    Items.TryGetValue(magazineId, out var magazine);
+                    if (magazine is null) continue;
                     var filterList = magazine?.Properties?.Cartridges?.FirstOrDefault()?.Properties?.Filters?.FirstOrDefault()?.Filter;
 
                     if (filterList is null)

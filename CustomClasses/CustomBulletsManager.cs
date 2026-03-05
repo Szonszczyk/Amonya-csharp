@@ -1,12 +1,12 @@
 ﻿using Amonya.Loaders;
 using SPTarkov.DI.Annotations;
-using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Logging;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Services;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Amonya.CustomClasses
 {
@@ -108,6 +108,10 @@ namespace Amonya.CustomClasses
                 DMG = bulletItem?.Properties?.ProjectileCount > 1 ? $"{bulletItem?.Properties?.ProjectileCount}x{bulletItem?.Properties?.Damage}" : $"{bulletItem?.Properties?.Damage}",
                 PEN = $"{bulletItem?.Properties?.PenetrationPower}"
             };
+            if (bullets.TryGetValue(id, out var item)) {
+                logger.LogWithColor($"[{GetType().Namespace}] Bullet {item.Name} has duplicate? Creating: {bullet.Name}!", LogTextColor.Yellow);
+                return;
+            }
             bullets.Add(id, bullet);
             if (!BulletsInCaliber.TryGetValue(caliber, out List<MongoId>? value))
             {
@@ -130,7 +134,8 @@ namespace Amonya.CustomClasses
 
             if (!BulletCalibers.TryGetValue(Id, out string? caliber))
             {
-                logger.LogWithColor($"[{GetType().Namespace}] Bullet {Id} found in filter, is not existing", LogTextColor.Red);
+                if (configLoader.Config.Debug)
+                    logger.LogWithColor($"[{GetType().Namespace}] Bullet {Id} found in filter, is not existing", LogTextColor.Red);
                 return null;
             }
 
