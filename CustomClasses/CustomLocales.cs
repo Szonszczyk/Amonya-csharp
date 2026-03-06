@@ -5,7 +5,6 @@ using SPTarkov.Server.Core.Models.Spt.Server;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Services;
 using System.Text.RegularExpressions;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Amonya.CustomClasses
 {
@@ -21,10 +20,10 @@ namespace Amonya.CustomClasses
 
         private LocaleBase? Locale { get; set; } = null;
         private HashSet<string> AllLangs { get; set; } = [];
-        public void Initialize(DatabaseService databaseService, LocaleService localeService)
+        public void Initialize(DatabaseService databaseService)
         {
             Locale = databaseService.GetLocales();
-            AllLangs = localeService.GetServerSupportedLocales();
+            AllLangs = Locale.Global.Keys.ToHashSet();
         }
 
         public void RegisterTag(string key, string value)

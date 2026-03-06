@@ -54,7 +54,7 @@ public class Amonya(
         fixes.Initialize(databaseService);
 
         itemGenerator.Initialize(databaseService);
-        customLocales.Initialize(databaseService, localeService);
+        customLocales.Initialize(databaseService);
         questGenerator.Initialize(databaseService);
         bulletGenerator.Initialize(databaseService);
 

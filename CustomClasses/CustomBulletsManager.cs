@@ -76,7 +76,8 @@ namespace Amonya.CustomClasses
 
             if (caliber is null)
             {
-                logger.LogWithColor($"[{GetType().Namespace}] Bullet {id} is missing caliber!", LogTextColor.Red);
+                if (configLoader.Config.Debug)
+                    logger.LogWithColor($"[{GetType().Namespace}] Bullet {id} is missing caliber!", LogTextColor.Red);
                 return;
             }
 
@@ -87,15 +88,16 @@ namespace Amonya.CustomClasses
 
             if (itemHandbook is null || itemHandbook.Price is null)
             {
-                logger.LogWithColor($"[{GetType().Namespace}] Bullet {id} is missing Handbook entry!", LogTextColor.Red);
+                if (configLoader.Config.Debug)
+                    logger.LogWithColor($"[{GetType().Namespace}] Bullet {id} is missing Handbook entry!", LogTextColor.Yellow);
                 return;
             }
             var locale = localeService.GetLocaleDb("en");
             locale.TryGetValue($"{id} Name", out var name);
             locale.TryGetValue($"{id} ShortName", out var shortName);
-            if (name is null)
+            if (name is null && configLoader.Config.Debug)
             {
-                logger.LogWithColor($"[{GetType().Namespace}] Bullet {id} is missing locale entry!", LogTextColor.Yellow);
+               logger.LogWithColor($"[{GetType().Namespace}] Bullet {id} is missing locale entry!", LogTextColor.Yellow);
             }
             var bullet = new BulletsDatabase
             {
@@ -108,10 +110,8 @@ namespace Amonya.CustomClasses
                 DMG = bulletItem?.Properties?.ProjectileCount > 1 ? $"{bulletItem?.Properties?.ProjectileCount}x{bulletItem?.Properties?.Damage}" : $"{bulletItem?.Properties?.Damage}",
                 PEN = $"{bulletItem?.Properties?.PenetrationPower}"
             };
-            if (bullets.TryGetValue(id, out var item)) {
-                logger.LogWithColor($"[{GetType().Namespace}] Bullet {item.Name} has duplicate? Creating: {bullet.Name}!", LogTextColor.Yellow);
-                return;
-            }
+            if (bullets.TryGetValue(id, out var item)) return;
+
             bullets.Add(id, bullet);
             if (!BulletsInCaliber.TryGetValue(caliber, out List<MongoId>? value))
             {
