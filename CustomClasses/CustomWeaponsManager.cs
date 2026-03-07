@@ -97,14 +97,17 @@ namespace Amonya.CustomClasses
                     if (magazines is not null)
                     {
                         weapon.Magazines = magazines;
-                        foreach (var magazineId in magazines)
+                        if (!hasChamber)
                         {
-                            var magCalibers = DeterminateMagazineCaliber(magazineId);
-                            if (magCalibers is not null && !hasChamber)
+                            foreach (var magazineId in magazines)
                             {
-                                caliberList.AddRange(magCalibers);
+                                var magCalibers = DeterminateMagazineCaliber(magazineId);
+                                if (magCalibers is not null && !hasChamber)
+                                {
+                                    caliberList.AddRange(magCalibers);
+                                }
                             }
-                        }    
+                        }
                     }
                     // Skip flares etc. It isn't a weapon if it is without chamber and magazines
                     if (!hasChamber && weapon.Magazines.Count == 0) continue;

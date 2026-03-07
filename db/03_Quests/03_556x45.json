@@ -3,7 +3,7 @@
         "Category": "Assault",
         "QuestForStart": "Introduction",
         "Caliber": {
-            "Id": "Caliber556x45",
+            "Id": "Caliber556x45NATO",
             "Name": "5.56x45mm NATO",
             "ShortName": "5.56x45"
         },

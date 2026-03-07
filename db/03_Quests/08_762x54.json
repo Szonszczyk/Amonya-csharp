@@ -3,7 +3,7 @@
         "Category": "Assault",
         "QuestForStart": "545x39Q1",
         "Caliber": {
-            "Id": "Caliber762x54",
+            "Id": "Caliber762x54R",
             "Name": "7.62x54mmR",
             "ShortName": "7.62x54R"
         },

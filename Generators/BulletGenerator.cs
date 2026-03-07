@@ -31,7 +31,6 @@ namespace Amonya.Generators
             Items = databaseService.GetItems();
             HandbookItems = databaseService.GetHandbook().Items;
         }
-        
         public void GenerateBullets()
         {
             foreach (var (variantName, config) in modDatabaseLoader.DbVariants)
@@ -46,7 +45,7 @@ namespace Amonya.Generators
                         var bullet = customBulletsManager.GetBulletByName(bulletName);
                         if (bullet == null)
                         {
-                            logger.LogWithColor($"[{GetType().Namespace}] Bullet '{bulletName}' for {variantName} Variant not found!", LogTextColor.Red);
+                            //logger.LogWithColor($"[{GetType().Namespace}] Bullet '{bulletName}' for {variantName} Variant not found!", LogTextColor.Red);
                             continue;
                         }
                         var id = bullet.Id;

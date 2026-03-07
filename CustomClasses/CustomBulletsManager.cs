@@ -149,6 +149,7 @@ namespace Amonya.CustomClasses
             var matches = bullets.Where(t => t.Value.Name == name);
             if (!matches.Any())
             {
+                if (!MongoId.IsValidMongoId(name)) return null;
                 if (bullets.TryGetValue(name, out var bullet))
                 {
                     return bullet;

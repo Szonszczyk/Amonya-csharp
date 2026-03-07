@@ -223,7 +223,12 @@ namespace Amonya.Generators
 
                                 if (req != "AnyKills")
                                 {
-                                    killAFF.Counter.Conditions.First().Weapon = [.. customWeaponsManager.GetWeaponIds(questCategory.Caliber.Id, ["ALL"], false, false)];
+                                    var weaponsToKillWith = customWeaponsManager.GetWeaponIds(questCategory.Caliber.Id, ["ALL"], false, false);
+                                    if (weaponsToKillWith.Count == 0)
+                                    {
+                                        logger.LogWithColor($"[{GetType().Namespace}] Kill conditions \"kill with weapon\" for quest {questName} can't find any weapons in database. Maybe \"{questCategory.Caliber.Id}\" caliber is incorrect?", LogTextColor.Yellow);
+                                    }
+                                    killAFF.Counter.Conditions.First().Weapon = [.. weaponsToKillWith];
                                 }
 
                                 if (req == "Boss")
