@@ -24,6 +24,9 @@
     // Disabling this will remove all bullet quests and make variant bullets available from the beginning
     // WARNING: Change this ONLY BEFORE starting or progressing any Amonya quests
     "EnableBulletQuests": true, // true/false - default: true
+    // Handover items in Amonya quests needs to be Found in Raid (excluding currencies)
+    "QuestBarterFoundInRaid": true,
+
 
     // Enable/Disable bullet variant type from appearing in Amonya quests/assort
     // This will NOT remove these bullets entirely from the game (they can still appear in daily quests)

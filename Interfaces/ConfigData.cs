@@ -6,6 +6,7 @@
 
         public AmmoPriceConfig AmmoPrice {  get; set; } = new AmmoPriceConfig();
         public bool EnableBulletQuests { get; set; } = true;
+        public bool QuestBarterFoundInRaid { get; set; } = true;
         public bool EnableBulletVariants { get; set; } = true;
         public Dictionary<string, bool> EnableBullets { get; set; } = [];
         public string BulletVariantsShortName { get; set; } = "<variant_shortname> <caliber_shortname>";

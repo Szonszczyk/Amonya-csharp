@@ -278,12 +278,13 @@ namespace Amonya.Generators
                                 configLoader.QConfig.RequiresCategories.TryGetValue(req, out var category); category ??= [];
                                 if (category.Count == 0) logger.LogWithColor($"[{GetType().Namespace}] Category {req} not found in questConfig!", LogTextColor.Red);
                                 var barterId = idDatabaseManager.GetCustomId($"{questName}:AFF:{req}");
+                                var currencies = new List<string> { "Roubles", "Dollars", "Euros", "GPCoins" };
                                 newQuest.Conditions.AvailableForFinish.Add(new QuestCondition
                                 {
                                     Id = barterId,
                                     DynamicLocale = false,
                                     ConditionType = "HandoverItem",
-                                    OnlyFoundInRaid = req != "Roubles",
+                                    OnlyFoundInRaid = !currencies.Contains(req) && configLoader.Config.QuestBarterFoundInRaid,
                                     Target = new ListOrT<string>(category, null),
                                     Value = amount,
                                     VisibilityConditions = GenerateVisibilityConditions(visibilityConditionsIds, questName, req)
