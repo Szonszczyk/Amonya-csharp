@@ -1,6 +1,7 @@
 ﻿using Amonya.Loaders;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Models.Logging;
+using SPTarkov.Server.Core.Models.Spt.Mod;
 using SPTarkov.Server.Core.Models.Spt.Server;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Services;
@@ -18,12 +19,19 @@ namespace Amonya.CustomClasses
 
         private readonly Dictionary<string, string> temp = [];
 
+        private readonly Dictionary<string, Dictionary<string, string>> OriginalLocale = [];
         private LocaleBase? Locale { get; set; } = null;
         private HashSet<string> AllLangs { get; set; } = [];
-        public void Initialize(DatabaseService databaseService)
+        public void Initialize(DatabaseService databaseService, LocaleService localeService)
         {
             Locale = databaseService.GetLocales();
             AllLangs = Locale.Global.Keys.ToHashSet();
+
+            foreach (var (lang, _) in modDatabaseLoader.DbLocales)
+            {
+                OriginalLocale.Add(lang, localeService.GetLocaleDb(lang));
+                newLocale.Add(lang, []);
+            }
         }
 
         public void RegisterTag(string key, string value)
@@ -57,34 +65,44 @@ namespace Amonya.CustomClasses
             {
                 var text = TryGetLocaleText(lang, key);
                 text ??= key;
-                var tags = ExtractTags(text);
-                do
-                {
-                    foreach (var tag in tags)
-                    {
-                        var tagText = TryGetLocaleText(lang, tag);
-                        text ??= $"LOCALE:MISSING:{lang}:{tag}";
-                        do
-                        {
-                            text = text.Replace($"<{tag}>", tagText);
-                        } while (text.Contains($"<{tag}>"));
-                    }
-                    tags = ExtractTags(text);
-                } while (tags.Count > 0);
-                newLocale.TryGetValue(lang, out var language);
-                if (language is null) newLocale[lang] = [];
-
-                if (newLocale[lang].TryGetValue(localeKey, out _))
-                    newLocale[lang][localeKey] = clean ? StripHtml(text) : text;
+                text = ReplaceTags(text, lang);
+                var newL = newLocale[lang];
+                if (newL.TryGetValue(localeKey, out _))
+                    newL[localeKey] = clean ? StripHtml(text) : text;
                 else
-                    newLocale[lang].Add(localeKey, clean ? StripHtml(text) : text);
+                    newL.Add(localeKey, clean ? StripHtml(text) : text);
                 //logger.LogWithColor($"[{GetType().Namespace}] Registred {lang}-{localeKey}: {key} => {text}", LogTextColor.Yellow);
             }
         }
 
+        private string ReplaceTags(string text, string lang)
+        {
+            while (true)
+            {
+                var tags = ExtractTags(text);
+                if (tags.Count == 0)
+                    break;
+
+                foreach (var tag in tags)
+                {
+                    var tagText = TryGetLocaleText(lang, tag);
+
+                    if (tagText is null)
+                    {
+                        logger.LogWithColor($"[{GetType().Namespace}/Locales] Tag not found: {tag}, Language: {lang}", LogTextColor.Yellow);
+                        tagText = tag;
+                    }
+
+                    text = text.Replace($"{{{tag}}}", tagText);
+                }
+            }
+
+            return text;
+        }
+
         public void AddToExistingLocale(string localeKey, string key, bool clean = false)
         {
-            AddLocale(localeKey, $"<{localeKey}>{key}", clean);
+            AddLocale(localeKey, $"{{{localeKey}}}{key}", clean);
         }
 
         public void RegisterLocales()
@@ -114,36 +132,34 @@ namespace Amonya.CustomClasses
 
         private string? TryGetLocaleText(string lang, string key)
         {
-            modDatabaseLoader.DbLocales.TryGetValue(lang, out var language);
-            if (language == null) modDatabaseLoader.DbLocales.TryGetValue("en", out language);
-            if (language == null) return null;
-
-            language.TryGetValue(key, out var text);
-            if (text is null)
+            var sources = new[]
             {
-                newLocale.TryGetValue(lang, out var newLocaleToGet);
-                if (newLocaleToGet is not null)
-                    newLocale.TryGetValue("en", out newLocaleToGet);
-                if (newLocaleToGet == null) return null;
-                newLocaleToGet.TryGetValue(key, out text);
-                if (text is null)
-                {
-                    temp.TryGetValue(key, out text);
-                }
-                return text;
+                modDatabaseLoader.DbLocales.GetValueOrDefault(lang),
+                modDatabaseLoader.DbLocales.GetValueOrDefault("en"),
+                newLocale.GetValueOrDefault(lang),
+                newLocale.GetValueOrDefault("en"),
+                temp,
+                OriginalLocale.GetValueOrDefault(lang),
+                OriginalLocale.GetValueOrDefault("en")
+            };
+
+            foreach (var source in sources)
+            {
+                if (source != null && source.TryGetValue(key, out var text))
+                    return text;
             }
-            return text;
+
+            return null;
         }
         private static List<string> ExtractTags(string input)
         {
             if (string.IsNullOrEmpty(input))
                 return new List<string>();
 
-            var matches = Regex.Matches(input, @"<([a-zA-Z0-9_:\s]+)>");
+            var matches = Regex.Matches(input, @"{([^{}]+)}");
 
             return matches
                 .Select(m => m.Groups[1].Value.Trim())
-                .Where(tag => tag.Length > 2)
                 .Distinct()
                 .ToList();
         }
@@ -153,6 +169,21 @@ namespace Amonya.CustomClasses
                 return string.Empty;
 
             return Regex.Replace(input, "<.*?>", string.Empty);
+        }
+
+        public Dictionary<string, LocaleDetails> CreateItemLocale(string Name, string ShortName, string Description)
+        {
+            var itemLocale = new Dictionary<string, LocaleDetails>();
+
+            foreach (var (langId, _) in newLocale)
+            {
+                itemLocale.Add(langId, new LocaleDetails {
+                    Name = ReplaceTags(Name, langId),
+                    ShortName = ReplaceTags(ShortName, langId),
+                    Description = ReplaceTags(Description, langId)
+                });
+            }
+            return itemLocale;
         }
 
     }

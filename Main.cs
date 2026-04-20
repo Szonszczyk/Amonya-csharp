@@ -52,9 +52,8 @@ public class Amonya(
         customSlotsChanger.Initialize(databaseService);
 
         fixes.Initialize(databaseService);
-
+        customLocales.Initialize(databaseService, localeService);
         itemGenerator.Initialize(databaseService);
-        customLocales.Initialize(databaseService);
         questGenerator.Initialize(databaseService);
         bulletGenerator.Initialize(databaseService);
 
@@ -77,7 +76,6 @@ public class Amonya(
 [Injectable(TypePriority = OnLoadOrder.PostSptModLoader + 2)]
 public class AmonyaSlotBulletVariants(
     CustomWeaponsManager customWeaponsManager
-    
 ) : IOnLoad
 {
     public Task OnLoad()

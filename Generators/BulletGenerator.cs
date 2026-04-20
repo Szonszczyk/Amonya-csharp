@@ -21,7 +21,8 @@ namespace Amonya.Generators
         CustomPropertiesChanger customPropertiesChanger,
         CustomBulletsManager customBulletsManager,
         CustomWeaponsManager customWeaponsManager,
-        QuestGenerator questGenerator
+        QuestGenerator questGenerator,
+        CustomLocales customLocales
     )
     {
         private Dictionary<MongoId, TemplateItem> Items { get; set; } = [];
@@ -39,7 +40,14 @@ namespace Amonya.Generators
 
                 if (config is { FlavourText: not null, Description: not null, Explanation: not null, ShortName: not null, Bullets: not null, WeaponCategories: not null, Price: not null, Color: not null } variant)
                 {
-                    string bulletNamesInVariant = string.Join(" | ", variant.Bullets.Keys);
+                    var bulletIds = new List<string>();
+                    foreach (var bulletName in variant.Bullets.Keys)
+                    {
+                        var bullet = customBulletsManager.GetBulletByName(bulletName);
+                        if (bullet == null) continue;
+                        bulletIds.Add($"{{{bullet.Id} Name}}");
+                    }
+                    string bulletNamesInVariant = string.Join(" | ", bulletIds);
                     foreach (var (bulletName, questName) in variant.Bullets)
                     {
                         var bullet = customBulletsManager.GetBulletByName(bulletName);
@@ -55,10 +63,11 @@ namespace Amonya.Generators
                         HandbookItem? copiedItemHandbook = HandbookItems.Find(t => t.Id == id);
                         var newId = idDatabaseManager.GetCustomId($"{variantShortName}:ID");
                         var variantShortnameDisplayed = configLoader.Config.BulletVariantsShortName
-                            .Replace("<variant_fullname>", variantName)
-                            .Replace("<variant_shortname>", variant.ShortName)
+                            .Replace("<variant_fullname>", $"{{{variantName}.Name}}")
+                            .Replace("<variant_shortname>", $"{{{variantName}.ShortName}}")
                             .Replace("<caliber_shortname>", caliberInfo.ShortName)
                             .Replace("<caliber_amonyaid>", caliberInfo.Id);
+                        customLocales.RegisterTag("caliberInfo.Name", caliberInfo.Name);
                         var newItem = new NewItemFromCloneDetails
                         {
                             ItemTplToClone = id,
@@ -68,27 +77,42 @@ namespace Amonya.Generators
                             FleaPriceRoubles = Math.Ceiling(bullet.Price * (double)variant.Price) * 2,
                             HandbookPriceRoubles = Math.Ceiling(bullet.Price * (double)variant.Price),
                             OverrideProperties = new TemplateItemProperties(),
-                            Locales = new Dictionary<string, LocaleDetails>
-                            {
-                                {
-                                    "en", new LocaleDetails
-                                    {
-                                        Name = $"<b><color={variant.Color}>{bulletName} {variantName} Variant</color></b>",
-                                        ShortName = variantShortnameDisplayed,
-                                        Description = string.Join("\n", new[] {
-                                            $"<align=\"center\">{variant.FlavourText}",
-                                            $"",
-                                            $"<color={variant.Color}><b>{variantName} Variant</b></color>",
-                                            $"{variant.Description}",
-                                            $"<i>{variant.Explanation}</i>",
-                                            $"{bulletNamesInVariant.Replace(bulletName, $"<b><color={variant.Color}>{bulletName}</color></b>")}",
-                                            $"",
-                                            $"Can be used only in <b>{caliberInfo.Name}</b> caliber weapon of types:",
-                                            $"{string.Join(" | ", variant.WeaponCategories)}</align>"
-                                        })
-                                    }
-                                }
-                            }
+                            //Locales = new Dictionary<string, LocaleDetails>
+                            //{
+                            //    {
+                            //        "en", new LocaleDetails
+                            //        {
+                            //            Name = $"<b><color={variant.Color}>{bulletName} {variantName} Variant</color></b>",
+                            //            ShortName = variantShortnameDisplayed,
+                            //            Description = string.Join("\n", new[] {
+                            //                $"<align=\"center\">{variant.FlavourText}",
+                            //                $"",
+                            //                $"<color={variant.Color}><b>{variantName} Variant</b></color>",
+                            //                $"{variant.Description}",
+                            //                $"<i>{variant.Explanation}</i>",
+                            //                $"{bulletNamesInVariant.Replace(bulletName, $"<b><color={variant.Color}>{bulletName}</color></b>")}",
+                            //                $"",
+                            //                $"Can be used only in <b>{caliberInfo.Name}</b> caliber weapon of types:",
+                            //                $"{string.Join(" | ", variant.WeaponCategories)}</align>"
+                            //            })
+                            //        }
+                            //    }
+                            //}
+                            Locales = customLocales.CreateItemLocale(
+                                $"<b><color={variant.Color}>{{{copiedItem.Id} Name}} {{{variantName}.Name}} {{VariantWord}}</color></b>",
+                                variantShortnameDisplayed,
+                                string.Join("\n", new[] {
+                                    $"<align=\"center\">{{{variantName}.FlavourText}}",
+                                    $"",
+                                    $"<color={variant.Color}><b>{{{variantName}.Name}} {{VariantWord}}</b></color>",
+                                    $"{{{variantName}.Description}}",
+                                    $"<i>{{{variantName}.Explanation}}</i>",
+                                    $"{bulletNamesInVariant.Replace($"{{{copiedItem.Id} Name}}", $"<b><color={variant.Color}>{{{copiedItem.Id} Name}}</color></b>")}",
+                                    $"",
+                                    $"{{VariantDescription1}}",
+                                    $"{string.Join(" | ", variant.WeaponCategories.Select(c => $"{{WeaponCategory.{c}}}"))}</align>"
+                                })
+                            )
                         };
                         if (!configLoader.Config.CheckColorConverterAPI || IsPluginLoaded())
                         {

@@ -21,7 +21,8 @@ namespace Amonya.Generators
         CustomPropertiesChanger customPropertiesChanger,
         CustomSlotsChanger customSlotsChanger,
         ModsCompatibility modsCompatibility,
-        ConfigLoader configLoader
+        ConfigLoader configLoader,
+        CustomLocales customLocales
     )
     {
         private Dictionary<MongoId, TemplateItem> Items { get; set; } = [];
@@ -64,20 +65,13 @@ namespace Amonya.Generators
                         {
                             BackgroundColor = "red"
                         },
-                        Locales = new Dictionary<string, LocaleDetails>
-                        {
-                            {
-                                "en", new LocaleDetails
-                                {
-                                    Name = $"<b><color={variant.Color}>{variantName}</color></b>", 
-                                    ShortName = variant.ShortName,
-                                    Description = string.Join("\n", new[] {
-                                        $"<align=\"center\">{variant.Description}</align>"
-                                    })
-                                }
-                            }
-                        }
+                        Locales = customLocales.CreateItemLocale(
+                            $"<b><color={variant.Color}>{{{variantName}.Name}}</color></b>",
+                            $"{{{variantName}.ShortName}}",
+                            $"<align=\"center\">{{{variantName}.Description}}</align>"
+                        )
                     };
+
 
                     if (!configLoader.Config.CheckColorConverterAPI || IsPluginLoaded())
                     {

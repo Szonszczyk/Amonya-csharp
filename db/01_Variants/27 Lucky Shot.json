@@ -1,6 +1,6 @@
 {
     "Lucky Shot": {
-        "FlavourText": "At close range, you’re lucky. At long range, you’d better hope you are",
+        "FlavourText": "At close range, you're lucky. At long range, you'd better hope you are",
         "Description": "A buckshot round designed for bolt-action rifles. Accuracy becomes a gamble - you might miss entirely or land multiple hits in a single shot",
 		"Explanation": "Devastating at close range. At medium to long distances, effectiveness becomes unpredictable due to pellet spread",
 		"ShortName": "RNG",

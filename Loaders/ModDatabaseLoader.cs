@@ -42,7 +42,7 @@ namespace Amonya.Loaders
 
         private TraderBase LoadTraderBase()
         {
-            var file = Path.Combine(modFolder, "db", "04_trader", "base.json");
+            var file = Path.Combine(modFolder, "db", "04_Trader", "base.json");
             var data = _modHelper.GetJsonDataFromFile<TraderBase>(modFolder, file);
             if (data != null) return data;
             _logger.LogWithColor($"[{GetType().Namespace}] Could not read {file}!", LogTextColor.Red);

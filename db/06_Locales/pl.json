@@ -1,0 +1,360 @@
+﻿{
+	"pl": {
+		// Quest stuff
+		"Difficulty:0:Name": "Wprowadzenie",
+		"Difficulty:0:acceptPlayerMessage": "Rozpoczęto zadanie wprowadzające.",
+		"Difficulty:0:startedMessageText": "Rozpoczęto zadanie wprowadzające!",
+		"Difficulty:0:completePlayerMessage": "Ukończono zadanie wprowadzające",
+		"Difficulty:0:successMessageText": "Ukończono zadanie wprowadzające. Amonya pozdrawia!",
+		"Difficulty:0:description": "Odblokuj nową amunicję, eliminując przeciwników, a następnie przekaż potrzebne przedmioty:\n",
+		"Difficulty:0:descriptionPart2": "Odblokowuje amunicję:",
+		"Difficulty:0:questUnlock": "\n<b>Ukończenie tego zadania odblokowuje:</b>\n",
+
+		"Difficulty:1:Name": "Początkujący",
+		"Difficulty:1:acceptPlayerMessage": "Rozpoczęto zadanie {questName}.",
+		"Difficulty:1:startedMessageText": "Rozpoczęto zadanie {questName}. Eliminuj przeciwników używając {caliberName}!",
+		"Difficulty:1:completePlayerMessage": "Ukończono zadanie {questName}",
+		"Difficulty:1:successMessageText": "Ukończono zadanie {questName}. Dobry początek!",
+		"Difficulty:1:description": "Odblokuj nową amunicję, eliminując przeciwników bronią kalibru <b>{caliberName}</b>, a następnie przekaż potrzebne przedmioty:\n",
+		"Difficulty:1:descriptionPart2": "Odblokowuje amunicję:",
+		"Difficulty:1:questUnlock": "\n<b>Prowadzi do:</b>\n",
+
+		"Difficulty:2:Name": "Nowicjusz",
+		"Difficulty:2:acceptPlayerMessage": "Rozpoczęto zadanie {questName}.",
+		"Difficulty:2:startedMessageText": "Rozpoczęto zadanie {questName}. Eliminuj przeciwników używając {caliberName}!",
+		"Difficulty:2:completePlayerMessage": "Ukończono zadanie {questName}",
+		"Difficulty:2:successMessageText": "Ukończono zadanie {questName}. Idzie Ci świetnie!",
+		"Difficulty:2:description": "Odblokuj nową amunicję, eliminując przeciwników bronią kalibru <b>{caliberName}</b>, a następnie przekaż potrzebne przedmioty:\n",
+		"Difficulty:2:descriptionPart2": "Odblokowuje amunicję:",
+		"Difficulty:2:questUnlock": "\n<b>Prowadzi do:</b>\n",
+
+		"Difficulty:3:Name": "Zaawansowany",
+		"Difficulty:3:acceptPlayerMessage": "Rozpoczęto zadanie {questName}.",
+		"Difficulty:3:startedMessageText": "Rozpoczęto zadanie {questName}. Eliminuj przeciwników używając {caliberName}!",
+		"Difficulty:3:completePlayerMessage": "Ukończono zadanie {questName}",
+		"Difficulty:3:successMessageText": "Ukończono zadanie {questName}. Dobra robota!",
+		"Difficulty:3:description": "Odblokuj nową amunicję, eliminując przeciwników bronią kalibru <b>{caliberName}</b>, a następnie przekaż potrzebne przedmioty:\n",
+		"Difficulty:3:descriptionPart2": "Odblokowuje amunicję:",
+		"Difficulty:3:questUnlock": "\n<b>Prowadzi do:</b>\n",
+
+		"Difficulty:4:Name": "Ekspert",
+		"Difficulty:4:acceptPlayerMessage": "Rozpoczęto zadanie {questName}.",
+		"Difficulty:4:startedMessageText": "Rozpoczęto zadanie {questName}. Eliminuj przeciwników używając {caliberName}!",
+		"Difficulty:4:completePlayerMessage": "Ukończono zadanie {questName}",
+		"Difficulty:4:successMessageText": "Ukończono zadanie {questName}. Świetna robota!",
+		"Difficulty:4:description": "Odblokuj nową amunicję, eliminując przeciwników bronią kalibru <b>{caliberName}</b>, a następnie przekaż potrzebne przedmioty:\n",
+		"Difficulty:4:descriptionPart2": "Odblokowuje amunicję:",
+		"Difficulty:4:questUnlock": "\n<b>Prowadzi do:</b>\n",
+
+		"Difficulty:5:Name": "Mistrz–Adept",
+		"Difficulty:5:acceptPlayerMessage": "Rozpoczęto zadanie {questName}.",
+		"Difficulty:5:startedMessageText": "Rozpoczęto zadanie {questName}. Eliminuj przeciwników używając {caliberName}!",
+		"Difficulty:5:completePlayerMessage": "Ukończono zadanie {questName}",
+		"Difficulty:5:successMessageText": "Ukończono zadanie {questName}. Wow. To było szybkie!",
+		"Difficulty:5:description": "Odblokuj nową amunicję, eliminując przeciwników bronią kalibru <b>{caliberName}</b>, a następnie przekaż potrzebne przedmioty:\n",
+		"Difficulty:5:descriptionPart2": "Odblokowuje amunicję:",
+		"Difficulty:5:questUnlock": "\n<b>Prowadzi do:</b>\n",
+
+		"Difficulty:6:Name": "Mistrz",
+		"Difficulty:6:acceptPlayerMessage": "Rozpoczęto zadanie {questName}.",
+		"Difficulty:6:startedMessageText": "Rozpoczęto zadanie {questName}. Eliminuj przeciwników używając różnych kategorii broni!",
+		"Difficulty:6:completePlayerMessage": "Ukończono zadanie {questName}",
+		"Difficulty:6:successMessageText": "Ukończono zadanie {questName}. Czy to zadanie było dla Ciebie satysfakcjonujące? Oby tak!",
+		"Difficulty:6:description": "Odblokuj nową amunicję, eliminując przeciwników różnymi kategoriami broni kalibru <b>{caliberName}</b>, a następnie przekaż potrzebne przedmioty:\n",
+		"Difficulty:6:descriptionPart2": "Odblokowuje amunicję:",
+		"Difficulty:6:questUnlock": "\n<b>Prowadzi do:</b>\n",
+
+		"Difficulty:7:Name": "Mistrz–Specjalista",
+		"Difficulty:7:acceptPlayerMessage": "Rozpoczęto zadanie {questName}.",
+		"Difficulty:7:startedMessageText": "Rozpoczęto zadanie {questName}. Eliminuj przeciwników różnymi broniami!",
+		"Difficulty:7:completePlayerMessage": "Ukończono zadanie {questName}",
+		"Difficulty:7:successMessageText": "Ukończono zadanie {questName}. Teraz możesz chwilę odpocząć... chyba",
+		"Difficulty:7:description": "Odblokuj nową amunicję, eliminując przeciwników różnymi broniami kalibru <b>{caliberName}</b>, a następnie przekaż potrzebne przedmioty:\n",
+		"Difficulty:7:descriptionPart2": "Odblokowuje amunicję:",
+		"Difficulty:7:questUnlock": "\n<b>Prowadzi do:</b>\n",
+
+		"Difficulty:8:Name": "Elita",
+		"Difficulty:8:acceptPlayerMessage": "Rozpoczęto zadanie {questName}.",
+		"Difficulty:8:startedMessageText": "Rozpoczęto zadanie {questName}. Eliminuj przeciwników używając {caliberName}!",
+		"Difficulty:8:completePlayerMessage": "Ukończono zadanie {questName}",
+		"Difficulty:8:successMessageText": "Ukończono zadanie {questName}. To było ostatnie zadanie w tym drzewku!",
+		"Difficulty:8:descriptionNoUnlock": "Udowodniono mistrzostwo w użyciu <b>{caliberName}</b>. Teraz można zdobywać doświadczenie, eliminując przeciwników ulubioną amunicją!\nPowodzenia!",
+		"Difficulty:8:description": "Udowodniono mistrzostwo w użyciu <b>{caliberName}</b>! Teraz można odblokować najlepszą amunicję w grze!\n",
+		"Difficulty:8:descriptionPart2": "Odblokowuje amunicję:",
+		"Difficulty:8:questUnlock": "\n<b>Prowadzi do:</b>\n",
+
+		"RequiresAnyKills": "Zlikwiduj {value} przeciwników dowolną bronią",
+		"RequiresKills": "Zlikwiduj {value} przeciwników bronią kalibru {caliberName}",
+		"RequiresPMC": "Zlikwiduj {value} operatorów PMC bronią kalibru {caliberName}",
+		"RequiresBoss": "Zlikwiduj {value} bossów bronią kalibru {caliberName}",
+		"RequiresMastery": "Zlikwiduj {value} przeciwników bronią kalibru {caliberName} z kategorii {category}",
+		"RequiresCollector": "Zlikwiduj {value} przeciwników używając broni {weapon}",
+
+		"RequiresRoubles": "Przekaż {value} rubli",
+		"RequiresDollars": "Przekaż {value} dolarów",
+		"RequiresEuros": "Przekaż {value} euro",
+		"RequiresGPCoins": "Przekaż {value} monet GP",
+		"RequiresGunpowder": "Przekaż {value} prochu",
+		"RequiresFabric": "Przekaż {value} tkanin",
+		"RequiresScavStuff": "Przekaż {value} przedmiotów od Scavów",
+		"RequiresEverydayObjects": "Przekaż {value} przedmiotów codziennego użytku",
+		"RequiresTools": "Przekaż {value} narzędzi",
+		"RequiresElectronics": "Przekaż {value} elektroniki",
+		"RequiresInfo": "Przekaż {value} przedmiotów zawierających informacje",
+		"RequiresAntique": "Przekaż {value} antyków",
+		"RequiresFigurines": "Przekaż {value} figurek",
+		"RequiresValuables": "Przekaż {value} kosztowności",
+		"RequiresTarkoPops": "Przekaż {value} Tarko Pops",
+
+		"CategoryRoubles": "Ruble",
+		"CategoryDollars": "Dolary",
+		"CategoryEuros": "Euro",
+		"CategoryGPCoins": "Monety GP",
+		"CategoryGunpowder": "Proch: {590c5a7286f7747884343aea Name}, {5d6fc78386f77449d825f9dc Name} lub {5d6fc87386f77449db3db94e Name}",
+		"CategoryFabric": "Tkaniny: {5e2af4d286f7746d4159f07a Name}, {5e2af41e86f774755a234b67 Name}, {5e2af47786f7746d404f3aaa Name} lub {5e2af4a786f7746d3f3c3400 Name}",
+		"CategoryScavStuff": "Przedmioty Scavów: {573475fb24597737fb1379e1 Name}, {573476d324597737da2adc13 Name}, {5734770f24597738025ee254 Name}, {573476f124597737e04bf328 Name}, {6389c6463485cf0eeb260715 Name}, {5e2af51086f7746d3f3c3402 Name} lub {5d1b3f2d86f774253763b735 Name}",
+		"CategoryEverydayObjects": "Przedmioty codziennego użytku: {59e361e886f774176c10a2a5 Name}, {6389c6c7dbfd5e4b95197e68 Name}, {5e2af02c86f7746d420957d4 Name}, {59e3556c86f7741776641ac2 Name}, {5d4041f086f7743cac3f22a7 Name}, {5c13cef886f774072e618e82 Name}, {5d40412b86f7743cb332ac3a Name}, {59e358a886f7741776641ac3 Name}, {5e2aef7986f7746d3f3c33f5 Name} lub {59e3596386f774176c10a2a2 Name}",
+		"CategoryTools": "Narzędzia: {56742c2e4bdc2d95058b456d Name}, {5d1b31ce86f7742523398394 Name}, {590c2d8786f774245b1f03f3 Name}, {590c2b4386f77425357b6123 Name}, {5d40425986f7743185265461 Name}, {5d4042a986f7743185265463 Name}, {5d63d33b86f7746ea9275524 Name} lub {62a0a098de7ac8199358053b Name}",
+		"CategoryElectronics": "Elektronika: {5c1265fc86f7743f896a21c2 Name}, {5d1b309586f77425227d1676 Name}, {6389c70ca33d8c4cdf4932c6 Name}, {5672cb724bdc2dc2088b456b Name}, {57347baf24597738002c6178 Name}, {590a3d9c86f774385926e510 Name}, {5672cb124bdc2d1a0f8b4568 Name}, {5909e99886f7740c983b9984 Name}, {5672cb304bdc2dc2088b456a Name} lub {5af0561e86f7745f5f3ad6ac Name}",
+		"CategoryInfo": "Przedmioty zawierające informacje: {6389c92d52123d5dd17f8876 Name}, {62a09e73af34e73a266d932a Name}, {590c645c86f77412b01304d9 Name}, {62a0a16d0b9d3c46de5b6e97 Name}, {590c37d286f77443be3d7827 Name}, {590c621186f774138d11ea29 Name}, {590c651286f7741e566b6461 Name} lub {590c392f86f77444754deb29 Name}",
+		"CategoryAntique": "Antyki: {590de71386f774347051a052 Name}, {590de7e986f7741b096e5f32 Name}, {5bc9c049d4351e44f824d360 Name}, {5bc9c377d4351e3bac12251b Name}, {5c1267ee86f77416ec610f72 Name} lub {5bc9c1e2d4351e00367fbcf0 Name}",
+		"CategoryFigurines": "Figurki: {573478bc24597738002c6175 Name}, {60b0f7057897d47c5b04ab94 Name}, {5bc9bc53d4351e00367fbcee Name}, {59e3639286f7741777737013 Name}, {5e54f62086f774219b0f1937 Name}, {62a091170b9d3c46de5b6cf2 Name} lub {59e3658a86f7741776641ac4 Name}",
+		"CategoryValuables": "Kosztowności: {62a09cfe4f842e1bd12da3e4 Name}, {5f745ee30acaeb0d490d8c5b Name}, {6389c88b33a719183c7f63b6 Name}, {5d235a5986f77443f6329bc6 Name}, {5bc9bdb8d4351e003562b8a1 Name}, {59faf7ca86f7740dbe19f6c2 Name}, {66b37ea4c5d72b0277488439 Name}, {66b37eb4acff495a29492407 Name}, {573474f924597738002c6174 Name} lub {5734758f24597738025ee253 Name}",
+		"CategoryTarkoPops": "Tarko Pops. Może być jakikolwiek Tarko Pop!",
+
+		// Items
+		"Arcane Rounds.Name": "Magiczne naboje",
+		"Arcane Rounds.Description": "Niewielka garść dziwnych nabojów — zdają się nic nie ważyć, a są jednocześnie całkowicie solidne\nŻadna znana broń nie jest w stanie ich użyć, choć niektórzy twierdzą, że są przeznaczone dla nietypowych różdżek\nNie do końca wiadomo, co to znaczy, ale pewne osoby, szczególnie ta jedna zbieraczka z absurdalną ilością amunicji, mogą uznać je za wartościowe\nJeśli się miało się z nią wcześniej do czynienia, wiesz dokładnie, o kim mowa",
+		"Arcane Rounds.ShortName": "Magiczne naboje",
+
+		"Pocket Sized Mag of Holding.Name": "Magazynek Przechowywania o Pojemności Pojemnej Kieszeni",
+		"Pocket Sized Mag of Holding.Description": "Dziwnie ukształtowany pojemnik, który mieści znacznie więcej amunicji, niż powinien\nMimo że wygląda jak zwykły magazynek, nie da się go dopasować do żadnej broni\nPewien SCAV znalazł go głęboko w opuszczonej skrytce i zabrał go myśląc, że trafił na magazynek o ogromnej pojemności\nGdy spróbował go użyć, naboje po prostu znikały zamiast trafiać do komory\nWkurzony wyrzucił go, by później odkryć, że nadal działa — tylko nie w taki sposób, jaki się spodziewał\nZnaleziony przez pewną osobę, stał się teraz wygodnym sposobem na przechowywanie zapasowej amunicji",
+		"Pocket Sized Mag of Holding.ShortName": "Mag.Prze.S",
+
+		"Mystic Rounds.Name": "Mistyczne naboje",
+		"Mystic Rounds.Description": "Te naboje nie mają sensu\nSą namacalne, a jednocześnie zdają się znikać i pojawiać, gdy nie patrzy się na nie bezpośrednio\nNiektórzy twierdzą, że są używane w broni zasilanej siłami niezrozumiałymi dla zwykłego człowieka, ale biorąc pod uwagę, że żadna broń w Tarkovie nie potrafi ich wystrzelić, trudno w to uwierzyć\nJest jednak ktoś, ekscentryczna kolekcjonerka z niemal nadnaturalną obsesją na punkcie amunicji, kto może chcieć je wymienić na coś… nietypowego",
+		"Mystic Rounds.ShortName": "Mistyczne naboje",
+
+		"Satchel Sized Mag of Holding.Name": "Magazynek Przechowywania o Pojemności Pojemnego Plecaka",
+		"Satchel Sized Mag of Holding.Description": "Ten dziwnie proporcjonalny pojemnik na amunicję przeczy wszelkiej logice\nMieści absurdalną ilość nabojów, a mimo to prawie nic nie waży, gdy jest pusty\nPewien SCAV znalazł go w opuszczonej kryjówce, zabrał go przekonany, że jest to eksperymentalny prototyp wojskowy\nPo wepchnięciu go do karabinu odkrył, że naboje nie trafiają do komory — po prostu znikają\nChoć bezużyteczny jako magazynek do broni, świetnie sprawdza się jako sposób na przenoszenie zapasowej amunicji",
+		"Satchel Sized Mag of Holding.ShortName": "Mag.Prze.M",
+
+		"Eldritch Rounds.Name": "Eldryczne naboje",
+		"Eldritch Rounds.Description": "Przerażająco duży stos dziwacznej amunicji, której działania nikt nie rozumie\nNiektórzy twierdzą, że to naboje do broni używanych przez cywilizację nie z tej ziemi, ale nie znaleziono żadnego potwierdzenia tej tezy\nWiększość handlarzy traktuje je jak żart, ale jest jedna \"osoba\" w Tarkovie — ktoś, kto zna amunicję lepiej niż ktokolwiek inny — kto może wymienić je na coś wyjątkowego\nWiadomo, o kim mowa",
+		"Eldritch Rounds.ShortName": "Eldryczne naboje",
+
+		"Crate Sized Mag of Holding.Name": "Magazynek Przechowywania Pojemności Pojemnej Skrzyni Amunicji",
+		"Crate Sized Mag of Holding.Description": "Ogromny, absurdalnie pojemny pojemnik na amunicję w kształcie przerośniętego magazynka\nPrzeczy prawom fizyki, przestrzeni i zdrowego rozsądku — jest w stanie pomieścić całe arsenały różnych typów amunicji\nPewien SCAV znalazł go w zrujnowanym magazynie i, uznając go za bębnowy magazynek do nieznanej mu broni, spróbował go użyć\nGdy broń odmówiła przeładowania, porzucił go — by później odkryć, że nadal może przechowywać w nim amunicję, tylko nie w sposób, jakiego się spodziewał",
+		"Crate Sized Mag of Holding.ShortName": "Mag.Prze.L",
+		
+		// Bullet variants
+		// replacing one word (Variant) in bullet name
+		"VariantWord": "Wariant",
+		"VariantDescription1": "Może być używany tylko w broni kalibru <b>{caliberInfo.Name}</b> następujących typów:",
+
+		// weapon categories in plural
+		"WeaponCategory.Assault carbines": "Karabinki szturmowe",
+		"WeaponCategory.Assault rifles": "Karabiny szturmowe",
+		"WeaponCategory.Bolt-action rifles": "Karabiny powtarzalne",
+		"WeaponCategory.DMRs": "Karabiny wyborowe",
+		"WeaponCategory.LMGs": "RKM-y",
+		"WeaponCategory.SMGs": "Pistolety maszynowe",
+		"WeaponCategory.Pistols": "Pistolety",
+		"WeaponCategory.Shotguns": "Strzelby",
+		"WeaponCategory.Revolvers": "Rewolwery",
+		"WeaponCategory.Grenade launchers": "Granatniki",
+		"WeaponCategory.ALL": "Wszystkie kategorie broni",
+
+		// 01. Armor-cracking
+		"Armor-cracking.Name": "Przeciwpancerny",
+		"Armor-cracking.FlavourText": "Zaprojektowany do rozrywania ceramiki i stali, czyniąc pancerz bezużytecznym i wzbudzając strach nawet wśród najlepiej opancerzonym przeciwników",
+		"Armor-cracking.Description": "Pocisk o wysokiej penetracji z podwójnymi obrażeniami zadawanymi do pancerza. Świetny przeciwko ciężko opencerzonym przeciwnikom, ale za to zadający im zmniejszone obrażenia",
+		"Armor-cracking.Explanation": "Stworzony do neutralizowania silnie opancerzonych celów. Najlepiej używać razem z Przeciwpiechotnym Wariantem Amunicji",
+		"Armor-cracking.ShortName": "PP",
+
+		// 02. Bloody
+		"Bloody.Name": "Krwawiący",
+		"Bloody.FlavourText": "Okrutny pocisk zaprojektowany tak, by przeciwnik wykrwawiał się jeszcze długo po trafieniu",
+		"Bloody.Description": "Pocisk, który gwarantuje lekkie krwawienie i ma 50% szansy na zadanie ciężkiego krwawienia przy nieco obniżonej penetracji. Praktycznie bezużyteczny przeciw pancerzowi",
+		"Bloody.Explanation": "Skuteczny przeciw nieopancerzonym lub wytrzymałym celom, szczególnie gdy masz dużo czasu",
+		"Bloody.ShortName": "♥",
+
+		// 03. Heavy Duty
+		"Heavy Duty.Name": "Wzmocniony",
+		"Heavy Duty.FlavourText": "Stworzony dla strzelców wyborowych oczekujących maksymalnej siły na każdym dystansie",
+		"Heavy Duty.Description": "Pocisk o wysokiej prędkości wylotowej i penetracji, a także zwiększonych obrażeniach i obrażeniach zadawanych do pancerza, kosztem wyższego odrzutu",
+		"Heavy Duty.Explanation": "Najlepszy do karabinów wyborowych i karabinów snajperskich, ale możliwy do użycia w innych broniach, jeśli jesteś w stanie kontrolować zwiększony odrzut",
+		"Heavy Duty.ShortName": "WZM",
+
+		// 04. Anti-personnel
+		"Anti-personnel.Name": "Przeciwpiechotny",
+		"Anti-personnel.FlavourText": "Wybierany przez drapieżnych typów. Stworzony do karania słabych i słabo opancerzonych",
+		"Anti-personnel.Description": "Pocisk zadający wysokie obrażenia przy minimalnej penetracji. Nie zadaje żadnych obrażeń do pancerza i nie posiada żadnej szansy na krwawienie",
+		"Anti-personnel.Explanation": "Zoptymalizowany przeciw lekko opancerzonym celom. Dobrze łączy się z Przeciwpancernym Wariantem Amunicji",
+		"Anti-personnel.ShortName": "ANT",
+
+		// 05. Full-auto
+		"Full-auto.Name": "Automatyczny",
+		"Full-auto.FlavourText": "Tani, niezawodny i stworzony do oczyszczenia pomieszczeń z przeciwników, bez rujnowania domowego budżetu!",
+		"Full-auto.Description": "Pocisk zadający zmniejszone obrażenia, ale za to posiadający mniejszy odrzut",
+		"Full-auto.Explanation": "Budżetowy wybór do broni automatycznej balansujący pomiędzy kosztem pocisku, kontrolą ognia i zadawaniem obrażeń",
+		"Full-auto.ShortName": "AUT",
+
+		// 06. Railgun
+		"Railgun.Name": "Elektromagnetyczny",
+		"Railgun.FlavourText": "Jak moneta rzucona przez samą błyskawicę, ten pocisk rozrywa pole walki szybciej niż dźwięk",
+		"Railgun.Description": "Pocisk wybuchowy o wysokiej (względem innych pocisków tego typu) prędkości wylotowej",
+		"Railgun.Explanation": "Zaawansowany prototyp zdolny do śmiertelnego rażenia nawet w pobliżu celu. Bardzo potężny, ale ekstremalnie drogi",
+		"Railgun.ShortName": "ION",
+
+		// 07. Artillery
+		"Artillery.Name": "Artyleryjski",
+		"Artillery.FlavourText": "\"Najbardziej znienawidzony typ czołgu w pewnej grze\"",
+		"Artillery.Description": "Pocisk wybuchowy o niskiej prędkości wylotowej pozwalający razić cele będące nawet za osłoną",
+		"Artillery.Explanation": "Specjalistyczna amunicja służąca do eliminowania przeciwników za osłonami lub prowadzenia ostrzału na pozycje bosów z bezpiecznej odległości",
+		"Artillery.ShortName": "ART",
+
+		// 08. Mortar
+		"Mortar.Name": "Moździerzowy",
+		"Mortar.FlavourText": "\"Użyj tego, popełnij zbrodnię\"",
+		"Mortar.Description": "Pocisk wybuchowy o bardzo niskiej prędkości wylotowej pozwalający razić cele będące nawet za budynkami",
+		"Mortar.Explanation": "Specjalistyczna amunicja służąca do eliminowania przeciwników za osłonami lub prowadzenia ostrzału na pozycje bosów z bezpiecznej odległości",
+		"Mortar.ShortName": "MZD",
+
+		// 09. Avada Kedavra
+		"Avada Kedavra.Name": "\"Avada Kedavra\"",
+		"Avada Kedavra.FlavourText": "Znam to nawiązanie!",
+		"Avada Kedavra.Description": "Pocisk eliminujący przeciwnika jednym trafieniem, ale posiadający niską prędkość wylotową",
+		"Avada Kedavra.Explanation": "Specjalistyczna amunicja dostępna tylko dla karabinów snajperskich... i różdżek, jeśli takowe znajdziesz w Tarkovie",
+		"Avada Kedavra.ShortName": "AVK",
+
+		// 10. Pro+
+		"Pro+.Name": "Pro+",
+		"Pro+.FlavourText": "Z subskrypcją Amonya+ uzyskaj dostęp do specjalnego typu amunicji Pro+, który jest po prostu lepszy od standardowego",
+		"Pro+.Description": "Pocisk z lekko zwiększonymi obrażeniami i penetracją, nie posiadający szansy na zadanie krwawienia",
+		"Pro+.Explanation": "Bazuje na najlepszym pocisku z danego kalibru, dodając do niego trochę więcej obrażeń i penetracji przez co staje się najlepszą dostępną amunicją dla danego kalibru",
+		"Pro+.ShortName": "+",
+
+		// 11. Hypersonic
+		"Hypersonic.Name": "Hipersoniczny",
+		"Hypersonic.FlavourText": "Szybsze pociski oznaczają szybszą eliminację? Chyba tak?",
+		"Hypersonic.Description": "Pocisk o ekstremalnej prędkości wylotowej kosztem zwiększonego odrzutu",
+		"Hypersonic.Explanation": "Standardowa amunicja o ogromnej prędkości wylotowej mająca ułatwić trafienie celu na dużym dystansie albo będącego w ruchu",
+		"Hypersonic.ShortName": "HPS",
+
+		// 12. Flamethrower
+		"Flamethrower.Name": "Zapalający",
+		"Flamethrower.FlavourText": "Ogień, który bardzo boli — ale możesz przed nim uciec",
+		"Flamethrower.Description": "Duży pocisk o niskiej prędkości, ale o znacznie zwiększonych obrażeniach",
+		"Flamethrower.Explanation": "Specjalistyczna amunicja do walki na krótkim dystansie i przeciw nieruchomym celom",
+		"Flamethrower.ShortName": "ZPL",
+
+		// 13. Close Quarters
+		"Close Quarters.Name": "Szturmowy",
+		"Close Quarters.FlavourText": "Ktoś wrzucił wszystkie pomysły na walkę w zwarciu do jednej pocisku!",
+		"Close Quarters.Description": "Pocisk zawsze przebija przeszkody, zawsze rykoszetuje, ma większe obrażenia i penetrację kosztem prędkości wylotowej i celności",
+		"Close Quarters.Explanation": "Idealny pocisk na początek posiadający solidną penetrację i dobre obrażenia jeśli jesteś w stanie pokonać niską prędkość wylotową pocisku i celność",
+		"Close Quarters.ShortName": "SZT",
+
+		// 14. Rubber Grenade
+		"Rubber Grenade.Name": "\"Gumowy granat\"",
+		"Rubber Grenade.FlavourText": "Ulubiony granat policji: bez wybuchu, ale bardzo boli",
+		"Rubber Grenade.Description": "Granat bez ładunku wybuchowego, ale ze większą prędkością wylotową, penetracją i obrażeniami",
+		"Rubber Grenade.Explanation": "Standardowa amunicja do granatników 40x46mm. Niestandardowa jeśli patrzy się na ten kaliber, ale standardowa jeśli patrzysz się na ogół pocisków. Uważaj na dziwne zerowanie broni przy korzystaniu z tej amunicji",
+		"Rubber Grenade.ShortName": "GMG",
+
+		// 15. Sabot
+		"Sabot.Name": "Podkalibrowy",
+		"Sabot.FlavourText": "Slug na diecie. Szybki, gniewny i nienawidzi pancerza",
+		"Sabot.Description": "Pocisk typu Slug z wysokiej prędkości wylotowej do precyzyjnego przebijania pancerza kosztem zmniejszonych obrażeń",
+		"Sabot.Explanation": "Pocisk typu Slug przeznaczony do strzelanie na duże dystanse",
+		"Sabot.ShortName": "PDK",
+
+		// 16. Tazer
+		"Tazer.Name": "Paraliżujący",
+		"Tazer.FlavourText": "Poraź przeciwników... albo psa, wszystko mi jedno!",
+		"Tazer.Description": "Pocisk o niskiej prędkości i zasięgu, ale o bardzo wysokich obrażeniach",
+		"Tazer.Explanation": "Specjalistyczna amunicja którą z łatwością wyeliminujesz przeciwnika z bliskiej odległości",
+		"Tazer.ShortName": "TZR",
+
+		// 17. Ratshot
+		"Ratshot.Name": "Śrutowy",
+		"Ratshot.FlavourText": "Specjalny nabój z drobnym śrutem do zwalczania szkodników i walki na bliski dystans. Bardzo amerykański wynalazek...",
+		"Ratshot.Description": "Pocisk śrutowy do zwykłej broni. Minimalna penetracja, niska celność, ale mały odrzut i nagrzewanie broni",
+		"Ratshot.Explanation": "Prawie darmowa amunicja na początek. Scavy by się o nią biły, więc nie mają do niej dostępu. Muszą obejść się innym śrutem, i do tego tylko w shotgunach... biedacy xD",
+		"Ratshot.ShortName": "ŚRT",
+
+		// 18. Laser
+		"Laser.Name": "Laserowy",
+		"Laser.FlavourText": "N A P I E R D A L A Ć !",
+		"Laser.Description": "Pocisk o dużej prędkości wylotowej i penetracji, ale zmniejszonych obrażeniach",
+		"Laser.Explanation": "Niskie obrażenia i wysoka prędkość powoduje, że jest to dobry wybór na strzelanie na daleki dystans dla małych kalibrów",
+		"Laser.ShortName": "LSR",
+
+		// 19. Ratshot Mk2
+		"Ratshot Mk2.Name": "Śrutowy Wersja 2",
+		"Ratshot Mk2.FlavourText": "Specjalny nabój z drobnym śrutem do zwalczania szkodników i walki na bliski dystans. Jeszcze bardziej amerykański wynalazek...",
+		"Ratshot Mk2.Description": "Pocisk śrutowy do zwykłej broni. Niska penetracja i obrażenia do pancerza, niska prędkość i celność, ale za to z małym odrzutem",
+		"Ratshot Mk2.Explanation": "Tani i wydajny pocisk śrutowy do zwykłej broni",
+		"Ratshot Mk2.ShortName": "ŚRT2",
+
+		// 20. Heavy
+		"Heavy.Name": "Ciężki",
+		"Heavy.FlavourText": "Śrut z mniejszą liczbą, ale za to większych kulek",
+		"Heavy.Description": "Pocisk śrutowy z połową liczby kulek, ale potrojonymi obrażeniami i zwiększoną penetracją",
+		"Heavy.Explanation": "Pocisk śrutowy dobry na bliski dystans, ale za to jest bardzo drogi",
+		"Heavy.ShortName": "CŻK",
+
+		// 21. Light
+		"Light.Name": "Lekki",
+		"Light.FlavourText": "Śrut o zwiększonej prędkości dzięki wzmocnionemu ładunkowi",
+		"Light.Description": "Trzykrotnie większa prędkość wylotowa kosztem zmniejszonej ilości kulek i zmniejszonym obrażeniom",
+		"Light.Explanation": "Pocisk śrutowy, który jest skuteczny przeciw lekko opancerzonym celom na średnim dystansie",
+		"Light.ShortName": "LHT",
+
+		// 22. Mini-nuke
+		"Mini-nuke.Name": "Mini-Jądrowy",
+		"Mini-nuke.FlavourText": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+		"Mini-nuke.Description": "Duży wybuch",
+		"Mini-nuke.Explanation": "Zdecydowanie duży wybuch. Niska prędkość i długi zapalnik",
+		"Mini-nuke.ShortName": "NUKE",
+
+		// 23. Cluster Bomb
+		"Cluster Bomb.Name": "Kasetowy",
+		"Cluster Bomb.FlavourText": "Strzel w korytarz i patrz jak spadają Ci klatki. Strzel w okno i patrz jak Ci komputer eksploduje!",
+		"Cluster Bomb.Description": "Granat bez zapalnika, rozdzielający się na wiele wybuchowych odłamków",
+		"Cluster Bomb.Explanation": "Może nawet zabić wiele celów niekoniecznie blisko siebie, ale odłamki mogą trafić także użytkownika tejże amunicji",
+		"Cluster Bomb.ShortName": "KST",
+
+		// 24. Afterburner
+		"Afterburner.Name": "\"Dopalacz\"",
+		"Afterburner.FlavourText": "Każdy chce więcej ognia w swoim życiu!",
+		"Afterburner.Description": "Pocisk o dużej prędkości wylotowej, ze większą penetracją i nagrzewaniem broni, kosztem zadawanych obrażeń",
+		"Afterburner.Explanation": "Budżetowa alternatywa dla Automatycznego Wariantu Amunicji ze swoimi własnymi plusami i minusami",
+		"Afterburner.ShortName": "AFB",
+
+		// 25. Spiked
+		"Spiked.Name": "Kolczasty",
+		"Spiked.FlavourText": "- Znasz to małe zwierzę z kolcami? Przypomnisz mi jak się nazywa?\n- Jeż? Jeżozwierz?\n- O, właśnie ten!\n- I co z nim?\n- Widzisz ten pocisk który trzymam w ręku? Najeżył się. Chyba się boi...",
+		"Spiked.Description": "Granat wystrzeliwujący pociski 12.7x108mm zamiast eksplozji",
+		"Spiked.Explanation": "Wybuchający pocisk ma rażenie, zabija czy zadaje obrażenia w danej odległości, ale akurat tym pociskiem strzelasz obok przeciwnika i liczysz na to, że któryś z jego odłamków, z łaski swojej, urwie mu łeb",
+		"Spiked.ShortName": "JEŻ",
+
+		// 26. Mini-rocket
+		"Mini-rocket.Name": "Mini-Rakietowy",
+		"Mini-rocket.FlavourText": "To ptak! To samolot! To... slug? *kaboom*",
+		"Mini-rocket.Description": "Wybuchowy pocisk typu slug mocno inspirowany granatem VOG-30",
+		"Mini-rocket.Explanation": "Pocisk o wyższej prędkości wylotowej i o większym zasięgu niż inne wybuchowe warianty tego typu, ale jest mniej celny, a także ograniczony tylko do wybranych broni",
+		"Mini-rocket.ShortName": "RKT",
+
+		// 27. Lucky Shot
+		"Lucky Shot.Name": "Losowy",
+		"Lucky Shot.FlavourText": "Na bliską odległość — jesteś szczęśliwy. Na daleko — lepiej żebyś miał to szczęście",
+		"Lucky Shot.Description": "Pocisk śrutowy do karabinów snajperskich, ale to czy trafisz zależy od odległości i szczęścia. Tylko od Ciebie zależy, czy chcesz by każdy strzał był jak pociągnięcie za wajchę w przysłowiowym jednorękim bandycie czy jednak wolisz powrócić do sprawdzonych metod",
+		"Lucky Shot.Explanation": "Zabójczy na blisko, nieprzewidywalny na dystansie",
+		"Lucky Shot.ShortName": "RNG",
+
+		// Lore (WiP)
+		"Introduction:Lore": "Nie jest prosto przeżyć na tym terenie istocie, która nie powinna się tu pojawić. A jednak. Przez błąd jej dziadka-jednorożca w bardzo skomplikowanym zaklęciu, pojawiła się w Tarkovie. Od początku chciała stąd uciec, ale po dłuższym czasie zamiast opracować drogę ucieczki, znalazła sposób jak się dobrze ukrywać - czarną pelerynę zakrywającą jej białą do przesady grzywę, znalazła swoje własne hobby w zbieraniu i tworzeniu nowych typów amunicji, a także poznała swojego pupila - Ciebie. Biorąc pod uwagę całe jej doświadczenie zebrane w Tarkovie, postanowiła tu zostać i odegrać się na gościach co stąpali jej po kopytach przez ten cały czas, który tu spędziła. Ten spokojny kucyk, bardziej od swojej ulubionej sterty amunicji, nienawidzi swoich wrogów. Zabij ich, dostarcz parę przedmiotów pomocnych w życiu Amonyi, a ta z chęcią podzieli się z Tobą jej zapasami amunicji, a nawet dostarczy Ci parę ciekawszych jej wariantów, które przydadzą Ci się w Twojej ucieczce z Tarkova!"
+	}
+}

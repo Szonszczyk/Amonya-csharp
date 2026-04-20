@@ -32,12 +32,14 @@ namespace Amonya.Generators
         private Dictionary<MongoId, Quest> Quests { get; set; } = [];
         private TraderAssort? TraderAssort { get; set; } = null;
         private Dictionary<string, Dictionary<MongoId, MongoId>> QuestTraderAssort { get; set; } = [];
+
         public void Initialize(DatabaseService databaseService)
         {
             Quests = databaseService.GetQuests();
             TraderAssort = databaseService.GetTables().Traders[modDatabaseLoader.TraderBase.Id].Assort;
             QuestTraderAssort = databaseService.GetTables().Traders[modDatabaseLoader.TraderBase.Id].QuestAssort;
         }
+
         public void AddBulletVariantToQuest(string id, string questId)
         {
             if (variantsAddedToQuests.TryGetValue(questId, out _))
@@ -103,18 +105,18 @@ namespace Amonya.Generators
                         continue;
                     }
 
-                    customLocales.RegisterTag("questName", questCategory.Quests.Count > 1 ? $"{questCategory.Caliber.ShortName} <Difficulty:{quest.Diff}:Name>" : caliberName);
+                    customLocales.RegisterTag("questName", questCategory.Quests.Count > 1 ? $"{questCategory.Caliber.ShortName} {{Difficulty:{quest.Diff}:Name}}" : caliberName);
                     customLocales.RegisterTag("caliberName", questCategory.Caliber.Name);
                     var questDescription = "";
                     if (customLocales.KeyExistsInDefaultLang($"{questName}:Lore") && !configLoader.Config.EnableNonPonyMode)
                     {
-                        questDescription += $"<{questName}:Lore>\n\n";
+                        questDescription += $"{{{questName}:Lore}}\n\n";
                     }
 
                     var bulletsInQuest = quest.Unlocks ?? [];
                     variantsAddedToQuests.TryGetValue(questName, out var variantsAdded);
                     if (variantsAdded is not null) bulletsInQuest.AddRange(variantsAdded);
-                    questDescription += bulletsInQuest.Count > 0 ? $"<Difficulty:{quest.Diff}:description>" : $"<Difficulty:{quest.Diff}:descriptionNoUnlock>";
+                    questDescription += bulletsInQuest.Count > 0 ? $"{{Difficulty:{quest.Diff}:description}}" : $"{{Difficulty:{quest.Diff}:descriptionNoUnlock}}";
                     var questDescriptionUnlocks = string.Empty;
                     var questSuccessMessageText = string.Empty;
                     Dictionary<string, BulletsDatabase> unlocks = [];
@@ -132,7 +134,7 @@ namespace Amonya.Generators
 
                     if (customLocales.KeyExistsInDefaultLang($"{newQuestId} description"))
                     {
-                        customLocales.AddLocale($"{newQuestId} description", $"{questDescription} <{newQuestId} description>");
+                        customLocales.AddLocale($"{newQuestId} description", $"{questDescription} {{{newQuestId} description}}");
                     }
                     else
                     {
@@ -246,18 +248,18 @@ namespace Amonya.Generators
                                 visibilityConditionsIds.Add(killAFF.Id);
                                 break;
                             case "Mastery":
-                                var weaponCountM = customWeaponsManager.GetWeaponIds(questCategory.Caliber.Id, ["ALL"], false).Count;
+                                var weaponCountM = customWeaponsManager.GetWeaponIds(questCategory.Caliber.Id, ["ALL"], false, false, true).Count;
                                 var categories = WeaponCategories.GetAllPlural();
                                 foreach (var cat in categories)
                                 {
-                                    var weaponsInCat = customWeaponsManager.GetWeaponIds(questCategory.Caliber.Id, [cat], false);
+                                    var weaponsInCat = customWeaponsManager.GetWeaponIds(questCategory.Caliber.Id, [cat], false, false, true);
                                     if (weaponsInCat.Count == 0) continue;
                                     var killsAmount = Math.Ceiling(amount * ((float)weaponsInCat.Count / (float)weaponCountM));
                                     var killAFFMastery = CreateKillCondition($"{questName}:AFF:{req}:{cat}", killsAmount);
                                     killAFFMastery.Counter.Conditions.First().Weapon = [.. customWeaponsManager.GetWeaponIds(questCategory.Caliber.Id, [cat])];
                                     newQuest.Conditions.AvailableForFinish.Add(killAFFMastery);
 
-                                    customLocales.RegisterTag("category", cat);
+                                    customLocales.RegisterTag("category", $"{{WeaponCategory.{cat}}}");
                                     customLocales.RegisterTag("value", killsAmount.ToString());
                                     customLocales.AddLocale(killAFFMastery.Id, $"Requires{req}");
                                     visibilityConditionsIds.Add(killAFFMastery.Id);
@@ -273,7 +275,7 @@ namespace Amonya.Generators
                                     var killAFFCollector = CreateKillCondition($"{questName}:AFF:{req}:{weap}", killsAmount);
                                     killAFFCollector.Counter.Conditions.First().Weapon = [.. allWeapons.Select(id => id.ToString())];
                                     newQuest.Conditions.AvailableForFinish.Add(killAFFCollector);
-                                    customLocales.RegisterTag("weapon", customWeaponsManager.GetWeaponShortName(weap) ?? weap);
+                                    customLocales.RegisterTag("weapon", $"{{{weap} ShortName}}");
                                     customLocales.RegisterTag("value", killsAmount.ToString());
                                     customLocales.AddLocale(killAFFCollector.Id, $"Requires{req}");
                                     visibilityConditionsIds.Add(killAFFCollector.Id);
@@ -294,15 +296,14 @@ namespace Amonya.Generators
                                     Value = amount,
                                     VisibilityConditions = GenerateVisibilityConditions(visibilityConditionsIds, questName, req)
                                 });
-                                customLocales.AddToExistingLocale($"{newQuestId} description", $"· {amount} <Category{req}>\n");
+                                customLocales.AddToExistingLocale($"{newQuestId} description", $"· {amount} {{Category{req}}}\n");
                                 customLocales.AddLocale(barterId, $"Requires{req}");
                                 break;
                         }
                     }
 
                     // LOCALE PART
-
-                    customLocales.AddToExistingLocale($"{newQuestId} description", $"\n\n<b><Difficulty:{quest.Diff}:descriptionPart2></b>\n{questDescriptionUnlocks}");
+                    customLocales.AddToExistingLocale($"{newQuestId} description", $"\n\n<b>{{Difficulty:{quest.Diff}:descriptionPart2}}</b>\n{questDescriptionUnlocks}");
 
                     customLocales.AddLocale($"{newQuestId} name", $"questName");
                     customLocales.AddLocale($"{newQuestId} startedMessageText", $"Difficulty:{quest.Diff}:startedMessageText");
@@ -310,7 +311,7 @@ namespace Amonya.Generators
                     customLocales.AddLocale($"{newQuestId} completePlayerMessage", $"Difficulty:{quest.Diff}:completePlayerMessage");
 
                     if (questSuccessMessageText != string.Empty)
-                        customLocales.AddLocale($"{newQuestId} successMessageText", $"<Difficulty:{quest.Diff}:successMessageText>. <Difficulty:{quest.Diff}:descriptionPart2> {questSuccessMessageText[..^2]}" , true);
+                        customLocales.AddLocale($"{newQuestId} successMessageText", $"{{Difficulty:{quest.Diff}:successMessageText}}. {{Difficulty:{quest.Diff}:descriptionPart2}} {questSuccessMessageText[..^2]}" , true);
                     else
                         customLocales.AddLocale($"{newQuestId} successMessageText", $"Difficulty:{quest.Diff}:successMessageText");
 
@@ -321,16 +322,16 @@ namespace Amonya.Generators
                         {
                             if (!customLocales.DefaultLangLocaleContainsText($"{questForStartId} description", "(LL:"))
                             {
-                                customLocales.AddToExistingLocale($"{questForStartId} description", $"<Difficulty:{quest.Diff}:questUnlock>· <questName> (LL:{quest.Trader})\n");
+                                customLocales.AddToExistingLocale($"{questForStartId} description", $"{{Difficulty:{quest.Diff}:questUnlock}}· {{questName}} (LL:{quest.Trader})\n");
                             }
                             else
                             {
-                                customLocales.AddToExistingLocale($"{questForStartId} description", $"· <questName> (LL:{quest.Trader})\n");
+                                customLocales.AddToExistingLocale($"{questForStartId} description", $"· {{questName}} (LL:{quest.Trader})\n");
                             }
                         }
                         else
                         {
-                            customLocales.AddLocale($"{questForStartId} description", $"· <questName> (LL:{quest.Trader})\n");
+                            customLocales.AddLocale($"{questForStartId} description", $"· {{questName}} (LL:{quest.Trader})\n");
                         }
                     }
                     questsGenerated++;
@@ -363,6 +364,7 @@ namespace Amonya.Generators
             };
             return reward;
         }
+
         private Reward GenerateAssortUnlock(string questName, string itemId, BulletsDatabase bullet)
         {
             var idForAssort = idDatabaseManager.GetCustomId($"QUESTASSORT:{itemId}");
