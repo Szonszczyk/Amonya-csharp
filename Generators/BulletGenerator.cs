@@ -77,27 +77,6 @@ namespace Amonya.Generators
                             FleaPriceRoubles = Math.Ceiling(bullet.Price * (double)variant.Price) * 2,
                             HandbookPriceRoubles = Math.Ceiling(bullet.Price * (double)variant.Price),
                             OverrideProperties = new TemplateItemProperties(),
-                            //Locales = new Dictionary<string, LocaleDetails>
-                            //{
-                            //    {
-                            //        "en", new LocaleDetails
-                            //        {
-                            //            Name = $"<b><color={variant.Color}>{bulletName} {variantName} Variant</color></b>",
-                            //            ShortName = variantShortnameDisplayed,
-                            //            Description = string.Join("\n", new[] {
-                            //                $"<align=\"center\">{variant.FlavourText}",
-                            //                $"",
-                            //                $"<color={variant.Color}><b>{variantName} Variant</b></color>",
-                            //                $"{variant.Description}",
-                            //                $"<i>{variant.Explanation}</i>",
-                            //                $"{bulletNamesInVariant.Replace(bulletName, $"<b><color={variant.Color}>{bulletName}</color></b>")}",
-                            //                $"",
-                            //                $"Can be used only in <b>{caliberInfo.Name}</b> caliber weapon of types:",
-                            //                $"{string.Join(" | ", variant.WeaponCategories)}</align>"
-                            //            })
-                            //        }
-                            //    }
-                            //}
                             Locales = customLocales.CreateItemLocale(
                                 $"<b><color={variant.Color}>{{{copiedItem.Id} Name}} {{{variantName}.Name}} {{VariantWord}}</color></b>",
                                 variantShortnameDisplayed,
@@ -133,10 +112,10 @@ namespace Amonya.Generators
                             {
                                 TraderId = "ee840a5ba014e9c5478d5ccd",
                                 LoyalLevel = 1,
-                                StackObjectsCount = 1000,
-                                UnlimitedCount = false
+                                StackObjectsCount = configLoader.Config.AmmoPrice.Max,
+                                UnlimitedCount = configLoader.Config.AmmoPrice.UnlimitedCount
                             };
-                            var newPrice = (double)(newItem.HandbookPriceRoubles * 0.7);
+                            var newPrice = (double)(newItem.HandbookPriceRoubles * configLoader.Config.AmmoPrice.Multiplier);
                             newBarterConfig.BarterPrice.Add("5449016a4bdc2d6f028b456f", (int)Math.Ceiling(newPrice));
                             customItemCreator.AddItemToDatabase(newItem, new CustomItemConfig(), newBarterConfig);
                         }
