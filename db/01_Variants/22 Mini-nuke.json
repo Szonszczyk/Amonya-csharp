@@ -19,10 +19,11 @@
             "Damage": "69420"
         },
         "Bullets": {
-            "40x46mm M433 (HEDP) grenade": "40x46Q6"
+            "40x46mm M433 (HEDP) grenade": "40x46Q6",
+            "40mm VOG-25 grenade": "LL3"
         },
         "WeaponCategories": [
-            "Grenade launchers"
+            "Grenade launchers", "Underbarrel grenade launchers"
         ],
         "Price": 29,
         "Color": "#ad099d"

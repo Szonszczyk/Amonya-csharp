@@ -32,6 +32,7 @@ namespace Amonya.CustomClasses
         private LocaleBase? Locale { get; set; } = null;
         private TraderConfig? ConfigServerTraderConfig { get; set; } = null;
         private RagfairConfig? ConfigServerRagfairConfig { get; set; } = null;
+        public List<string> questImages { get; set; } = [];
         public void Initialize(DatabaseService databaseService, ConfigServer configServer)
         {
             Traders = databaseService.GetTraders();
@@ -136,6 +137,7 @@ namespace Amonya.CustomClasses
             {
                 var imageName = Path.GetFileNameWithoutExtension(file);
                 imageRouter.AddRoute($"/files/quest/icon/{imageName}", file);
+                questImages.Add(imageName);
             }
         }
     }

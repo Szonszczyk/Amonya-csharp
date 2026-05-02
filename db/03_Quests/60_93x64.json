@@ -1,7 +1,7 @@
 {
     "93x64": {
         "Category": "Assault",
-        "QuestForStart": "763x51Q3",
+        "QuestForStart": "762x51Q3",
         "Caliber": {
             "Id": "Caliber93x64",
             "Name": "9.3x64mm",

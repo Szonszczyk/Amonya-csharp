@@ -1,7 +1,7 @@
 {
     "308ME": {
         "Category": "Assault",
-        "QuestForStart": "308MEQ3",
+        "QuestForStart": "556x45Q3",
         "Caliber": {
             "Id": "Caliber784x49",
             "Name": ".308 Marlin Express",

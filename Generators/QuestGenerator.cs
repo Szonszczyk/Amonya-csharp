@@ -23,10 +23,13 @@ namespace Amonya.Generators
         CustomBulletsManager customBulletsManager,
         CustomWeaponsManager customWeaponsManager,
         CustomLocales customLocales,
-        ModsCompatibility modsCompatibility
+        ModsCompatibility modsCompatibility,
+        CustomTraderCreator customTraderCreator
     )
     {
         private readonly Dictionary<string, List<string>> variantsAddedToQuests = [];
+        private readonly Dictionary<string, List<string>> variantsAddedToTrader = new() { ["LL1"] = [], ["LL2"] = [], ["LL3"] = [], ["LL4"] = [] };
+        private readonly List<string> currencies = ["Roubles", "Dollars", "Euros", "GPCoins"];
         public int questsGenerated = 0;
 
         private Dictionary<MongoId, Quest> Quests { get; set; } = [];
@@ -38,6 +41,7 @@ namespace Amonya.Generators
             Quests = databaseService.GetQuests();
             TraderAssort = databaseService.GetTables().Traders[modDatabaseLoader.TraderBase.Id].Assort;
             QuestTraderAssort = databaseService.GetTables().Traders[modDatabaseLoader.TraderBase.Id].QuestAssort;
+            RegisterQuestHandoverCategories();
         }
 
         public void AddBulletVariantToQuest(string id, string questId)
@@ -47,7 +51,10 @@ namespace Amonya.Generators
                 variantsAddedToQuests[questId].Add(id);
             } else
             {
-                variantsAddedToQuests[questId] = [id];
+                if (variantsAddedToTrader.TryGetValue(questId, out var ll))
+                    ll.Add(id);
+                else
+                    variantsAddedToQuests[questId] = [id];
             }
         }
 
@@ -82,8 +89,7 @@ namespace Amonya.Generators
                         CanShowNotificationsInGame = true,
                         TraderId = modDatabaseLoader.TraderBase.Id,
                         Location = "any",
-                        //Image = $"/files/quest/icon/{(configLoader.Config.EnableNonPonyMode ? $"{caliberName}NP" : questName)}",
-                        Image = $"/files/quest/icon/{(configLoader.Config.EnableNonPonyMode ? $"IntroductionNP" : questName)}",
+                        Image = $"/files/quest/icon/{ChooseCorrectQuestImage(caliberName, questName)}",
                         Type = QuestTypeEnum.Elimination,
                         Restartable = false,
                         Side = "Pmc",
@@ -285,7 +291,6 @@ namespace Amonya.Generators
                                 configLoader.QConfig.RequiresCategories.TryGetValue(req, out var category); category ??= [];
                                 if (category.Count == 0) logger.LogWithColor($"[{GetType().Namespace}] Category {req} not found in questConfig!", LogTextColor.Red);
                                 var barterId = idDatabaseManager.GetCustomId($"{questName}:AFF:{req}");
-                                var currencies = new List<string> { "Roubles", "Dollars", "Euros", "GPCoins" };
                                 newQuest.Conditions.AvailableForFinish.Add(new QuestCondition
                                 {
                                     Id = barterId,
@@ -339,6 +344,16 @@ namespace Amonya.Generators
                 }
             }
             customLocales.RegisterLocales();
+            foreach (var (ll, bullets) in variantsAddedToTrader)
+            {
+                var loyalLevel = Int32.Parse(ll.Replace("LL", ""));
+                foreach (var bullet in bullets)
+                {
+                    var bulletForUnlock = customBulletsManager.GetBulletByName(bullet);
+                    if (bulletForUnlock is not null)
+                        GenerateAssortForVariantBullet(bullet, bulletForUnlock, loyalLevel);
+                }  
+            }
         }
 
         private Reward GenerateReward(string questName, string type, string itemId, double amount)
@@ -365,7 +380,7 @@ namespace Amonya.Generators
             return reward;
         }
 
-        private Reward GenerateAssortUnlock(string questName, string itemId, BulletsDatabase bullet)
+        private string GenerateAssortForVariantBullet(string itemId, BulletsDatabase bullet, int loyalLevel = 1)
         {
             var idForAssort = idDatabaseManager.GetCustomId($"QUESTASSORT:{itemId}");
             TraderAssort.Items ??= [];
@@ -387,7 +402,15 @@ namespace Amonya.Generators
                 Count = bullet.NewPrice
             }]]);
             TraderAssort.LoyalLevelItems ??= [];
-            TraderAssort.LoyalLevelItems.Add(idForAssort, 1);
+            TraderAssort.LoyalLevelItems.Add(idForAssort, loyalLevel);
+            return idForAssort;
+        }
+
+
+
+        private Reward GenerateAssortUnlock(string questName, string itemId, BulletsDatabase bullet)
+        {
+            var idForAssort = GenerateAssortForVariantBullet(itemId, bullet);
 
             var newQuestId = idDatabaseManager.GetCustomId($"{questName}:ID");
 
@@ -396,10 +419,6 @@ namespace Amonya.Generators
             {
                 QuestTraderAssort.Add("success", []);
                 QuestTraderAssort.TryGetValue("success", out questTraderAssortSuccess);
-            }
-            if (questTraderAssortSuccess is null)
-            {
-                logger.LogWithColor($"[{GetType().Namespace}] Is null lol", LogTextColor.Yellow);
             }
             questTraderAssortSuccess?.Add(idForAssort, newQuestId);
             
@@ -462,6 +481,32 @@ namespace Amonya.Generators
                 );
             }
             return visConditions;
+        }
+
+        private string ChooseCorrectQuestImage(string caliberName, string questName)
+        {
+            var qImages = customTraderCreator.questImages;
+            if (configLoader.Config.EnableNonPonyMode)
+            {
+                if(qImages.Contains($"{caliberName}NP")) return $"{caliberName}NP";
+                return $"IntroductionNP";
+            }
+            if (qImages.Contains(questName)) return questName;
+            return "Introduction";
+        }
+
+        private void RegisterQuestHandoverCategories()
+        {
+            var notChangeCategories = new List<string>(["TarkoPops"]);
+            foreach (var (category, items) in configLoader.QConfig.RequiresCategories)
+            {
+                if (currencies.Contains(category) || notChangeCategories.Contains(category)) continue;
+                var itemNames = new List<string>();
+                foreach (var item in items) {
+                    itemNames.Add($"{{{item} Name}}");
+                }
+                customLocales.AddToExistingLocale($"Category{category}", $": {string.Join(", ", itemNames)}");
+            }
         }
     }
 }

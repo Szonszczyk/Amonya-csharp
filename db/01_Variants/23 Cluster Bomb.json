@@ -14,7 +14,8 @@
             "FragmentsCount": 30
         },
         "Bullets": {
-            "40x46mm M406 (HE) grenade": "40x46Q5"
+            "40x46mm M406 (HE) grenade": "40x46Q5",
+            "40mm VOG-25 grenade": "LL3"
         },
         "WeaponCategories": [
             "ALL"

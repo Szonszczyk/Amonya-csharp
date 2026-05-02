@@ -14,7 +14,8 @@
             ["5447b5cf4bdc2d65278b4567"] = "Pistols",
             ["5447b6094bdc2dc3278b4567"] = "Shotguns",
             ["617f1ef5e8b54b0998387733"] = "Revolvers",
-            ["5447bedf4bdc2d87278b4568"] = "Grenade launchers"
+            ["5447bedf4bdc2d87278b4568"] = "Grenade launchers",
+            ["55818b014bdc2ddc698b456b"] = "Underbarrel grenade launchers"
         };
 
         // Dictionary: ID → Singular Category Name
@@ -29,7 +30,8 @@
             ["5447b5cf4bdc2d65278b4567"] = "Pistol",
             ["5447b6094bdc2dc3278b4567"] = "Shotgun",
             ["617f1ef5e8b54b0998387733"] = "Revolver",
-            ["5447bedf4bdc2d87278b4568"] = "Grenade launcher"
+            ["5447bedf4bdc2d87278b4568"] = "Grenade launcher",
+            ["55818b014bdc2ddc698b456b"] = "Underbarrel grenade launcher"
         };
 
         /// <summary>

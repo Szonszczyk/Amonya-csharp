@@ -134,10 +134,10 @@ namespace Amonya.CustomClasses
         {
             var sources = new[]
             {
-                modDatabaseLoader.DbLocales.GetValueOrDefault(lang),
-                modDatabaseLoader.DbLocales.GetValueOrDefault("en"),
                 newLocale.GetValueOrDefault(lang),
                 newLocale.GetValueOrDefault("en"),
+                modDatabaseLoader.DbLocales.GetValueOrDefault(lang),
+                modDatabaseLoader.DbLocales.GetValueOrDefault("en"),
                 temp,
                 OriginalLocale.GetValueOrDefault(lang),
                 OriginalLocale.GetValueOrDefault("en")

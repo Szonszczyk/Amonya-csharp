@@ -177,7 +177,10 @@
 			"5d40412b86f7743cb332ac3a", // Schaman shampoo
 			"59e358a886f7741776641ac3", // Clin window cleaner
 			"5e2aef7986f7746d3f3c33f5", // Repellent
-			"59e3596386f774176c10a2a2"  // PAID AntiRoach spray
+			"59e3596386f774176c10a2a2", // PAID AntiRoach spray
+			"5c13cd2486f774072c757944", // Soap
+			"57347c93245977448d35f6e3", // Toothpaste
+			"5d4041f086f7743cac3f22a7"  // Ortodontox toothpaste
 		],
 		"Tools": [ // I can use them with my mouth
 			"56742c2e4bdc2d95058b456d", // Zibbo lighter
@@ -187,7 +190,8 @@
 			"5d40425986f7743185265461", // Nippers
 			"5d4042a986f7743185265463", // Flat screwdriver (Long)
 			"5d63d33b86f7746ea9275524", // Flat screwdriver
-			"62a0a098de7ac8199358053b"  // Awl
+			"62a0a098de7ac8199358053b", // Awl
+			"56742c284bdc2d98058b456d"  // Crickent lighter
 		],
 		"Electronics": [ // I want to know how they works!
 			"5c1265fc86f7743f896a21c2", // Broken GPhone X smartphone
@@ -199,7 +203,8 @@
 			"5672cb124bdc2d1a0f8b4568", // AA Battery
 			"5909e99886f7740c983b9984", // USB Adapter
 			"5672cb304bdc2dc2088b456a", // D Size battery
-			"5af0561e86f7745f5f3ad6ac"  // Portable Powerbank
+			"5af0561e86f7745f5f3ad6ac", // Portable Powerbank
+			"590a358486f77429692b2790"  // Rechargeable battery
 		],
 		"Info": [ // I need all the Tarkov information I can get!
 			"6389c92d52123d5dd17f8876", // Advanced Electronic Materials textbook

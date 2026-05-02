@@ -125,7 +125,9 @@
 		"ShortName": ".50 BMG"
 	},
 	"Caliber40mmRU": {
-		"Incorrect": true
+		"Name": ".40mmRU",
+		"Id": "40RU",
+		"ShortName": "40mm RU"
 	},
 	"Caliber26x75": {
 		"Incorrect": true
