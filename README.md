@@ -19,68 +19,69 @@ Server mod for Single Player Tarkov that is adding Amonya - trader and quest giv
 
 ## Bullet Variants
 
-- Armor-cracking
-	A high-penetration round with double armor damage. Excellent against heavy armor, but comes with drastically reduced damage output
+- **Armor-cracking**\
+	A high-penetration round with double armor damage. Excellent against heavy armor, but comes with drastically reduced damage output\
 	Only useable by Assault carbines, Assault rifles, SMGs, LMGs, Shotguns
-- Bloody
-	Guaranteed light bleeding, with a 50% chance of heavy bleeding with slightly decreased penetration power. Virtually useless against armor
-- Heavy Duty
-	Extremely fast, high-penetration ammunition with boosted damage and armor damage. Comes at the cost of heavy recoil
-- Anti-personnel
-	High-damage round with minimal penetration. No armor damage and no bleeding chance
+- **Bloody**\
+	Guaranteed light bleeding, with a 50% chance of heavy bleeding with slightly decreased penetration power. Virtually useless against armor\
+- **Heavy Duty**\
+	Extremely fast, high-penetration ammunition with boosted damage and armor damage. Comes at the cost of heavy recoil\
+- **Anti-personnel**\
+	High-damage round with minimal penetration. No armor damage and no bleeding chance\
 	Only useable by Assault carbines, Assault rifles, SMGs, LMGs
-- Full-auto
+- **Full-auto**\
+	A budget-friendly choice for full-auto weapons, balancing cost and control at the expense of damage\
 	Only useable by Assault carbines, Assault rifles, SMGs, LMGs, DMRs
-- Railgun
-	Explosive round with high initial speed
+- **Railgun**\
+	Explosive round with high initial speed\
 	Only useable by DMRs, Bolt-action rifles
-- Artillery
-	Explosive bullet with low initial speed allowing you to shoot enemies behind cover
+-** Artillery**\
+	Explosive bullet with low initial speed allowing you to shoot enemies behind cover\
 	Only useable by Assault carbines, Assault rifles, LMGs
-- Mortar
-	Explosive bullet with very low initial speed allowing you to shoot enemies even behind buildings
+- **Mortar**\
+	Explosive bullet with very low initial speed allowing you to shoot enemies even behind buildings\
 	Only useable by Assault carbines, Assault rifles, LMGs
-- Avada Kedavra
-	Bullet that will 1-hit your enemy but with low initial speed
+- **Avada Kedavra**\
+	Bullet that will 1-hit your enemy but with low initial speed\
 	Only useable by Bolt-action rifles
-- Pro+
+- **Pro+**\
 	Bullet with slightly increased damage and penetration without chance to deal a bleeding
-- Hypersonic
-	Bullet with insane initial speed but with increased recoil
+- **Hypersonic**\
+	Bullet with insane initial speed but with increased recoil\
 	Only useable by Assault carbines, Assault rifles, DMRs, Revolvers
-- Flamethrower
-	Big bullet with low initial speed but with increased damage
+- **Flamethrower**\
+	Big bullet with low initial speed but with increased damage\
 	Only useable by SMGs, Pistols
-- Close Quarters
+- **Close Quarters**\
 	Bullet that always penetrates obstacles, always ricochets, is bigger and have increased damage and penetration but with lowered initial speed and accuracy
-- Rubber Grenade
+- **Rubber Grenade**\
 	Grenade missing explosive component but with increased velocity, penetration and damage
-- Sabot
+- **Sabot**\
 	A high-speed sabot slug designed to penetrate armor with precision, but has lower damage
-- Tazer
-	Bullet with low initial speed, very low range but with increadibly good damage
+- **Tazer**\
+	Bullet with low initial speed, very low range but with increadibly good damage\
 	Only useable by Pistols
-- Ratshot
+- **Ratshot**\
 	Buckshot bullet for normal guns. Features almost no penetration and armor damage, small initial speed and bullet, low accuracy but with lowered heat buildup and recoil. It's dirt cheep!
-- Laser
+- **Laser**\
 	Bullet variant with very good speed and penetration but lowered damage
-- Ratshot Mk2
+- **Ratshot Mk2**\
 	Buckshot bullet that features low penetration and armor damage, small initial speed and bullet, low accuracy but with lowered heat buildup and recoil
-- Heavy
+- **Heavy**\
 	Buckshot bullet that features halfed the number of pellets, but tripled damage and increased penetration
-- Light
+- **Light**\
 	Buckshot bullet that features tripled initial speed but decreased number of pellets and lowered damage
-- Mini-nuke
-	It's a big boom
+- **Mini-nuke**\
+	It's a big boom\
 	Only useable by Grenade launchers, Underbarrel grenade launchers
-- Cluster Bomb
+- **Cluster Bomb**\
 	Grenade variant without fuze time, but having multiple high-explosive fragments after initial detonation
-- Afterburner
+- **Afterburner**\
 	A high-velocity round that sacrifices raw damage for increased penetration, higher muzzle velocity and significantly higher heat buildup
-- Spiked
+- **Spiked**\
 	A grenade round with no explosive damage, instead dispersing lethal 12.7x108mm BZT-44M projectiles upon detonation
-- Mini-rocket
+- **Mini-rocket**\
 	Only useable by Shotguns, Revolvers, Grenade launchers
-- Lucky Shot
-	A buckshot round designed for bolt-action rifles. Accuracy becomes a gamble - you might miss entirely or land multiple hits in a single shot
+- **Lucky Shot**\
+	A buckshot round designed for bolt-action rifles. Accuracy becomes a gamble - you might miss entirely or land multiple hits in a single shot\
 	Only useable by Bolt-action rifles
