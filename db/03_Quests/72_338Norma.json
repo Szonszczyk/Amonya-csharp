@@ -1,0 +1,32 @@
+{
+    "338Norma": {
+        "Category": "Assault",
+        "QuestForStart": "338Q1",
+        "Caliber": {
+            "Id": "Caliber86x63",
+            "Name": ".338 Norma",
+            "ShortName": ".338 Norma"
+        },
+        "Mod": "com.wtt.armory",
+        "Quests": {
+            "338NormaQ1": {
+                "Unlocks": [
+                    ".338 Norma Magnum Golden Target HPBT"
+                ],
+                "Diff": "2",
+                "Trader": 1
+            },
+            "338NormaQ2": {
+                "Unlocks": [
+                    ".338 Norma Magnum Sierra MatchKing HPBT"
+                ],
+                "Diff": "5",
+                "Trader": 2
+            },
+            "338NormaQ3": {
+                "Diff": "8",
+                "Trader": 3
+            }
+        }
+    }
+}

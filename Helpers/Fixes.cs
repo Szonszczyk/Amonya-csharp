@@ -1,7 +1,9 @@
 ﻿using Amonya.CustomClasses;
+using Amonya.Loaders;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
+using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Logging;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Services;
@@ -12,14 +14,19 @@ namespace Amonya.Helpers
     [Injectable(InjectionType.Singleton)]
     public class Fixes(
         ISptLogger<Amonya> logger,
-        CustomBulletsManager customBulletsManager
+        CustomBulletsManager customBulletsManager,
+        IdDatabaseManager idDatabaseManager,
+        ConfigLoader configLoader
     )
     {
         private Dictionary<string, Location> Locations { get; set; } = [];
+        private Dictionary<MongoId, TemplateItem> Items { get; set; } = [];
         public void Initialize(DatabaseService databaseService)
         {
             Locations = databaseService.GetLocations().GetDictionary();
+            Items = databaseService.GetItems();
             FixLocationStaticAmmo();
+            AdjustCustomItems();
         }
 
         private void FixLocationStaticAmmo()
@@ -33,25 +40,45 @@ namespace Amonya.Helpers
 
                     if (!location.StaticAmmo.TryGetValue(caliberId, out _))
                     {
+                        var list = new List<StaticAmmoDetails>();
+                        foreach (var bulletId in bullets)
+                        {
+                            list.Add(new StaticAmmoDetails
+                            {
+                                Tpl = bulletId,
+                                RelativeProbability = 1
+                            });
+                        }
                         //logger.LogWithColor($"[{GetType().Namespace}] Providing for {caliberId}, containing {bullets.Count} bullets!", LogTextColor.Red);
-                        location.StaticAmmo.Add(caliberId, CreateListStaticAmmoDetails(bullets));
+                        location.StaticAmmo.Add(caliberId, list);
                     }
                 }
             }
         }
 
-        private static List<StaticAmmoDetails> CreateListStaticAmmoDetails(List<MongoId> bullets)
+        private void AdjustCustomItems()
         {
-            var list = new List<StaticAmmoDetails>();
-            foreach (var bulletId in bullets)
+            var MoHsIds = new List<string>() { "Pocket Sized Mag of Holding", "Satchel Sized Mag of Holding", "Crate Sized Mag of Holding" };
+            foreach (var MoH in MoHsIds)
             {
-                list.Add(new StaticAmmoDetails
+                Items.TryGetValue(idDatabaseManager.GetCustomId($"{MoH}:ID"), out var item);
+                if (item?.Properties?.LoadUnloadModifier != null)
                 {
-                    Tpl = bulletId,
-                    RelativeProbability = 1
-                });
+                    configLoader.Config.MoHLoadingSpeed.TryGetValue(MoH, out var MoHLoadingSpeed);
+                    if (MoHLoadingSpeed < 0 && MoHLoadingSpeed > -100)
+                    {
+                        item.Properties.LoadUnloadModifier = MoHLoadingSpeed;
+                    }
+                    else
+                    {
+                        logger.LogWithColor($"[{GetType().Namespace}] Value {MoHLoadingSpeed} provided in \"MoHLoadingSpeed\" config option is incorrect. Should be between 0 and -100", LogTextColor.Red);
+                    }
+                } else
+                {
+                    logger.LogWithColor($"[{GetType().Namespace}] Item {MoH} provided in \"MoHLoadingSpeed\" config option is incorrect", LogTextColor.Red);
+                }
             }
-            return list;
+            
         }
     }
 }

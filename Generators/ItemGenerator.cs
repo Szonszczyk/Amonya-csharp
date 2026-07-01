@@ -8,7 +8,6 @@ using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Logging;
 using SPTarkov.Server.Core.Models.Spt.Mod;
 using SPTarkov.Server.Core.Models.Utils;
-using SPTarkov.Server.Core.Services;
 
 namespace Amonya.Generators
 {
@@ -22,17 +21,10 @@ namespace Amonya.Generators
         CustomSlotsChanger customSlotsChanger,
         ModsCompatibility modsCompatibility,
         ConfigLoader configLoader,
-        CustomLocales customLocales
+        CustomLocales customLocales,
+        ModDataStorage modDataStorage
     )
     {
-        private Dictionary<MongoId, TemplateItem> Items { get; set; } = [];
-        private List<HandbookItem> HandbookItems { get; set; } = [];
-        public void Initialize(DatabaseService databaseService)
-        {
-            Items = databaseService.GetItems();
-            HandbookItems = databaseService.GetHandbook().Items;
-            GenerateItems();
-        }
 
         public void GenerateItems()
         {
@@ -47,18 +39,19 @@ namespace Amonya.Generators
                         continue;
                     }
                     MongoId itemTplToClone = (MongoId)variant.ItemTplToClone;
-                    TemplateItem copiedItem = Items[itemTplToClone];
-                    HandbookItem? copiedItemHandbook = HandbookItems.Find(t => t.Id == itemTplToClone);
+                    TemplateItem copiedItem = modDataStorage.Items[itemTplToClone];
+                    HandbookItem? copiedItemHandbook = modDataStorage.Handbook.Items.Find(t => t.Id == itemTplToClone);
                     if (copiedItemHandbook == null) {
                         logger.LogWithColor($"[{GetType().Namespace}] Item {itemTplToClone} handbook entry is missing ({variantName})!", LogTextColor.Red);
                         continue;
                     }
+                    var newId = idDatabaseManager.GetCustomId($"{variantName}:ID");
                     var newItem = new NewItemFromCloneDetails
                     {
                         ItemTplToClone = itemTplToClone,
                         ParentId = variant.Changes?.Parent != null ? variant.Changes.Parent : copiedItem.Parent,
                         HandbookParentId = copiedItemHandbook.ParentId,
-                        NewId = idDatabaseManager.GetCustomId($"{variantName}:ID"),
+                        NewId = newId,
                         FleaPriceRoubles = variant.HandbookPriceRoubles * 2,
                         HandbookPriceRoubles = variant.HandbookPriceRoubles,
                         OverrideProperties = new TemplateItemProperties
@@ -68,7 +61,8 @@ namespace Amonya.Generators
                         Locales = customLocales.CreateItemLocale(
                             $"<b><color={variant.Color}>{{{variantName}.Name}}</color></b>",
                             $"{{{variantName}.ShortName}}",
-                            $"<align=\"center\">{{{variantName}.Description}}</align>"
+                            $"<align=\"center\">{{{variantName}.Description}}</align>",
+                            newId
                         )
                     };
 

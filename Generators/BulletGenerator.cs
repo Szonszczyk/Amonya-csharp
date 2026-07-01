@@ -1,13 +1,12 @@
 ﻿using Amonya.CustomClasses;
+using Amonya.Helpers;
 using Amonya.Interfaces;
 using Amonya.Loaders;
 using SPTarkov.DI.Annotations;
-using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Logging;
 using SPTarkov.Server.Core.Models.Spt.Mod;
 using SPTarkov.Server.Core.Models.Utils;
-using SPTarkov.Server.Core.Services;
 
 namespace Amonya.Generators
 {
@@ -22,23 +21,15 @@ namespace Amonya.Generators
         CustomBulletsManager customBulletsManager,
         CustomWeaponsManager customWeaponsManager,
         QuestGenerator questGenerator,
-        CustomLocales customLocales
+        CustomLocales customLocales,
+        ModDataStorage modDataStorage
     )
     {
-        private Dictionary<MongoId, TemplateItem> Items { get; set; } = [];
-        private List<HandbookItem> HandbookItems { get; set; } = [];
-        public void Initialize(DatabaseService databaseService)
-        {
-            Items = databaseService.GetItems();
-            HandbookItems = databaseService.GetHandbook().Items;
-        }
         public void GenerateBullets()
         {
             foreach (var (variantName, config) in modDatabaseLoader.DbVariants)
             {
-                if (!configLoader.Config.EnableBullets.TryGetValue(variantName, out var bulletEnabled)) continue;
-
-                if (config is { FlavourText: not null, Description: not null, Explanation: not null, ShortName: not null, Bullets: not null, WeaponCategories: not null, Price: not null, Color: not null } variant)
+                if (config is { ShortName: not null, Bullets: not null, WeaponCategories: not null, Price: not null, Color: not null } variant)
                 {
                     var bulletIds = new List<string>();
                     foreach (var bulletName in variant.Bullets.Keys)
@@ -57,10 +48,10 @@ namespace Amonya.Generators
                             continue;
                         }
                         var id = bullet.Id;
-                        var copiedItem = Items[id]!;
+                        var copiedItem = modDataStorage.Items[id]!;
                         var caliberInfo = modDatabaseLoader.DbCalibers[bullet.Caliber];
                         string variantShortName = $"{caliberInfo.ShortName} {variant.ShortName}";
-                        HandbookItem? copiedItemHandbook = HandbookItems.Find(t => t.Id == id);
+                        HandbookItem? copiedItemHandbook = modDataStorage.Handbook.Items.Find(t => t.Id == id);
                         var newId = idDatabaseManager.GetCustomId($"{variantShortName}:ID");
                         var variantShortnameDisplayed = configLoader.Config.BulletVariantsShortName
                             .Replace("<variant_fullname>", $"{{{variantName}.Name}}")
@@ -90,7 +81,8 @@ namespace Amonya.Generators
                                     $"",
                                     $"{{VariantDescription1}}",
                                     $"{string.Join(" | ", variant.WeaponCategories.Select(c => $"{{WeaponCategory.{c}}}"))}</align>"
-                                })
+                                }),
+                                newId
                             )
                         };
                         if (!configLoader.Config.CheckColorConverterAPI || IsPluginLoaded())
@@ -103,26 +95,32 @@ namespace Amonya.Generators
                         if (variant.Properties != null)
                             newItem.OverrideProperties = customPropertiesChanger.ChangeItemProperties(variant.Properties, newItem.OverrideProperties, copiedItem, config, variantName);
 
-                        if (configLoader.Config.EnableBulletQuests)
+                        if (!configLoader.Config.EnableBullets.TryGetValue(variantName, out var bulletEnabled) || bulletEnabled is true)
                         {
-                            customItemCreator.AddItemToDatabase(newItem, new CustomItemConfig(), config.Barter ?? new CustomBarterConfig());
-                        } else
-                        {
-                            var newBarterConfig = new CustomBarterConfig
+                            if (configLoader.Config.EnableBulletQuests)
                             {
-                                TraderId = "ee840a5ba014e9c5478d5ccd",
-                                LoyalLevel = 1,
-                                StackObjectsCount = configLoader.Config.AmmoPrice.Max,
-                                UnlimitedCount = configLoader.Config.AmmoPrice.UnlimitedCount
-                            };
-                            var newPrice = (double)(newItem.HandbookPriceRoubles * configLoader.Config.AmmoPrice.Multiplier);
-                            newBarterConfig.BarterPrice.Add("5449016a4bdc2d6f028b456f", (int)Math.Ceiling(newPrice));
-                            customItemCreator.AddItemToDatabase(newItem, new CustomItemConfig(), newBarterConfig);
+                                customItemCreator.AddItemToDatabase(newItem, new CustomItemConfig(), config.Barter ?? new CustomBarterConfig());
+                            }
+                            else
+                            {
+                                var newBarterConfig = new CustomBarterConfig
+                                {
+                                    TraderId = "ee840a5ba014e9c5478d5ccd",
+                                    LoyalLevel = 1,
+                                    StackObjectsCount = configLoader.Config.AmmoPrice.Max,
+                                    UnlimitedCount = configLoader.Config.AmmoPrice.UnlimitedCount
+                                };
+                                var newPrice = (double)(newItem.HandbookPriceRoubles * configLoader.Config.AmmoPrice.Multiplier);
+                                newBarterConfig.BarterPrice.Add("5449016a4bdc2d6f028b456f", (int)Math.Ceiling(newPrice));
+                                customItemCreator.AddItemToDatabase(newItem, new CustomItemConfig(), newBarterConfig);
+                            }
                         }
+                        
 
-                        customBulletsManager.AddBulletToDatabase(newId);
+                        customBulletsManager.AddBulletToDatabase(newId, true);
                         customWeaponsManager.RegisterNewBulletToAddToSlots(newId, id, bullet.Caliber, variant.WeaponCategories);
-                        questGenerator.AddBulletVariantToQuest(newId, questName);
+                        if (!configLoader.Config.EnableBullets.TryGetValue(variantName, out _) || bulletEnabled is true)
+                            questGenerator.AddBulletVariantToQuest(newId, questName);
                     }
                 } else
                 {

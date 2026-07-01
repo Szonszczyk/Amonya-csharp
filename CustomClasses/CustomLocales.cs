@@ -1,8 +1,8 @@
-﻿using Amonya.Loaders;
+﻿using Amonya.Helpers;
+using Amonya.Loaders;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Models.Logging;
 using SPTarkov.Server.Core.Models.Spt.Mod;
-using SPTarkov.Server.Core.Models.Spt.Server;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Services;
 using System.Text.RegularExpressions;
@@ -12,20 +12,19 @@ namespace Amonya.CustomClasses
     [Injectable(InjectionType.Singleton)]
     public class CustomLocales(
         ISptLogger<Amonya> logger,
-        ModDatabaseLoader modDatabaseLoader
+        ModDatabaseLoader modDatabaseLoader,
+        ModDataStorage modDataStorage
     )
     {
-        private readonly Dictionary<string, Dictionary<string, string>> newLocale = [];
+        public readonly Dictionary<string, Dictionary<string, string>> newLocale = [];
 
         private readonly Dictionary<string, string> temp = [];
 
         private readonly Dictionary<string, Dictionary<string, string>> OriginalLocale = [];
-        private LocaleBase? Locale { get; set; } = null;
         private HashSet<string> AllLangs { get; set; } = [];
-        public void Initialize(DatabaseService databaseService, LocaleService localeService)
+        public void Initialize(LocaleService localeService)
         {
-            Locale = databaseService.GetLocales();
-            AllLangs = Locale.Global.Keys.ToHashSet();
+            AllLangs = [.. modDataStorage.Locale.Global.Keys];
 
             foreach (var (lang, _) in modDatabaseLoader.DbLocales)
             {
@@ -109,7 +108,7 @@ namespace Amonya.CustomClasses
         {
             foreach (var langId in AllLangs)
             {
-                if (Locale is not null && Locale.Global.TryGetValue(langId, out var lazyloadedValue))
+                if (modDataStorage.Locale is not null && modDataStorage.Locale.Global.TryGetValue(langId, out var lazyloadedValue))
                 {
                     newLocale.TryGetValue(langId, out var newLocaleToAdd);
                     if (newLocaleToAdd is null)
@@ -134,18 +133,18 @@ namespace Amonya.CustomClasses
         {
             var sources = new[]
             {
-                newLocale.GetValueOrDefault(lang),
-                newLocale.GetValueOrDefault("en"),
-                modDatabaseLoader.DbLocales.GetValueOrDefault(lang),
-                modDatabaseLoader.DbLocales.GetValueOrDefault("en"),
                 temp,
+                newLocale.GetValueOrDefault(lang),
+                modDatabaseLoader.DbLocales.GetValueOrDefault(lang),
                 OriginalLocale.GetValueOrDefault(lang),
+                newLocale.GetValueOrDefault("en"),
+                modDatabaseLoader.DbLocales.GetValueOrDefault("en"),
                 OriginalLocale.GetValueOrDefault("en")
             };
 
             foreach (var source in sources)
             {
-                if (source != null && source.TryGetValue(key, out var text))
+                if (source != null && source.TryGetValue(key, out var text) && text.Length > 0)
                     return text;
             }
 
@@ -171,17 +170,22 @@ namespace Amonya.CustomClasses
             return Regex.Replace(input, "<.*?>", string.Empty);
         }
 
-        public Dictionary<string, LocaleDetails> CreateItemLocale(string Name, string ShortName, string Description)
+        public Dictionary<string, LocaleDetails> CreateItemLocale(string Name, string ShortName, string Description, string id)
         {
             var itemLocale = new Dictionary<string, LocaleDetails>();
 
             foreach (var (langId, _) in newLocale)
             {
-                itemLocale.Add(langId, new LocaleDetails {
+                var newItemLocale = new LocaleDetails
+                {
                     Name = ReplaceTags(Name, langId),
                     ShortName = ReplaceTags(ShortName, langId),
                     Description = ReplaceTags(Description, langId)
-                });
+                };
+                OriginalLocale[langId].Add($"{id} Name", newItemLocale.Name);
+                OriginalLocale[langId].Add($"{id} ShortName", newItemLocale.ShortName);
+                OriginalLocale[langId].Add($"{id} Description", newItemLocale.Description);
+                itemLocale.Add(langId, newItemLocale);
             }
             return itemLocale;
         }

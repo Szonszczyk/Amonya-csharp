@@ -13,11 +13,17 @@
     "AmmoPrice": {
         // Price multiplier for bullets sold by Amonya
         "Multiplier": 0.7, // float number - default: 0.7
-        // If false, the trader shares a global purchase limit (Max) per refresh.
-        // If true, each player can buy up to Max bullets independently.
+        // If false, the trader shares a global purchase limit (Max) per refresh
+        // If true, each player can buy up to Max bullets independently
         "UnlimitedCount": false, // true/false - default: false
         // Maximum amount that can be bought per trader refresh
         "Max": 1000 // integer number - default: 1000
+    },
+
+    // Trader assort refresh time in minutes. How much time needs to pass to Amonya to have new items available
+    "TraderUpdateTime": {
+        "Minimum": 30, // Integer number - default: 30
+        "Maximum": 60 // Integer number - default: 60
     },
 
     // Enable/Disable bullet quests added to Amonya
@@ -26,6 +32,9 @@
     "EnableBulletQuests": true, // true/false - default: true
     // Handover items in Amonya quests needs to be Found in Raid (excluding currencies)
     "QuestBarterFoundInRaid": true,
+    // Add modded bullets automatically to quests
+    "AddModdedBulletsToQuests": true,
+    // This system is using weight system and you can adjust it in "BulletRatingWeights" section later in config
 
 
     // Enable/Disable bullet variant type from appearing in Amonya quests/assort
@@ -43,11 +52,11 @@
         /*09 */"Avada Kedavra": true,
         /*10 */"Pro+": true,
         /*11 */"Hypersonic": true,
-        /*12 */"Sparkle": true,
+        /*12 */"Flamethrower": true,
         /*13 */"Close Quarters": true,
         /*14 */"Rubber Grenade": true,
         /*15 */"Sabot": true,
-        /*16 */"Flamethrower": true,
+        /*16 */"Tazer": true,
         /*17 */"Ratshot": true,
         /*18 */"Laser": true,
         /*19 */"Ratshot Mk2": true,
@@ -79,13 +88,54 @@
     "CaliberStacks": {
         "Caliber127x108": 60, // integer number - default: 60
         "Caliber40x46": 5, // integer number - default: 5
-        "Caliber30x29": 5 // integer number - default: 5
+        "Caliber30x29": 5, // integer number - default: 5
+        "Caliber40mmRU": 5, // integer number - default: 5
+        "Caliber20x1mm": 200 // integer number - default: 200
+    },
+
+    // Loading speed of Magazines of Holding (value between 0 and -100)
+    // Percentage of default loading speed, -90% => 10% of original loading speed - 10 times faster than default
+    "MoHLoadingSpeed": {
+        "Pocket Sized Mag of Holding": -90, // integer value (0,-100) - default: -90
+        "Satchel Sized Mag of Holding": -92, // integer value (0,-100) - default: -92
+        "Crate Sized Mag of Holding": -94 // integer value (0,-100) - default: -94
+    },
+
+    // Weights for determining to what quest modded bullet can be added 
+    // Properties can be found at https://db.sp-tarkov.com/search/
+    // Property names must start with an uppercase letter
+    "BulletRatingWeights": {
+        "bullet": { // Normal bullets
+            "Damage": 75,
+            "PenetrationPower": 100,
+            "InitialSpeed": 50
+        },
+        "buckshot": { // Buckshot bullets
+            "Damage": 75,
+            "PenetrationPower": 100,
+            "InitialSpeed": 20,
+            "BuckshotBullets": 75
+        },
+        "grenade": { // Explosive bullets for grenade launchers
+            "FuzeArmTimeSec": -50,
+            "ExplosionStrength": 100,
+            "Damage": 75
+        }
     },
 
     // The mod checks for ColorConverterAPI before changing colors and tracers
     // If set to false, the mod will assume ColorConverterAPI is always loaded
     "CheckColorConverterAPI": true, // true/false - default: true
 
-    // Enable/Disable debug messages
-    "Debug": false // true/false - default: false
+    // Enable/Disable additional debug messages
+    "Debug": false, // true/false - default: false
+
+    // Enable/Disable generating debug files
+    "DebugFiles": {
+        "Bullets": false, // Bullets loaded
+        "Weapons": false, // BaseWeapons/CopyWeapons loaded
+        "Quests": false, // Quests generated
+        "Locales": false, // Locales of quests generated
+        "Items": false // Items (and bullet variants) generated
+    }
 }

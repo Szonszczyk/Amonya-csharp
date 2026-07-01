@@ -1,15 +1,13 @@
-﻿using Amonya.Loaders;
+﻿using Amonya.Helpers;
+using Amonya.Loaders;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Logging;
 using SPTarkov.Server.Core.Models.Spt.Config;
-using SPTarkov.Server.Core.Models.Spt.Server;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Routers;
-using SPTarkov.Server.Core.Servers;
-using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Utils;
 using SPTarkov.Server.Core.Utils.Cloners;
 using System.Reflection;
@@ -25,30 +23,43 @@ namespace Amonya.CustomClasses
         ModHelper modHelper,
         ConfigLoader configLoader,
         ModDatabaseLoader modDatabaseLoader,
-        TimeUtil timeUtil
+        TimeUtil timeUtil,
+        CustomLocales customLocales,
+        ModDataStorage modDataStorage
     )
     {
-        private Dictionary<MongoId, Trader> Traders { get; set; } = [];
-        private LocaleBase? Locale { get; set; } = null;
-        private TraderConfig? ConfigServerTraderConfig { get; set; } = null;
-        private RagfairConfig? ConfigServerRagfairConfig { get; set; } = null;
         public List<string> questImages { get; set; } = [];
-        public void Initialize(DatabaseService databaseService, ConfigServer configServer)
+        public void Initialize()
         {
-            Traders = databaseService.GetTraders();
-            Locale = databaseService.GetLocales();
-            ConfigServerTraderConfig = configServer.GetConfig<TraderConfig>();
-            ConfigServerRagfairConfig = configServer.GetConfig<RagfairConfig>();
             RegisterTraderImage();
             SetTraderUpdateTime();
-            ConfigServerRagfairConfig.Traders.TryAdd(modDatabaseLoader.TraderBase.Id, true);
+            modDataStorage.ConfigServerRagfairConfig.Traders.TryAdd(modDatabaseLoader.TraderBase.Id, true);
             AddTraderWithEmptyAssortToDb();
-            AddTraderToLocales(
-                modDatabaseLoader.TraderBase,
-                "Amonya",
-                "A pony known for hoarding a large amount of ammunition-perhaps even too much for this grey-white, out-of-season creature. However, she might share some if you complete some of her quests..."
-            );
+            AddTraderToLocales(modDatabaseLoader.TraderBase);
             RegisterQuestImages();
+        }
+        private void RegisterTraderImage()
+        {
+            var baseJson = modDatabaseLoader.TraderBase;
+            if (baseJson.Avatar is null) return;
+            var pathToMod = modHelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
+
+            var traderImagePath = Path.Combine(pathToMod, "res", configLoader.Config.EnableNonPonyMode ? "AmonyaNP.png" : "Amonya.jpg");
+            imageRouter.AddRoute(baseJson.Avatar.Replace(".jpg", ""), traderImagePath);
+        }
+        private void SetTraderUpdateTime()
+        {
+            var refreshTimeSecondsMin = timeUtil.GetMinutesAsSeconds(configLoader.Config.TraderUpdateTime.Minimum);
+            var refreshTimeSecondsMax = timeUtil.GetMinutesAsSeconds(configLoader.Config.TraderUpdateTime.Maximum);
+            var baseJson = modDatabaseLoader.TraderBase;
+            // Add refresh time in seconds to config
+            var traderRefreshRecord = new UpdateTime
+            {
+                TraderId = baseJson.Id,
+                Seconds = new MinMax<int>((int)refreshTimeSecondsMin, (int)refreshTimeSecondsMax)
+            };
+
+            modDataStorage.ConfigServerTraderConfig.UpdateTime.Add(traderRefreshRecord);
         }
         private void AddTraderWithEmptyAssortToDb()
         {
@@ -74,60 +85,20 @@ namespace Amonya.CustomClasses
                 Dialogue = []
             };
 
-            if (!Traders.TryAdd(traderDetailsToAdd.Id, traderDataToAdd))
+            if (!modDataStorage.Traders.TryAdd(traderDetailsToAdd.Id, traderDataToAdd))
             {
                 logger.LogWithColor($"[{GetType().Namespace}] Failed to add Amonya to databases!", LogTextColor.Red);
             }
         }
-
-        private void AddTraderToLocales(TraderBase baseJson, string firstName, string description)
+        private void AddTraderToLocales(TraderBase baseJson)
         {
-            var locales = Locale.Global;
             var newTraderId = baseJson.Id;
-            var fullName = baseJson.Name;
-            var nickName = baseJson.Nickname ?? "NICKNAME";
-            var location = baseJson.Location ?? "LOCATION";
-
-            foreach (var (localeKey, localeKvP) in locales)
-            {
-                localeKvP.AddTransformer(lazyloadedLocaleData =>
-                {
-                    if (lazyloadedLocaleData == null) return lazyloadedLocaleData;
-                    lazyloadedLocaleData.Add($"{newTraderId} FullName", fullName);
-                    lazyloadedLocaleData.Add($"{newTraderId} FirstName", firstName);
-                    lazyloadedLocaleData.Add($"{newTraderId} Nickname", nickName);
-                    lazyloadedLocaleData.Add($"{newTraderId} Location", location);
-                    lazyloadedLocaleData.Add($"{newTraderId} Description", description);
-                    return lazyloadedLocaleData;
-                });
-            }
+            customLocales.AddLocale($"{newTraderId} FullName", "Amonya.FullName");
+            customLocales.AddLocale($"{newTraderId} FirstName", "Amonya.FirstName");
+            customLocales.AddLocale($"{newTraderId} Nickname", "Amonya.Nickname");
+            customLocales.AddLocale($"{newTraderId} Location", "Amonya.Location");
+            customLocales.AddLocale($"{newTraderId} Description", $"Amonya{(configLoader.Config.EnableNonPonyMode ? "NP" : "")}.Description");
         }
-
-        private void SetTraderUpdateTime()
-        {
-            var refreshTimeSecondsMin = timeUtil.GetHoursAsSeconds(1);
-            var refreshTimeSecondsMax = timeUtil.GetHoursAsSeconds(2);
-            var baseJson = modDatabaseLoader.TraderBase;
-            // Add refresh time in seconds to config
-            var traderRefreshRecord = new UpdateTime
-            {
-                TraderId = baseJson.Id,
-                Seconds = new MinMax<int>(refreshTimeSecondsMin, refreshTimeSecondsMax)
-            };
-
-            ConfigServerTraderConfig.UpdateTime.Add(traderRefreshRecord);
-        }
-
-        private void RegisterTraderImage()
-        {
-            var baseJson = modDatabaseLoader.TraderBase;
-            if (baseJson.Avatar is null) return;
-            var pathToMod = modHelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
-            
-            var traderImagePath = Path.Combine(pathToMod, "res", configLoader.Config.EnableNonPonyMode ? "AmonyaNP.png" : "Amonya.jpg");
-            imageRouter.AddRoute(baseJson.Avatar.Replace(".jpg", ""), traderImagePath);
-        }
-
         private void RegisterQuestImages()
         {
             var pathToMod = modHelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());

@@ -18,7 +18,8 @@
             "9x21mm PS gzh": "9x21Q4",
             "7.62x25mm TT P gl": "762x25Q4",
             ".45 ACP Hydra-Shok": "45ACPQ4",
-            "4.6x30mm FMJ SX": "46x30Q4"
+            "9x19mm Luger CCI": "9x19Q4",
+            "20x1mm disk": "LL2"
         },
         "WeaponCategories": [
             "Pistols"

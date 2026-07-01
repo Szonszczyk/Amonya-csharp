@@ -69,14 +69,14 @@ namespace Amonya.Loaders
                         if (combinedData.TryGetValue(key, out var existing))
                         {
                             // Both have Description → log error and skip
-                            if (!string.IsNullOrEmpty(existing.Description) && !string.IsNullOrEmpty(value.Description))
+                            if (!string.IsNullOrEmpty(existing.Color) && !string.IsNullOrEmpty(value.Color))
                             {
-                                _logger.LogWithColor($"[{GetType().Namespace}] Duplicate Description conflict for key '{key}' in {Path.GetFileName(file)}. Only one variant config should have 'Description' property!", LogTextColor.Red);
+                                _logger.LogWithColor($"[{GetType().Namespace}] Duplicate Color conflict for key '{key}' in {Path.GetFileName(file)}. Only one variant config should have 'Color' property!", LogTextColor.Red);
                                 continue;
                             }
 
                             // Determine which is the "original" (the one with Description)
-                            var original = !string.IsNullOrEmpty(existing.Description) ? existing : value;
+                            var original = !string.IsNullOrEmpty(existing.Color) ? existing : value;
                             var duplicate = ReferenceEquals(original, existing) ? value : existing;
 
                             // --- Merge Bullets ---

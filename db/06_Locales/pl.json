@@ -1,5 +1,15 @@
 ﻿{
 	"pl": {
+		// Please do not translate comments!
+
+		// Amonya trader
+		"Amonya.FullName": "Amonya",
+		"Amonya.FirstName": "Amonya",
+		"Amonya.Nickname": "Amonya",
+		"Amonya.Location": "\"Magazyn\" amunicji",
+		"Amonya.Description": "Kucyk znany z gromadzenia tak ogromnej ilości amunicji, że jest to po prostu fizycznie niemożliwe do zrobienia przez tą szaro-białą totalnie tu nie pasującą istotę. Aczkolwiek może się nią z Tobą podzielić jeśli ukończysz jej zadania...",
+		"AmonyaNP.Description": "Nieznana istota znana z gromadzenia ogromnej ilości amunicji. Aczkolwiek może się nią z Tobą podzielić jeśli ukończysz jej zadania...",
+
 		// Quest stuff
 		"Difficulty:0:Name": "Wprowadzenie",
 		"Difficulty:0:acceptPlayerMessage": "Rozpoczęto zadanie wprowadzające.",

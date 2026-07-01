@@ -8,7 +8,6 @@ using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Logging;
 using SPTarkov.Server.Core.Models.Utils;
-using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Utils.Json;
 using static Amonya.CustomClasses.CustomBulletsManager;
 
@@ -24,28 +23,29 @@ namespace Amonya.Generators
         CustomWeaponsManager customWeaponsManager,
         CustomLocales customLocales,
         ModsCompatibility modsCompatibility,
-        CustomTraderCreator customTraderCreator
+        CustomTraderCreator customTraderCreator,
+        ModDataStorage modDataStorage
     )
     {
+        private readonly List<string> allVariantsAddedToQuests = [];
         private readonly Dictionary<string, List<string>> variantsAddedToQuests = [];
         private readonly Dictionary<string, List<string>> variantsAddedToTrader = new() { ["LL1"] = [], ["LL2"] = [], ["LL3"] = [], ["LL4"] = [] };
         private readonly List<string> currencies = ["Roubles", "Dollars", "Euros", "GPCoins"];
         public int questsGenerated = 0;
-
-        private Dictionary<MongoId, Quest> Quests { get; set; } = [];
+        public Dictionary<MongoId, Quest> AddedQuests { get; set; } = [];
         private TraderAssort? TraderAssort { get; set; } = null;
         private Dictionary<string, Dictionary<MongoId, MongoId>> QuestTraderAssort { get; set; } = [];
 
-        public void Initialize(DatabaseService databaseService)
+        public void Initialize()
         {
-            Quests = databaseService.GetQuests();
-            TraderAssort = databaseService.GetTables().Traders[modDatabaseLoader.TraderBase.Id].Assort;
-            QuestTraderAssort = databaseService.GetTables().Traders[modDatabaseLoader.TraderBase.Id].QuestAssort;
+            TraderAssort = modDataStorage.Traders[modDatabaseLoader.TraderBase.Id].Assort;
+            QuestTraderAssort = modDataStorage.Traders[modDatabaseLoader.TraderBase.Id].QuestAssort;
             RegisterQuestHandoverCategories();
         }
 
         public void AddBulletVariantToQuest(string id, string questId)
         {
+            allVariantsAddedToQuests.Add(id);
             if (variantsAddedToQuests.TryGetValue(questId, out _))
             {
                 variantsAddedToQuests[questId].Add(id);
@@ -64,6 +64,8 @@ namespace Amonya.Generators
             foreach (var (caliberName, questCategory) in questsConfig)
             {
                 if (questCategory.Mod is not null && !modsCompatibility.ModCheck(questCategory.Mod)) continue;
+
+                AddModdedBulletsToQuest(caliberName, questCategory);
 
                 var questNumber = 0;
                 foreach (var (questName, quest) in questCategory.Quests)
@@ -132,7 +134,7 @@ namespace Amonya.Generators
                         if (bulletForUnlock != null)
                         {
                             unlocks.Add(bulletForUnlock.Id, bulletForUnlock);
-                            var ammoDescription = $"{bulletForUnlock.Name} [{bulletForUnlock.DMG}/{bulletForUnlock.PEN}]";
+                            var ammoDescription = $"{{{bulletForUnlock.Id} Name}} [{bulletForUnlock.DMG}/{bulletForUnlock.PEN}]";
                             questDescriptionUnlocks += $"· {ammoDescription}\n";
                             questSuccessMessageText += $"{ammoDescription}, ";
                         } else logger.LogWithColor($"[{GetType().Namespace}] Bullet '{unlock}' not found!", LogTextColor.Red);
@@ -268,6 +270,7 @@ namespace Amonya.Generators
                                     customLocales.RegisterTag("category", $"{{WeaponCategory.{cat}}}");
                                     customLocales.RegisterTag("value", killsAmount.ToString());
                                     customLocales.AddLocale(killAFFMastery.Id, $"Requires{req}");
+
                                     visibilityConditionsIds.Add(killAFFMastery.Id);
                                 }
                                 break;
@@ -306,7 +309,7 @@ namespace Amonya.Generators
                                 break;
                         }
                     }
-
+                    
                     // LOCALE PART
                     customLocales.AddToExistingLocale($"{newQuestId} description", $"\n\n<b>{{Difficulty:{quest.Diff}:descriptionPart2}}</b>\n{questDescriptionUnlocks}");
 
@@ -340,7 +343,9 @@ namespace Amonya.Generators
                         }
                     }
                     questsGenerated++;
-                    Quests.Add(newQuest.Id, newQuest);
+                    modDataStorage.Quests.Add(newQuest.Id, newQuest);
+                    if (configLoader.Config.DebugFiles.Quests)
+                        AddedQuests.Add(newQuest.Id, newQuest);
                 }
             }
             customLocales.RegisterLocales();
@@ -495,6 +500,56 @@ namespace Amonya.Generators
             return "Introduction";
         }
 
+        private void AddModdedBulletsToQuest(string questInternalId, Interfaces.QuestData questCategory)
+        {
+            if (questCategory.Caliber is null) return;
+            customBulletsManager.BulletsInCaliber.TryGetValue(questCategory.Caliber.Id, out var bulletsInCaliber);
+            if (bulletsInCaliber is null)
+            {
+                if (configLoader.Config.Debug)
+                    logger.LogWithColor($"[{GetType().Namespace}] Quest Tree {questInternalId} does not have any valid unlocks or caliber is incorrect", LogTextColor.Yellow);
+                return;
+            }
+            var maxQuests = questCategory.Quests.Count;
+            if (maxQuests <= 1) return; 
+            var bulletsInQuests = new List<string>();
+            var ratingsInQuests = new Dictionary<string, List<double>>();
+            foreach (var (questId, quest) in questCategory.Quests)
+            {
+                var categoryRatings = new Dictionary<string, double>();
+                foreach(var bullet in quest.Unlocks)
+                {
+                    var bulletDb = customBulletsManager.GetBulletByName(bullet);
+                    if (bulletDb is null) continue;
+                    bulletsInQuests.Add(bulletDb.Id);
+                    ratingsInQuests.TryGetValue(bulletDb.Category, out var ratingsInQuest);
+                    if (ratingsInQuest is null)
+                        ratingsInQuests.Add(bulletDb.Category, [bulletDb.Rating]);
+                    else
+                        ratingsInQuest.Add(bulletDb.Rating);
+                }
+            }
+            var moddedBullets = bulletsInCaliber.Where(e => !(allVariantsAddedToQuests.Contains(e.ToString()) || bulletsInQuests.Contains(e.ToString()))).ToHashSet();
+
+            foreach (var bullet in moddedBullets)
+            {
+                customBulletsManager.bullets.TryGetValue(bullet, out var bulletDb);
+                if (bulletDb is null) continue;
+                ratingsInQuests.TryGetValue(bulletDb.Category, out var ratings);
+                if (ratings is null)
+                {
+                    if (configLoader.Config.Debug)
+                        logger.LogWithColor($"[{GetType().Namespace}] {questInternalId}: Can't determinate to what quest add {bulletDb.Name} as it is different category ({bulletDb.Category}) than the other bullets", LogTextColor.Yellow);
+                    continue;
+                }
+                var ratingAdjusted = (bulletDb.Rating - ratings.Min()) / ratings.Max();
+                var questNumber = Math.Clamp((int)(ratingAdjusted * (maxQuests - 1)), 0, maxQuests - 1);
+                if (configLoader.Config.Debug)
+                    logger.LogWithColor($"[{GetType().Namespace}] {questInternalId}: Added {bulletDb.Name} bullet of {bulletDb.Category} category to {questNumber} quest", LogTextColor.Magenta, LogBackgroundColor.White);
+                AddBulletVariantToQuest(bullet, questCategory.Quests.Keys.ElementAt(questNumber));
+            }
+        }
+
         private void RegisterQuestHandoverCategories()
         {
             var notChangeCategories = new List<string>(["TarkoPops"]);
@@ -505,7 +560,7 @@ namespace Amonya.Generators
                 foreach (var item in items) {
                     itemNames.Add($"{{{item} Name}}");
                 }
-                customLocales.AddToExistingLocale($"Category{category}", $": {string.Join(", ", itemNames)}");
+                customLocales.AddLocale($"Category{category}", $"<b>{{Category{category}}}</b>: {string.Join(", ", itemNames)}");
             }
         }
     }

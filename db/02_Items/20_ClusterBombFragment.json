@@ -12,6 +12,7 @@
 			"FuzeArmTimeSec": 0,
 			"AmmoLifeTimeSec": 1.5
         },
-        "HandbookPriceRoubles": 1
+        "HandbookPriceRoubles": 1,
+        "Color": "#e010a5"
     }
 }

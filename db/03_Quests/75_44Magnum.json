@@ -1,0 +1,53 @@
+{
+    "44Magnum": {
+        "Category": "Assault",
+        "QuestForStart": "357Q1",
+        "Caliber": {
+            "Id": "Caliber11x33R",
+            "Name": ".44 Remington Magnum",
+            "ShortName": ".44 Magnum"
+        },
+        "Mod": "com.wtt.armory",
+        "Quests": {
+            "44MagnumQ1": {
+                "Unlocks": [
+                    ".44 Magnum Red Tracer"
+                ],
+                "Diff": "1",
+                "Trader": 1
+            },
+            "44MagnumQ2": {
+                "Unlocks": [
+                    ".44 Magnum Soft Point"
+                ],
+                "Diff": "2",
+                "Trader": 1
+            },
+            "44MagnumQ3": {
+                "Unlocks": [
+                    ".44 Magnum JHP"
+                ],
+                "Diff": "3",
+                "Trader": 1
+            },
+            "44MagnumQ4": {
+                "Unlocks": [
+                    ".44 Magnum FMJ"
+                ],
+                "Diff": "4",
+                "Trader": 1
+            },
+            "44MagnumQ5": {
+                "Unlocks": [
+                    ".44 Magnum Xtreme Penetrator"
+                ],
+                "Diff": "5",
+                "Trader": 2
+            },
+            "44MagnumQ6": {
+                "Diff": "8",
+                "Trader": 3
+            }
+        }
+    }
+}

@@ -1,4 +1,5 @@
-﻿using Amonya.Loaders;
+﻿using Amonya.Helpers;
+using Amonya.Loaders;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Models.Common;
@@ -6,7 +7,6 @@ using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Logging;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Services;
-using System.Reflection.Metadata.Ecma335;
 
 namespace Amonya.CustomClasses
 {
@@ -16,7 +16,8 @@ namespace Amonya.CustomClasses
         ConfigLoader configLoader,
         ModDatabaseLoader modDatabaseLoader,
         ItemHelper itemHelper,
-        LocaleService localeService
+        LocaleService localeService,
+        ModDataStorage modDataStorage
     )
     {
         public class BulletsDatabase
@@ -29,10 +30,12 @@ namespace Amonya.CustomClasses
             public double NewPrice { get; set; } = 100;
             public string DMG {  get; set; } = string.Empty;
             public string PEN { get; set; } = string.Empty;
+            public string Category { get; set; } = string.Empty;
+            public double Rating {  get; set; } = 0f;
 
         }
 
-        private readonly Dictionary<MongoId, BulletsDatabase> bullets = [];
+        public readonly Dictionary<MongoId, BulletsDatabase> bullets = [];
 
         public readonly Dictionary<string, List<MongoId>> BulletsInCaliber = [];
         private readonly Dictionary<MongoId, string> BulletCalibers = [];
@@ -45,16 +48,11 @@ namespace Amonya.CustomClasses
             "67ade494d748873e5f0161df", // VOG-30 Shrapnel
             "5e85aac65505fa48730d8af2", // !!!DO_NOT_USE!!!23x75mm "Cheremukha-7M"
             "677ae5df4be46b83620bf055", // Rocket
+            "6241c316234b593b5676b637", // Airsoft 6mm BB
             "5485a8684bdc2da71d8b4567"  // All ammo
         ];
-
-        private Dictionary<MongoId, TemplateItem> Items { get; set; } = [];
-        private List<HandbookItem> HandbookItems { get; set; } = [];
-        public void Initialize(DatabaseService databaseService)
+        public void Initialize()
         {
-            Items = databaseService.GetItems();
-            HandbookItems = databaseService.GetHandbook().Items;
-
             FixBulletsWithoutHandbook();
             var allBullets = itemHelper.GetItemTplsOfBaseType("5485a8684bdc2da71d8b4567");
             foreach (var id in allBullets)
@@ -64,11 +62,11 @@ namespace Amonya.CustomClasses
             }
         }
 
-        public void AddBulletToDatabase(string id)
+        public void AddBulletToDatabase(string id, bool isVariant = false)
         {
             if (incorrectBullets.Contains(id)) return;
 
-            var bulletItem = Items[id];
+            var bulletItem = modDataStorage.Items[id];
 
             if (bulletItem == null) return;
 
@@ -84,7 +82,7 @@ namespace Amonya.CustomClasses
             modDatabaseLoader.DbCalibers.TryGetValue(caliber, out var caliberInfo);
             if (caliberInfo is null || (caliberInfo.Incorrect is not null && (bool)caliberInfo.Incorrect)) return;
 
-            HandbookItem? itemHandbook = HandbookItems.Find(t => t.Id == id);
+            HandbookItem? itemHandbook = modDataStorage.Handbook.Items.Find(t => t.Id == id);
 
             if (itemHandbook is null || itemHandbook.Price is null)
             {
@@ -99,6 +97,7 @@ namespace Amonya.CustomClasses
             {
                logger.LogWithColor($"[{GetType().Namespace}] Bullet {id} is missing locale entry!", LogTextColor.Yellow);
             }
+            if (name is not null && name.Contains("shrapnel", StringComparison.CurrentCultureIgnoreCase) && !name.Contains("shrapnel-", StringComparison.CurrentCultureIgnoreCase)) return;
             var bullet = new BulletsDatabase
             {
                 Id = id,
@@ -108,7 +107,9 @@ namespace Amonya.CustomClasses
                 Price = (double)itemHandbook.Price,
                 NewPrice = Math.Ceiling((double)itemHandbook.Price * configLoader.Config.AmmoPrice.Multiplier),
                 DMG = bulletItem?.Properties?.ProjectileCount > 1 ? $"{bulletItem?.Properties?.ProjectileCount}x{bulletItem?.Properties?.Damage}" : $"{bulletItem?.Properties?.Damage}",
-                PEN = $"{bulletItem?.Properties?.PenetrationPower}"
+                PEN = $"{bulletItem?.Properties?.PenetrationPower}",
+                Category = bulletItem?.Properties?.AmmoType ?? "bullet",
+                Rating = isVariant ? 0 : CalculateRating(bulletItem)
             };
             if (bullets.TryGetValue(id, out var item)) return;
 
@@ -126,16 +127,14 @@ namespace Amonya.CustomClasses
             }
         }
 
-        public string? DeterminateBulletCaliber(MongoId Id)
+        public string? DeterminateBulletCaliber(MongoId id)
         {
-            if (incorrectBullets.Contains(Id)) return null;
+            if (incorrectBullets.Contains(id)) return null;
 
-            if (Id == "6241c316234b593b5676b637") return "Airsoft";
-
-            if (!BulletCalibers.TryGetValue(Id, out string? caliber))
+            if (!BulletCalibers.TryGetValue(id, out string? caliber))
             {
                 if (configLoader.Config.Debug)
-                    logger.LogWithColor($"[{GetType().Namespace}] Bullet {Id} found in filter, is not existing", LogTextColor.Red);
+                    logger.LogWithColor($"[{GetType().Namespace}] Bullet {id} found in filter, is not existing", LogTextColor.Red);
                 return null;
             }
 
@@ -162,11 +161,32 @@ namespace Amonya.CustomClasses
             return matches.First().Value;
         }
 
+        public double CalculateRating(TemplateItem? bulletItem)
+        {
+            if (bulletItem == null) return 0f;
+            double rating = 0;
+            if (bulletItem?.Properties?.AmmoType is null) return 0f;
+            configLoader.Config.BulletRatingWeights.TryGetValue(bulletItem.Properties.AmmoType, out var ratingWeightsType);
+            if (ratingWeightsType is null) return 0f;
+            foreach(var (prop, weight) in ratingWeightsType)
+            {
+                var value = bulletItem?.Properties?.GetType()?.GetProperty(prop)?.GetValue(bulletItem?.Properties);
+                if (value is null)
+                {
+                    if (configLoader.Config.Debug)
+                        logger.LogWithColor($"[{GetType().Namespace}] Value for '{bulletItem?.Id}' property '{prop}' is missing!", LogTextColor.Red);
+                    continue;
+                }
+                rating += weight * Convert.ToDouble(value);
+            }
+            return rating;
+        }
+
         public void FixBulletsWithoutHandbook()
         {
-            if (HandbookItems.Find(t => t.Id == "5d70e500a4b9364de70d38ce") is null)
+            if (modDataStorage.Handbook.Items.Find(t => t.Id == "5d70e500a4b9364de70d38ce") is null)
             {
-                HandbookItems.Add(new()
+                modDataStorage.Handbook.Items.Add(new()
                 {
                     Id = "5d70e500a4b9364de70d38ce",
                     ParentId = "5b47574386f77428ca22b33b",
@@ -188,8 +208,11 @@ namespace Amonya.CustomClasses
                 }
                 foreach (var id in caliberIds)
                 {
-                    if (Items[id]?.Properties?.StackMaxSize is not null)
-                        Items[id].Properties.StackMaxSize = newStackSize; 
+                    modDataStorage.Items.TryGetValue(id, out var item);
+                    if (item is not null && item.Properties?.StackMaxSize is not null)
+                    {
+                        item.Properties.StackMaxSize = newStackSize;
+                    }
                 }
             }
         }

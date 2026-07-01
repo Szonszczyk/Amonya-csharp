@@ -1,0 +1,39 @@
+{
+    "300WM": {
+        "Category": "Assault",
+        "QuestForStart": "762x51Q2",
+        "Caliber": {
+            "Id": "Caliber762x67B",
+            "Name": ".300 Winchester Magnum",
+            "ShortName": ".300 WM"
+        },
+        "Mod": "com.wtt.armory",
+        "Quests": {
+            "300WMQ1": {
+                "Unlocks": [
+                    ".300 Winchester Magnum HP"
+                ],
+                "Diff": "2",
+                "Trader": 1
+            },
+            "300WMQ2": {
+                "Unlocks": [
+                    ".300 Winchester Magnum FMJ"
+                ],
+                "Diff": "4",
+                "Trader": 1
+            },
+            "300WMQ3": {
+                "Unlocks": [
+                    ".300 Winchester Magnum AP"
+                ],
+                "Diff": "7",
+                "Trader": 2
+            },
+            "300WMQ4": {
+                "Diff": "8",
+                "Trader": 3
+            }
+        }
+    }
+}

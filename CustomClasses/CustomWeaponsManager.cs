@@ -1,4 +1,5 @@
 ﻿using Amonya.Constants;
+using Amonya.Helpers;
 using Amonya.Loaders;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Helpers;
@@ -17,35 +18,26 @@ namespace Amonya.CustomClasses
         ConfigLoader configLoader,
         ItemHelper itemHelper,
         CustomBulletsManager customBulletsManager,
-        ModDatabaseLoader modDatabaseLoader
+        ModDatabaseLoader modDatabaseLoader,
+        ModDataStorage modDataStorage
     )
     {
-        private class WeaponsDatabase
+        public class WeaponsDatabase
         {
             public string Name { get; set; } = string.Empty;
             public string ShortName { get; set; } = string.Empty;
             public string Caliber { get; set; } = string.Empty;
             public List<string> SecondaryCalibers { get; set; } = [];
-            public string Category { get; set; } = string.Empty;
+            public string? Category { get; set; } = string.Empty;
             public HashSet<MongoId> Magazines { get; set; } = [];
             public List<MongoId> ChamberFilter { get; set; } = [];
             public List<MongoId> Copies { get; set; } = [];
         }
 
-        private readonly Dictionary<MongoId, WeaponsDatabase> baseWeapons = [];
-        private readonly Dictionary<MongoId, WeaponsDatabase> copyWeapons = [];
+        public readonly Dictionary<MongoId, WeaponsDatabase> baseWeapons = [];
+        public readonly Dictionary<MongoId, WeaponsDatabase> copyWeapons = [];
         private Dictionary<MongoId, WeaponsDatabase> AllWeapons { get; set; } = [];
         private readonly Dictionary<MongoId, HashSet<string>> checkedMags = [];
-
-
-        private Dictionary<MongoId, TemplateItem> Items { get; set; } = [];
-        private Dictionary<string, string> Locale { get; set; } = [];
-        public void Initialize(DatabaseService databaseService, LocaleService localeService)
-        {
-            Items = databaseService.GetItems();
-            Locale = localeService.GetLocaleDb("en");
-            LoadAllWeaponsAndMagazines();
-        }
 
         public void LoadAllWeaponsAndMagazines()
         {
@@ -56,7 +48,7 @@ namespace Amonya.CustomClasses
                 var weaponsInCategory = itemHelper.GetItemTplsOfBaseType(categoryId);
                 foreach(var id in weaponsInCategory)
                 {
-                    var item = Items[id];
+                    var item = modDataStorage.Items[id];
 
                     // Add ShotgunDispersion to all weapons
                     if (item?.Properties?.ShotgunDispersion is not null && item.Properties.ShotgunDispersion == 0) item.Properties.ShotgunDispersion = 5;
@@ -67,12 +59,24 @@ namespace Amonya.CustomClasses
                     // Check if weapon is incorrect
                     if (CheckIfWeaponIsIncorrect(id)) continue;
 
+                    var copiedItemHandbook = modDataStorage.Handbook.Items.Find(t => t.Id == id);
+                    var categoryHandbook = copiedItemHandbook != null ? WeaponCategoriesHandbook.GetPlural(copiedItemHandbook.ParentId) : "HANDBOOK NOT FOUND";
+
                     var weapon = new WeaponsDatabase
                     {
-                        Name = StripHtml(Locale[$"{id} Name"]),
-                        ShortName = Locale[$"{id} ShortName"],
+                        Name = StripHtml(modDataStorage.LocaleEn[$"{id} Name"]),
+                        ShortName = modDataStorage.LocaleEn[$"{id} ShortName"],
                         Category = WeaponCategories.GetPlural(categoryId)
                     };
+
+                    if (weapon.Category is null || categoryHandbook is null) continue;
+                    if (weapon.Category != categoryHandbook)
+                    {
+                        var weapCatAdjusted = AdjustWeaponCategory(weapon.Category, categoryHandbook);
+                        if (weapon.Category != weapCatAdjusted && configLoader.Config.Debug)
+                            logger.LogWithColor($"[{GetType().Namespace}] Adjusted {weapon.Name} category: {weapon.Category} => {weapCatAdjusted}", LogTextColor.Green, LogBackgroundColor.White);
+                        weapon.Category = weapCatAdjusted;
+                    }
 
                     var isCopy = CheckIfWeaponCopy(id, weapon);
 
@@ -189,7 +193,7 @@ namespace Amonya.CustomClasses
 
             HashSet<string> calibers = [];
 
-            Items.TryGetValue(mongoId, out var magazine);
+            modDataStorage.Items.TryGetValue(mongoId, out var magazine);
             if (magazine is null) return null;
             var filterInCartridges = magazine?.Properties?.Cartridges?.FirstOrDefault()?.Properties?.Filters?.FirstOrDefault()?.Filter;
             if (filterInCartridges is null) return null;
@@ -209,7 +213,7 @@ namespace Amonya.CustomClasses
             var baseWeaponEx = modDatabaseLoader.DbAddSettings.BaseWeaponExceptions;
             if (baseWeaponEx.Contains(id)) return false;
 
-            var itemDesc = Locale[$"{id} Description"];
+            var itemDesc = modDataStorage.LocaleEn[$"{id} Description"];
             // If variant from DWV or is different paint - it is a copy
             if (itemDesc.Contains("Variant</b></color>") || weapon.Name.Contains('(')) return true;
             return false;
@@ -316,11 +320,23 @@ namespace Amonya.CustomClasses
         {
             foreach (var (weaponId, weapon) in AllWeapons)
             {
-                var item = Items[weaponId];
+                var item = modDataStorage.Items[weaponId];
                 var magazines = item?.Properties?.Slots?.FirstOrDefault(t => t?.Name == "mod_magazine")?.Properties?.Filters?.FirstOrDefault()?.Filter;
                 if (magazines != null) weapon.Magazines = magazines;
             }
         }
+
+        public string AdjustWeaponCategory(string templateCategory, string handbookCategory)
+        {
+            if (templateCategory == "Revolvers")
+            {
+                if (handbookCategory == "Pistols") return "Revolvers";
+                return handbookCategory;
+            }
+            if (handbookCategory == "HANDBOOK NOT FOUND") return templateCategory;
+            return handbookCategory;
+        }
+
         private class NewBullets
         {
             public string OriginalId { get; set; } = string.Empty;
@@ -346,7 +362,7 @@ namespace Amonya.CustomClasses
                 var magazinesToAddBulletTo = GetMagazines(bullet.Caliber, bullet.Categories, true);
                 foreach (var magazineId in magazinesToAddBulletTo)
                 {
-                    Items.TryGetValue(magazineId, out var magazine);
+                    modDataStorage.Items.TryGetValue(magazineId, out var magazine);
                     if (magazine is null) continue;
                     var filterList = magazine?.Properties?.Cartridges?.FirstOrDefault()?.Properties?.Filters?.FirstOrDefault()?.Filter;
 
@@ -375,7 +391,7 @@ namespace Amonya.CustomClasses
                 var weaponsToAddBulletTo = GetWeaponIds(bullet.Caliber, bullet.Categories, true);
                 foreach (var weaponId in weaponsToAddBulletTo)
                 {
-                    var weapon = Items[weaponId];
+                    var weapon = modDataStorage.Items[weaponId];
                     var chambers = weapon?.Properties?.Chambers;
                     if (chambers is null || !chambers.Any()) continue;
                     foreach (var chamber in chambers)

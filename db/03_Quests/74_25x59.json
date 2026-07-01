@@ -1,0 +1,46 @@
+{
+    "25x59": {
+        "Category": "Grenade",
+        "QuestForStart": "Introduction",
+        "Caliber": {
+            "Id": "Caliber25x59",
+            "Name": "25x59mm Grenade",
+            "ShortName": "25x59 Grenade"
+        },
+        "Mod": "com.wtt.armory",
+        "Quests": {
+            "25x59Q1": {
+                "Unlocks": [
+                    "25x59mm XM1019 timed fuse"
+                ],
+                "Diff": "1",
+                "Trader": 2
+            },
+            "25x59Q2": {
+                "Unlocks": [
+                    "25x59mm XM1103"
+                ],
+                "Diff": "2",
+                "Trader": 2
+            },
+            "25x59Q3": {
+                "Unlocks": [
+                    "25x59mm XM1099 API"
+                ],
+                "Diff": "4",
+                "Trader": 2
+            },
+            "25x59Q4": {
+                "Unlocks": [
+                    "25x59mm XM1049 AP"
+                ],
+                "Diff": "5",
+                "Trader": 3
+            },
+            "25x59Q5": {
+                "Diff": "8",
+                "Trader": 4
+            }
+        }
+    }
+}

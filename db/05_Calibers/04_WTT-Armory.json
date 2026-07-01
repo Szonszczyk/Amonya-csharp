@@ -1,16 +1,11 @@
 {
-	"Caliber58x42": {
-		"Name": "5.8x42mm",
-		"Id": "58x42",
-		"ShortName": "5.8x42"
-	},
 	"Caliber792x57": {
 		"Name": "7.92x57mm",
 		"Id": "792x57",
 		"ShortName": "7.92x57"
 	},
 	"Caliber762x67B": {
-		"Name": ".300 WM",
+		"Name": ".300 Winchester Magnum",
 		"Id": "300WM",
 		"ShortName": ".300 WM"
 	},
@@ -20,7 +15,7 @@
 		"ShortName": ".338 Norma"
 	},
 	"Caliber1036x77": {
-		"Name": ".408 CT",
+		"Name": ".408 Cheyenne Tactical",
 		"Id": "408CT",
 		"ShortName": ".408 CT"
 	},

@@ -1,5 +1,15 @@
 ﻿{
 	"en": {
+		// Please do not translate comments!
+
+		// Amonya trader
+		"Amonya.FullName": "Amonya",
+		"Amonya.FirstName": "Amonya",
+		"Amonya.Nickname": "Amonya",
+		"Amonya.Location": "Ammo \"warehouse\"",
+		"Amonya.Description": "A pony known for hoarding a large amount of ammunition-perhaps even too much for this grey-white, out-of-season creature. However, she might share some if you complete some of her quests...",
+		"AmonyaNP.Description": "Unknown creature known for hoarding a large amount of ammunition. However, she might share some if you complete some of her quests...",
+
 		// Quest stuff
 		"Difficulty:0:Name": "Introduction",
 		"Difficulty:0:acceptPlayerMessage": "You started introductory quest.",

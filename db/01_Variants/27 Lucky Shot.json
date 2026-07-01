@@ -6,8 +6,8 @@
 		"ShortName": "RNG",
         "Properties": {
             "AmmoType": "buckshot",
-            "ProjectileCount": 12,
-            "Damage": "-33%",
+            "ProjectileCount": 9,
+            "Damage": "-45%",
             "PenetrationPower": "+20%",
             "PenetrationChanceObstacle": 0.12,
             "InitialSpeed": 500,

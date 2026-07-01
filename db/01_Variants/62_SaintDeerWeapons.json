@@ -1,0 +1,17 @@
+{
+  "Pro+": {
+    "Bullets": {
+      "5.8x42mm DVC-12 ": "58x42Q4"
+    }
+  },
+  "Full-auto": {
+    "Bullets": {
+      "5.8x42mm DBU-141 ": "58x42Q1"
+    }
+  },
+  "Afterburner": {
+    "Bullets": {
+      "5.8x42mm DBP-191 ": "58x42Q2"
+    }
+  }
+}

@@ -56,7 +56,7 @@
 		"4": {
 			"Requires": {
 				"Kills": 30,
-				"Dollars": 20000,
+				"Dollars": 7000,
 				"Gunpowder": 2,
 				"Fabric": 2,
 				"Electronics": 2,
@@ -172,7 +172,6 @@
 			"6389c6c7dbfd5e4b95197e68", // Aquapeps water purification tablets
 			"5e2af02c86f7746d420957d4", // Pack of chlorine
 			"59e3556c86f7741776641ac2", // Ox bleach
-			"5d4041f086f7743cac3f22a7", // Ortodontox toothpaste
 			"5c13cef886f774072e618e82", // Toilet paper
 			"5d40412b86f7743cb332ac3a", // Schaman shampoo
 			"59e358a886f7741776641ac3", // Clin window cleaner

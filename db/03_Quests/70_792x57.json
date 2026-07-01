@@ -1,0 +1,39 @@
+{
+    "792x57": {
+        "Category": "Assault",
+        "QuestForStart": "762x54Q1",
+        "Caliber": {
+            "Id": "Caliber792x57",
+            "Name": "7.92x57mm",
+            "ShortName": "7.92x57"
+        },
+        "Mod": "com.wtt.armory",
+        "Quests": {
+            "792x57Q1": {
+                "Unlocks": [
+                    "7.92x57mm RLA SP"
+                ],
+                "Diff": "2",
+                "Trader": 1
+            },
+            "792x57Q2": {
+                "Unlocks": [
+                    "7.92x57mm FMJ Surplus"
+                ],
+                "Diff": "4",
+                "Trader": 1
+            },
+            "792x57Q3": {
+                "Unlocks": [
+                    "7.92x57mm RLA FMJ"
+                ],
+                "Diff": "6",
+                "Trader": 2
+            },
+            "792x57Q4": {
+                "Diff": "8",
+                "Trader": 3
+            }
+        }
+    }
+}

@@ -1,0 +1,48 @@
+{
+  "Pro+": {
+    "Bullets": {
+      "7.92x57mm RLA FMJ": "792x57Q4",
+      ".300 Winchester Magnum AP": "300WMQ4",
+      ".338 Norma Magnum Sierra MatchKing HPBT": "338NormaQ3",
+      ".408 Cheyenne Tactical AP": "408CTQ4",
+      ".44 Magnum Xtreme Penetrator": "44MagnumQ6"
+    }
+  },
+  "Heavy Duty": {
+    "Bullets": {
+      "7.92x57mm FMJ Surplus": "792x57Q2"
+    }
+  },
+  "Avada Kedavra": {
+    "Bullets": {
+      ".300 Winchester Magnum FMJ": "300WMQ2"
+    }
+  },
+  "Railgun": {
+    "Bullets": {
+      ".338 Norma Magnum Sierra MatchKing HPBT": "338NormaQ2",
+      ".44 Magnum FMJ": "44MagnumQ5"
+    }
+  },
+  "Hypersonic": {
+    "Bullets": {
+      ".408 Cheyenne Tactical FMJ": "408CTQ2"
+    }
+  },
+  "Lucky Shot": {
+    "Bullets": {
+      ".300 Winchester Magnum HP": "300WMQ1",
+      ".408 Cheyenne Tactical DTM Match": "408CTQ1"
+    }
+  },
+  "Rubber Grenade": {
+    "Bullets": {
+      "25x59mm XM1099 API": "25x59Q1"
+    }
+  },
+  "Spiked": {
+    "Bullets": {
+      "25x59mm XM1099 API": "25x59Q2"
+    }
+  }
+}

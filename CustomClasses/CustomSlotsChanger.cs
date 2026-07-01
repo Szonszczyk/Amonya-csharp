@@ -1,4 +1,5 @@
-﻿using Amonya.Interfaces;
+﻿using Amonya.Helpers;
+using Amonya.Interfaces;
 using Amonya.Loaders;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Models.Common;
@@ -15,16 +16,10 @@ namespace Amonya.CustomClasses
     public class CustomSlotsChanger(
         ISptLogger<Amonya> logger,
         ICloner cloner,
-        IdDatabaseManager idDatabaseManager
+        IdDatabaseManager idDatabaseManager,
+        ModDataStorage modDataStorage
     )
     {
-        private Dictionary<MongoId, TemplateItem> Items { get; set; } = [];
-
-        public void Initialize(DatabaseService databaseService)
-        {
-            Items = databaseService.GetItems();
-        }
-
         public List<Slot>? SlotsChanger(
             Dictionary<string, FilterSlotExtendedConfiguration>? slotConfig,
             TemplateItem copiedItem,
@@ -219,13 +214,13 @@ namespace Amonya.CustomClasses
         {
             if (MongoId.IsValidMongoId(text))
             {
-                if (Items.TryGetValue(text, out var mongoIdItem)) return mongoIdItem;
+                if (modDataStorage.Items.TryGetValue(text, out var mongoIdItem)) return mongoIdItem;
             }
             else
             {
                 if (idDatabaseManager.DbIds.TryGetValue($"{text}:ID", out var idDatabaseId))
                 {
-                    if (Items.TryGetValue(idDatabaseId, out var idDatabaseItem)) return idDatabaseItem;
+                    if (modDataStorage.Items.TryGetValue(idDatabaseId, out var idDatabaseItem)) return idDatabaseItem;
                 }
             }
             logger.LogWithColor($"[{GetType().Namespace}] Item '{text}' not found", LogTextColor.Red);

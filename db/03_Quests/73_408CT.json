@@ -1,0 +1,39 @@
+{
+    "408CT": {
+        "Category": "Assault",
+        "QuestForStart": "762x51Q4",
+        "Caliber": {
+            "Id": "Caliber1036x77",
+            "Name": ".408 Cheyenne Tactical",
+            "ShortName": ".408 CT"
+        },
+        "Mod": "com.wtt.armory",
+        "Quests": {
+            "408CTQ1": {
+                "Unlocks": [
+                    ".408 Cheyenne Tactical DTM Match"
+                ],
+                "Diff": "2",
+                "Trader": 1
+            },
+            "408CTQ2": {
+                "Unlocks": [
+                    ".408 Cheyenne Tactical FMJ"
+                ],
+                "Diff": "4",
+                "Trader": 1
+            },
+            "408CTQ3": {
+                "Unlocks": [
+                    ".408 Cheyenne Tactical AP"
+                ],
+                "Diff": "6",
+                "Trader": 2
+            },
+            "408CTQ4": {
+                "Diff": "8",
+                "Trader": 3
+            }
+        }
+    }
+}
