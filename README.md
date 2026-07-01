@@ -23,9 +23,9 @@ Server mod for Single Player Tarkov that is adding Amonya - trader and quest giv
 	A high-penetration round with double armor damage. Excellent against heavy armor, but comes with drastically reduced damage output\
 	Only useable by Assault carbines, Assault rifles, SMGs, LMGs, Shotguns
 - **Bloody**\
-	Guaranteed light bleeding, with a 50% chance of heavy bleeding with slightly decreased penetration power. Virtually useless against armor\
+	Guaranteed light bleeding, with a 50% chance of heavy bleeding with slightly decreased penetration power. Virtually useless against armor
 - **Heavy Duty**\
-	Extremely fast, high-penetration ammunition with boosted damage and armor damage. Comes at the cost of heavy recoil\
+	Extremely fast, high-penetration ammunition with boosted damage and armor damage. Comes at the cost of heavy recoil
 - **Anti-personnel**\
 	High-damage round with minimal penetration. No armor damage and no bleeding chance\
 	Only useable by Assault carbines, Assault rifles, SMGs, LMGs
