@@ -341,9 +341,6 @@
 		"Lucky Shot.FlavourText": "At close range, you're lucky. At long range, you'd better hope you are",
 		"Lucky Shot.Description": "A buckshot round designed for bolt-action rifles. Accuracy becomes a gamble - you might miss entirely or land multiple hits in a single shot",
 		"Lucky Shot.Explanation": "Devastating at close range. At medium to long distances, effectiveness becomes unpredictable due to pellet spread",
-		"Lucky Shot.ShortName": "RNG",
-
-		// Lore (WiP)
-		"Introduction:Lore": "Surviving in Tarkov is no simple task for Amonya, a creature who was never meant to appear here. A mistake in a complex spell cast by her unicorn grandfather pulled her into this place. At first, she wanted only to return home, but instead of finding a way back, she learned how to hide. A black cloak conceals her unnaturally white mane, and she found joy in gathering all kinds of ammunition and even creating a new types. In time, she even found a trusted partner: you.\n\nNow, after all the experience she has gained, Amonya has chosen to stay. She intends to take revenge on those who crossed her path and made her struggle in this land. This quiet pony values her beloved piles of ammunition, yet her hatred for her enemies runs even deeper. Eliminate them, bring her items useful to her life, and she will reward you with her ammo reserves. Amonya may even share experimental variants of ammunition that could aid you in your escape from Tarkov."
+		"Lucky Shot.ShortName": "RNG"
 	}
 }

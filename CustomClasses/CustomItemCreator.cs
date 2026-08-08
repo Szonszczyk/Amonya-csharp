@@ -69,6 +69,10 @@ public class CustomItemCreator(
         {
             AddItemToTrader(item.NewId, barterConfig);
         }
+        if (itemConfig.AddToSpecialSlots)
+        {
+            AddItemToSpecialSlots(item.NewId);
+        }
     }
 
     private void AddItemToSpecialSlots(string itemId)

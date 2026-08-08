@@ -1,3 +1,13 @@
+## Version 2.1.1 for SPT ~4.0.13
+
+- Fixed rollbacked function of adding to special slots used by MoH items
+- Added changing variant bullet name format to config\
+    If you do not see this option, update your config. Instructions can be found in the mod description
+- Added first lore to 5.45x39 quest tree\
+    Made by Razh
+- Old 5.45x39 pictures were moved to .44 Magnum modded caliber
+
+
 ## Version 2.1.0 for SPT 4.0.*
 
 ### New functionality - Automatic addition of modded bullets to quests

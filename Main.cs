@@ -36,11 +36,14 @@ public class AmonyaTrader(
 
 [Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 89123)]
 public class AmonyaBulletLoad(
+    ModDataStorage modDataStorage,
+    LocaleService localeService,
     CustomBulletsManager customBulletsManager
 ) : IOnLoad
 {
     public Task OnLoad()
     {
+        modDataStorage.RefreshDatabase(localeService);
         customBulletsManager.Initialize();
         return Task.CompletedTask;
     }

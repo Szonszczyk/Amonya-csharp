@@ -1,141 +1,153 @@
 {
-    // Config of Szonszczyk - Amonya
+  // Config of Szonszczyk - Amonya
 
-    // DO NOT CHANGE ANYTHING IN defaultConfig.json
-    // Run server once or make a copy of this file and rename it to "config.json"
-    // Make changes only in config.json to avoid losing them after updates!
+  // DO NOT CHANGE ANYTHING IN defaultConfig.json
+  // Run server once or make a copy of this file and rename it to "config.json"
+  // Make changes only in config.json to avoid losing them after updates!
 
-    // [BETA] Removes all mentions of the "Pony" trader from lore and sanitizes related pictures
-    // If Amonya avatar is still the same after changing this option - In SPT Laucher go to Settings and click "Clean Temp Files"
-    "EnableNonPonyMode": false, // true/false - default: false
+  // [BETA] Removes all mentions of the "Pony" trader from lore and sanitizes related pictures
+  // If Amonya avatar is still the same after changing this option - In SPT Laucher go to Settings and click "Clean Temp Files"
+  "EnableNonPonyMode": false, // true/false - default: false
 
-    // Setup of ammo being sold by Amonya
-    "AmmoPrice": {
-        // Price multiplier for bullets sold by Amonya
-        "Multiplier": 0.7, // float number - default: 0.7
-        // If false, the trader shares a global purchase limit (Max) per refresh
-        // If true, each player can buy up to Max bullets independently
-        "UnlimitedCount": false, // true/false - default: false
-        // Maximum amount that can be bought per trader refresh
-        "Max": 1000 // integer number - default: 1000
+  // Setup of ammo being sold by Amonya
+  "AmmoPrice": {
+    // Price multiplier for bullets sold by Amonya
+    "Multiplier": 0.7, // float number - default: 0.7
+    // If false, the trader shares a global purchase limit (Max) per refresh
+    // If true, each player can buy up to Max bullets independently
+    "UnlimitedCount": false, // true/false - default: false
+    // Maximum amount that can be bought per trader refresh
+    "Max": 1000 // integer number - default: 1000
+  },
+
+  // Trader assort refresh time in minutes. How much time needs to pass to Amonya to have new items available
+  "TraderUpdateTime": {
+    "Minimum": 30, // Integer number - default: 30
+    "Maximum": 60 // Integer number - default: 60
+  },
+
+  // Enable/Disable bullet quests added to Amonya
+  // Disabling this will remove all bullet quests and make variant bullets available from the beginning
+  // WARNING: Change this ONLY BEFORE starting or progressing any Amonya quests
+  "EnableBulletQuests": true, // true/false - default: true
+  // Handover items in Amonya quests needs to be Found in Raid (excluding currencies)
+  "QuestBarterFoundInRaid": true,
+  // Add modded bullets automatically to quests
+  "AddModdedBulletsToQuests": true,
+  // This system is using weight system and you can adjust it in "BulletRatingWeights" section later in config
+
+
+  // Enable/Disable bullet variant type from appearing in Amonya quests/assort
+  // This will NOT remove these bullets entirely from the game (they can still appear in daily quests)
+  "EnableBulletVariants": true, // true/false - default: true
+  "EnableBullets": {
+    /*01 */ "Armor-cracking": true, // true/false - default: true
+    /*02 */ "Bloody": true,
+    /*03 */ "Heavy Duty": true,
+    /*04 */ "Anti-personnel": true,
+    /*05 */ "Full-auto": true,
+    /*06 */ "Railgun": true,
+    /*07 */ "Artillery": true,
+    /*08 */ "Mortar": true,
+    /*09 */ "Avada Kedavra": true,
+    /*10 */ "Pro+": true,
+    /*11 */ "Hypersonic": true,
+    /*12 */ "Flamethrower": true,
+    /*13 */ "Close Quarters": true,
+    /*14 */ "Rubber Grenade": true,
+    /*15 */ "Sabot": true,
+    /*16 */ "Tazer": true,
+    /*17 */ "Ratshot": true,
+    /*18 */ "Laser": true,
+    /*19 */ "Ratshot Mk2": true,
+    /*20 */ "Heavy": true,
+    /*21 */ "Light": true,
+    /*22 */ "Mini-nuke": true,
+    /*23 */ "Cluster Bomb": true,
+    /*24 */ "Afterburner": true,
+    /*25 */ "Spiked": true,
+    /*26 */ "Mini-rocket": true,
+    /*27 */ "Lucky Shot": true
+  },
+
+  // Bullet names are displayed in 1x1 inventory slots and can be difficult to read
+  // You can configure a short display name format for bullet variants (shown in equipment/inventory)
+
+  // Available tags:
+  // - <variant_fullname>  - e.g. "Lucky Shot"
+  // - <variant_shortname> - e.g. "RNG"
+  // - <caliber_shortname> - e.g. "5.45x39"
+  // - <caliber_amonyaid>  - e.g. "545x39"
+  "BulletVariantsShortName": "<variant_shortname> <caliber_shortname>",
+  // Default: "<variant_shortname> <caliber_shortname>" - "RNG 5.45x39"
+
+  // You can configure a normal name too (shown in item plate and when hovering an item)
+  // Available tags:
+  // - <variant_fullname>  - e.g. "Lucky Shot"
+  // - <bullet_name>  - e.g. "5.45x39mm PRS gs"
+  // - <variant> - word "Variant" in different languages
+  // - <caliber_fullname> - e.g. "5.45x39mm"
+  // - <caliber_shortname> - e.g. "5.45x39"
+  "BulletVariantsName": "<bullet_name> <variant_fullname> <variant>",
+  // Default: "<bullet_name> <variant_fullname> <variant>" - e.g. "5.45x39mm PRS gs Lucky Shot Variant"
+
+  // Default: "<variant_shortname> <caliber_shortname>"
+  // In game example: "RNG 5.45x39"
+  // If using https://forge.sp-tarkov.com/mod/2586/caliber-under-ammo-name : use "<variant_shortname>" or "<variant_fullname>"
+
+  // Change stack size of certain calibers
+  // Use BSG caliber names - you can find them in db/05_Calibers
+  "CaliberStacks": {
+    "Caliber127x108": 60, // integer number - default: 60
+    "Caliber40x46": 5, // integer number - default: 5
+    "Caliber30x29": 5, // integer number - default: 5
+    "Caliber40mmRU": 5, // integer number - default: 5
+    "Caliber20x1mm": 200 // integer number - default: 200
+  },
+
+  // Loading speed of Magazines of Holding (value between 0 and -100)
+  // Percentage of default loading speed, -90% => 10% of original loading speed - 10 times faster than default
+  "MoHLoadingSpeed": {
+    "Pocket Sized Mag of Holding": -90, // integer value (0,-100) - default: -90
+    "Satchel Sized Mag of Holding": -92, // integer value (0,-100) - default: -92
+    "Crate Sized Mag of Holding": -94 // integer value (0,-100) - default: -94
+  },
+
+  // Weights for determining to what quest modded bullet can be added 
+  // Properties can be found at https://db.sp-tarkov.com/search/
+  // Property names must start with an uppercase letter
+  "BulletRatingWeights": {
+    "bullet": { // Normal bullets
+      "Damage": 75,
+      "PenetrationPower": 100,
+      "InitialSpeed": 50
     },
-
-    // Trader assort refresh time in minutes. How much time needs to pass to Amonya to have new items available
-    "TraderUpdateTime": {
-        "Minimum": 30, // Integer number - default: 30
-        "Maximum": 60 // Integer number - default: 60
+    "buckshot": { // Buckshot bullets
+      "Damage": 75,
+      "PenetrationPower": 100,
+      "InitialSpeed": 20,
+      "BuckshotBullets": 75
     },
-
-    // Enable/Disable bullet quests added to Amonya
-    // Disabling this will remove all bullet quests and make variant bullets available from the beginning
-    // WARNING: Change this ONLY BEFORE starting or progressing any Amonya quests
-    "EnableBulletQuests": true, // true/false - default: true
-    // Handover items in Amonya quests needs to be Found in Raid (excluding currencies)
-    "QuestBarterFoundInRaid": true,
-    // Add modded bullets automatically to quests
-    "AddModdedBulletsToQuests": true,
-    // This system is using weight system and you can adjust it in "BulletRatingWeights" section later in config
-
-
-    // Enable/Disable bullet variant type from appearing in Amonya quests/assort
-    // This will NOT remove these bullets entirely from the game (they can still appear in daily quests)
-    "EnableBulletVariants": true, // true/false - default: true
-    "EnableBullets": {
-        /*01 */"Armor-cracking": true, // true/false - default: true
-        /*02 */"Bloody": true,
-        /*03 */"Heavy Duty": true,
-        /*04 */"Anti-personnel": true,
-        /*05 */"Full-auto": true,
-        /*06 */"Railgun": true,
-        /*07 */"Artillery": true,
-        /*08 */"Mortar": true,
-        /*09 */"Avada Kedavra": true,
-        /*10 */"Pro+": true,
-        /*11 */"Hypersonic": true,
-        /*12 */"Flamethrower": true,
-        /*13 */"Close Quarters": true,
-        /*14 */"Rubber Grenade": true,
-        /*15 */"Sabot": true,
-        /*16 */"Tazer": true,
-        /*17 */"Ratshot": true,
-        /*18 */"Laser": true,
-        /*19 */"Ratshot Mk2": true,
-        /*20 */"Heavy": true,
-        /*21 */"Light": true,
-        /*22 */"Mini-nuke": true,
-        /*23 */"Cluster Bomb": true,
-        /*24 */"Afterburner": true,
-        /*25 */"Spiked": true,
-        /*26 */"Mini-rocket": true,
-        /*27 */"Lucky Shot": true
-    },
-
-    // Bullet names are displayed in 1x1 inventory slots and can be difficult to read
-    // You can configure a short display name format for bullet variants (shown in equipment/inventory)
-
-    // Available tags:
-    // - <variant_fullname>  - e.g. "Lucky Shot"
-    // - <variant_shortname> - e.g. "RNG"
-    // - <caliber_shortname> - e.g. "5.45x39"
-    // - <caliber_amonyaid>  - e.g. "545x39"
-    "BulletVariantsShortName": "<variant_shortname> <caliber_shortname>",
-    // Default: "<variant_shortname> <caliber_shortname>"
-    // In game example: "RNG 5.45x39"
-    // If using https://forge.sp-tarkov.com/mod/2586/caliber-under-ammo-name : use "<variant_shortname>" or "<variant_fullname>"
-
-    // Change stack size of certain calibers
-    // Use BSG caliber names - you can find them in db/05_Calibers
-    "CaliberStacks": {
-        "Caliber127x108": 60, // integer number - default: 60
-        "Caliber40x46": 5, // integer number - default: 5
-        "Caliber30x29": 5, // integer number - default: 5
-        "Caliber40mmRU": 5, // integer number - default: 5
-        "Caliber20x1mm": 200 // integer number - default: 200
-    },
-
-    // Loading speed of Magazines of Holding (value between 0 and -100)
-    // Percentage of default loading speed, -90% => 10% of original loading speed - 10 times faster than default
-    "MoHLoadingSpeed": {
-        "Pocket Sized Mag of Holding": -90, // integer value (0,-100) - default: -90
-        "Satchel Sized Mag of Holding": -92, // integer value (0,-100) - default: -92
-        "Crate Sized Mag of Holding": -94 // integer value (0,-100) - default: -94
-    },
-
-    // Weights for determining to what quest modded bullet can be added 
-    // Properties can be found at https://db.sp-tarkov.com/search/
-    // Property names must start with an uppercase letter
-    "BulletRatingWeights": {
-        "bullet": { // Normal bullets
-            "Damage": 75,
-            "PenetrationPower": 100,
-            "InitialSpeed": 50
-        },
-        "buckshot": { // Buckshot bullets
-            "Damage": 75,
-            "PenetrationPower": 100,
-            "InitialSpeed": 20,
-            "BuckshotBullets": 75
-        },
-        "grenade": { // Explosive bullets for grenade launchers
-            "FuzeArmTimeSec": -50,
-            "ExplosionStrength": 100,
-            "Damage": 75
-        }
-    },
-
-    // The mod checks for ColorConverterAPI before changing colors and tracers
-    // If set to false, the mod will assume ColorConverterAPI is always loaded
-    "CheckColorConverterAPI": true, // true/false - default: true
-
-    // Enable/Disable additional debug messages
-    "Debug": false, // true/false - default: false
-
-    // Enable/Disable generating debug files
-    "DebugFiles": {
-        "Bullets": false, // Bullets loaded
-        "Weapons": false, // BaseWeapons/CopyWeapons loaded
-        "Quests": false, // Quests generated
-        "Locales": false, // Locales of quests generated
-        "Items": false // Items (and bullet variants) generated
+    "grenade": { // Explosive bullets for grenade launchers
+      "FuzeArmTimeSec": -50,
+      "ExplosionStrength": 100,
+      "Damage": 75
     }
+  },
+
+  // The mod checks for ColorConverterAPI before changing colors and tracers
+  // If set to false, the mod will assume ColorConverterAPI is always loaded
+  "CheckColorConverterAPI": true, // true/false - default: true
+
+  // Enable/Disable additional debug messages
+  "Debug": false, // true/false - default: false
+
+  // Enable/Disable generating debug files
+  "DebugFiles": {
+    "Bullets": false, // Bullets loaded
+    "Weapons": false, // BaseWeapons/CopyWeapons loaded
+    "Quests": false, // Quests generated
+    "Locales": false, // Locales of quests generated
+    "Items": false // Items (and bullet variants) generated
+  }
 }

@@ -8,211 +8,209 @@ using SPTarkov.Server.Core.Models.Logging;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Services;
 
-namespace Amonya.CustomClasses
+namespace Amonya.CustomClasses;
+
+[Injectable(InjectionType.Singleton)]
+public class CustomBulletsManager(
+    ISptLogger<Amonya> logger,
+    ConfigLoader configLoader,
+    ModDatabaseLoader modDatabaseLoader,
+    ItemHelper itemHelper,
+    LocaleService localeService,
+    ModDataStorage modDataStorage
+)
 {
-    [Injectable(InjectionType.Singleton)]
-    public class CustomBulletsManager(
-        ISptLogger<Amonya> logger,
-        ConfigLoader configLoader,
-        ModDatabaseLoader modDatabaseLoader,
-        ItemHelper itemHelper,
-        LocaleService localeService,
-        ModDataStorage modDataStorage
-    )
+    public class BulletsDatabase
     {
-        public class BulletsDatabase
-        {
-            public MongoId Id { get; set; } = string.Empty;
-            public string Name { get; set; } = string.Empty;
-            public string ShortName { get; set; } = string.Empty;
-            public string Caliber { get; set; } = string.Empty;
-            public double Price { get; set; } = 100;
-            public double NewPrice { get; set; } = 100;
-            public string DMG {  get; set; } = string.Empty;
-            public string PEN { get; set; } = string.Empty;
-            public string Category { get; set; } = string.Empty;
-            public double Rating {  get; set; } = 0f;
+        public MongoId Id { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public string ShortName { get; set; } = string.Empty;
+        public string Caliber { get; set; } = string.Empty;
+        public double Price { get; set; } = 100;
+        public double NewPrice { get; set; } = 100;
+        public string DMG {  get; set; } = string.Empty;
+        public string PEN { get; set; } = string.Empty;
+        public string Category { get; set; } = string.Empty;
+        public double Rating {  get; set; } = 0f;
 
+    }
+
+    public readonly Dictionary<MongoId, BulletsDatabase> bullets = [];
+
+    public readonly Dictionary<string, List<MongoId>> BulletsInCaliber = [];
+    private readonly Dictionary<MongoId, string> BulletCalibers = [];
+
+    private readonly List<MongoId> incorrectBullets = [
+        "5ede47641cf3836a88318df1", //!!!DO NOT USE!!!40x46 mm M716(Smoke)
+        "5f647fd3f6e4ab66c82faed6", // 23x75mm Volna-R rubber slug
+        "63b35f281745dd52341e5da7", // F1 Shrapnel
+        "66ec2aa6daf127599c0c31f1", // O-832DU Shrapnel
+        "67ade494d748873e5f0161df", // VOG-30 Shrapnel
+        "5e85aac65505fa48730d8af2", // !!!DO_NOT_USE!!!23x75mm "Cheremukha-7M"
+        "677ae5df4be46b83620bf055", // Rocket
+        "6241c316234b593b5676b637", // Airsoft 6mm BB
+        "5485a8684bdc2da71d8b4567"  // All ammo
+    ];
+    public void Initialize()
+    {
+        FixBulletsWithoutHandbook();
+        var allBullets = itemHelper.GetItemTplsOfBaseType("5485a8684bdc2da71d8b4567");
+        foreach (var id in allBullets)
+        {
+            if (id == "5485a8684bdc2da71d8b4567") continue;
+            AddBulletToDatabase(id);
+        }
+    }
+
+    public void AddBulletToDatabase(string id, bool isVariant = false)
+    {
+        if (incorrectBullets.Contains(id)) return;
+
+        var bulletItem = modDataStorage.Items[id];
+
+        if (bulletItem == null) return;
+
+        var caliber = bulletItem?.Properties?.Caliber;
+
+        if (caliber is null)
+        {
+            if (configLoader.Config.Debug)
+                logger.LogWithColor($"[{GetType().Namespace}] Bullet {id} is missing caliber!", LogTextColor.Red);
+            return;
         }
 
-        public readonly Dictionary<MongoId, BulletsDatabase> bullets = [];
+        modDatabaseLoader.DbCalibers.TryGetValue(caliber, out var caliberInfo);
+        if (caliberInfo is null || (caliberInfo.Incorrect is not null && (bool)caliberInfo.Incorrect)) return;
 
-        public readonly Dictionary<string, List<MongoId>> BulletsInCaliber = [];
-        private readonly Dictionary<MongoId, string> BulletCalibers = [];
+        HandbookItem? itemHandbook = modDataStorage.Handbook.Items.Find(t => t.Id == id);
 
-        private readonly List<MongoId> incorrectBullets = [
-            "5ede47641cf3836a88318df1", //!!!DO NOT USE!!!40x46 mm M716(Smoke)
-            "5f647fd3f6e4ab66c82faed6", // 23x75mm Volna-R rubber slug
-            "63b35f281745dd52341e5da7", // F1 Shrapnel
-            "66ec2aa6daf127599c0c31f1", // O-832DU Shrapnel
-            "67ade494d748873e5f0161df", // VOG-30 Shrapnel
-            "5e85aac65505fa48730d8af2", // !!!DO_NOT_USE!!!23x75mm "Cheremukha-7M"
-            "677ae5df4be46b83620bf055", // Rocket
-            "6241c316234b593b5676b637", // Airsoft 6mm BB
-            "5485a8684bdc2da71d8b4567"  // All ammo
-        ];
-        public void Initialize()
+        if (itemHandbook is null || itemHandbook.Price is null)
         {
-            FixBulletsWithoutHandbook();
-            var allBullets = itemHelper.GetItemTplsOfBaseType("5485a8684bdc2da71d8b4567");
-            foreach (var id in allBullets)
-            {
-                if (id == "5485a8684bdc2da71d8b4567") continue;
-                AddBulletToDatabase(id);
-            }
+            if (configLoader.Config.Debug)
+                logger.LogWithColor($"[{GetType().Namespace}] Bullet {id} is missing Handbook entry!", LogTextColor.Yellow);
+            return;
+        }
+        modDataStorage.LocaleEn.TryGetValue($"{id} Name", out var name);
+        modDataStorage.LocaleEn.TryGetValue($"{id} ShortName", out var shortName);
+        if (name is null && configLoader.Config.Debug)
+        {
+           logger.LogWithColor($"[{GetType().Namespace}] Bullet {id} is missing locale entry!", LogTextColor.Yellow);
+        }
+        if (name is not null && name.Contains("shrapnel", StringComparison.CurrentCultureIgnoreCase) && !name.Contains("shrapnel-", StringComparison.CurrentCultureIgnoreCase)) return;
+        var bullet = new BulletsDatabase
+        {
+            Id = id,
+            Name = name ?? id,
+            ShortName = name ?? id,
+            Caliber = caliber,
+            Price = (double)itemHandbook.Price,
+            NewPrice = Math.Ceiling((double)itemHandbook.Price * configLoader.Config.AmmoPrice.Multiplier),
+            DMG = bulletItem?.Properties?.ProjectileCount > 1 ? $"{bulletItem?.Properties?.ProjectileCount}x{bulletItem?.Properties?.Damage}" : $"{bulletItem?.Properties?.Damage}",
+            PEN = $"{bulletItem?.Properties?.PenetrationPower}",
+            Category = bulletItem?.Properties?.AmmoType ?? "bullet",
+            Rating = isVariant ? 0 : CalculateRating(bulletItem)
+        };
+        if (bullets.TryGetValue(id, out var item)) return;
+
+        bullets.Add(id, bullet);
+        if (!BulletsInCaliber.TryGetValue(caliber, out List<MongoId>? value))
+        {
+            value = [];
+            BulletsInCaliber[caliber] = value;
         }
 
-        public void AddBulletToDatabase(string id, bool isVariant = false)
+        if (!BulletsInCaliber[caliber].Contains(id))
         {
-            if (incorrectBullets.Contains(id)) return;
+            value.Add(id);
+            BulletCalibers.Add(id, caliber);
+        }
+    }
 
-            var bulletItem = modDataStorage.Items[id];
+    public string? DeterminateBulletCaliber(MongoId id)
+    {
+        if (incorrectBullets.Contains(id)) return null;
 
-            if (bulletItem == null) return;
-
-            var caliber = bulletItem?.Properties?.Caliber;
-
-            if (caliber is null)
-            {
-                if (configLoader.Config.Debug)
-                    logger.LogWithColor($"[{GetType().Namespace}] Bullet {id} is missing caliber!", LogTextColor.Red);
-                return;
-            }
-
-            modDatabaseLoader.DbCalibers.TryGetValue(caliber, out var caliberInfo);
-            if (caliberInfo is null || (caliberInfo.Incorrect is not null && (bool)caliberInfo.Incorrect)) return;
-
-            HandbookItem? itemHandbook = modDataStorage.Handbook.Items.Find(t => t.Id == id);
-
-            if (itemHandbook is null || itemHandbook.Price is null)
-            {
-                if (configLoader.Config.Debug)
-                    logger.LogWithColor($"[{GetType().Namespace}] Bullet {id} is missing Handbook entry!", LogTextColor.Yellow);
-                return;
-            }
-            var locale = localeService.GetLocaleDb("en");
-            locale.TryGetValue($"{id} Name", out var name);
-            locale.TryGetValue($"{id} ShortName", out var shortName);
-            if (name is null && configLoader.Config.Debug)
-            {
-               logger.LogWithColor($"[{GetType().Namespace}] Bullet {id} is missing locale entry!", LogTextColor.Yellow);
-            }
-            if (name is not null && name.Contains("shrapnel", StringComparison.CurrentCultureIgnoreCase) && !name.Contains("shrapnel-", StringComparison.CurrentCultureIgnoreCase)) return;
-            var bullet = new BulletsDatabase
-            {
-                Id = id,
-                Name = name ?? id,
-                ShortName = name ?? id,
-                Caliber = caliber,
-                Price = (double)itemHandbook.Price,
-                NewPrice = Math.Ceiling((double)itemHandbook.Price * configLoader.Config.AmmoPrice.Multiplier),
-                DMG = bulletItem?.Properties?.ProjectileCount > 1 ? $"{bulletItem?.Properties?.ProjectileCount}x{bulletItem?.Properties?.Damage}" : $"{bulletItem?.Properties?.Damage}",
-                PEN = $"{bulletItem?.Properties?.PenetrationPower}",
-                Category = bulletItem?.Properties?.AmmoType ?? "bullet",
-                Rating = isVariant ? 0 : CalculateRating(bulletItem)
-            };
-            if (bullets.TryGetValue(id, out var item)) return;
-
-            bullets.Add(id, bullet);
-            if (!BulletsInCaliber.TryGetValue(caliber, out List<MongoId>? value))
-            {
-                value = [];
-                BulletsInCaliber[caliber] = value;
-            }
-
-            if (!BulletsInCaliber[caliber].Contains(id))
-            {
-                value.Add(id);
-                BulletCalibers.Add(id, caliber);
-            }
+        if (!BulletCalibers.TryGetValue(id, out string? caliber))
+        {
+            if (configLoader.Config.Debug)
+                logger.LogWithColor($"[{GetType().Namespace}] Bullet {id} found in filter, is not existing", LogTextColor.Red);
+            return null;
         }
 
-        public string? DeterminateBulletCaliber(MongoId id)
-        {
-            if (incorrectBullets.Contains(id)) return null;
+        if (caliber is null) return null;
 
-            if (!BulletCalibers.TryGetValue(id, out string? caliber))
+        return caliber;
+    }
+
+    public BulletsDatabase? GetBulletByName(string name)
+    {
+        var matches = bullets.Where(t => t.Value.Name == name);
+        if (!matches.Any())
+        {
+            if (!MongoId.IsValidMongoId(name)) return null;
+            if (bullets.TryGetValue(name, out var bullet))
             {
-                if (configLoader.Config.Debug)
-                    logger.LogWithColor($"[{GetType().Namespace}] Bullet {id} found in filter, is not existing", LogTextColor.Red);
+                return bullet;
+            } else
+            {
+                logger.LogWithColor($"[{GetType().Namespace}] Bullet '{name}' not found", LogTextColor.Red);
                 return null;
             }
-
-            if (caliber is null) return null;
-
-            return caliber;
         }
+        return matches.First().Value;
+    }
 
-        public BulletsDatabase? GetBulletByName(string name)
+    public double CalculateRating(TemplateItem? bulletItem)
+    {
+        if (bulletItem == null) return 0f;
+        double rating = 0;
+        if (bulletItem?.Properties?.AmmoType is null) return 0f;
+        configLoader.Config.BulletRatingWeights.TryGetValue(bulletItem.Properties.AmmoType, out var ratingWeightsType);
+        if (ratingWeightsType is null) return 0f;
+        foreach(var (prop, weight) in ratingWeightsType)
         {
-            var matches = bullets.Where(t => t.Value.Name == name);
-            if (!matches.Any())
+            var value = bulletItem?.Properties?.GetType()?.GetProperty(prop)?.GetValue(bulletItem?.Properties);
+            if (value is null)
             {
-                if (!MongoId.IsValidMongoId(name)) return null;
-                if (bullets.TryGetValue(name, out var bullet))
-                {
-                    return bullet;
-                } else
-                {
-                    logger.LogWithColor($"[{GetType().Namespace}] Bullet '{name}' not found", LogTextColor.Red);
-                    return null;
-                }
+                if (configLoader.Config.Debug)
+                    logger.LogWithColor($"[{GetType().Namespace}] Value for '{bulletItem?.Id}' property '{prop}' is missing!", LogTextColor.Red);
+                continue;
             }
-            return matches.First().Value;
+            rating += weight * Convert.ToDouble(value);
         }
+        return rating;
+    }
 
-        public double CalculateRating(TemplateItem? bulletItem)
+    public void FixBulletsWithoutHandbook()
+    {
+        if (modDataStorage.Handbook.Items.Find(t => t.Id == "5d70e500a4b9364de70d38ce") is null)
         {
-            if (bulletItem == null) return 0f;
-            double rating = 0;
-            if (bulletItem?.Properties?.AmmoType is null) return 0f;
-            configLoader.Config.BulletRatingWeights.TryGetValue(bulletItem.Properties.AmmoType, out var ratingWeightsType);
-            if (ratingWeightsType is null) return 0f;
-            foreach(var (prop, weight) in ratingWeightsType)
+            modDataStorage.Handbook.Items.Add(new()
             {
-                var value = bulletItem?.Properties?.GetType()?.GetProperty(prop)?.GetValue(bulletItem?.Properties);
-                if (value is null)
-                {
-                    if (configLoader.Config.Debug)
-                        logger.LogWithColor($"[{GetType().Namespace}] Value for '{bulletItem?.Id}' property '{prop}' is missing!", LogTextColor.Red);
-                    continue;
-                }
-                rating += weight * Convert.ToDouble(value);
+                Id = "5d70e500a4b9364de70d38ce",
+                ParentId = "5b47574386f77428ca22b33b",
+                Price = 6006
+            });
+        }
+    }
+
+    public void ChangeCaliberStackSizes()
+    {
+        var caliberStacks = configLoader.Config.CaliberStacks;
+        foreach (var (caliberId, newStackSize) in caliberStacks)
+        {
+            BulletsInCaliber.TryGetValue(caliberId, out var caliberIds);
+            if (caliberIds is null)
+            {
+                logger.LogWithColor($"[{GetType().Namespace}] Caliber from CaliberStacks option in config: '{caliberId}' does not exist.", LogTextColor.Red);
+                continue;
             }
-            return rating;
-        }
-
-        public void FixBulletsWithoutHandbook()
-        {
-            if (modDataStorage.Handbook.Items.Find(t => t.Id == "5d70e500a4b9364de70d38ce") is null)
+            foreach (var id in caliberIds)
             {
-                modDataStorage.Handbook.Items.Add(new()
+                modDataStorage.Items.TryGetValue(id, out var item);
+                if (item is not null && item.Properties?.StackMaxSize is not null)
                 {
-                    Id = "5d70e500a4b9364de70d38ce",
-                    ParentId = "5b47574386f77428ca22b33b",
-                    Price = 6006
-                });
-            }
-        }
-
-        public void ChangeCaliberStackSizes()
-        {
-            var caliberStacks = configLoader.Config.CaliberStacks;
-            foreach (var (caliberId, newStackSize) in caliberStacks)
-            {
-                BulletsInCaliber.TryGetValue(caliberId, out var caliberIds);
-                if (caliberIds is null)
-                {
-                    logger.LogWithColor($"[{GetType().Namespace}] Caliber from CaliberStacks option in config: '{caliberId}' does not exist.", LogTextColor.Red);
-                    continue;
-                }
-                foreach (var id in caliberIds)
-                {
-                    modDataStorage.Items.TryGetValue(id, out var item);
-                    if (item is not null && item.Properties?.StackMaxSize is not null)
-                    {
-                        item.Properties.StackMaxSize = newStackSize;
-                    }
+                    item.Properties.StackMaxSize = newStackSize;
                 }
             }
         }

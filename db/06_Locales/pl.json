@@ -363,9 +363,6 @@
 		"Lucky Shot.FlavourText": "Na bliską odległość — jesteś szczęśliwy. Na daleko — lepiej żebyś miał to szczęście",
 		"Lucky Shot.Description": "Pocisk śrutowy do karabinów snajperskich, ale to czy trafisz zależy od odległości i szczęścia. Tylko od Ciebie zależy, czy chcesz by każdy strzał był jak pociągnięcie za wajchę w przysłowiowym jednorękim bandycie czy jednak wolisz powrócić do sprawdzonych metod",
 		"Lucky Shot.Explanation": "Zabójczy na blisko, nieprzewidywalny na dystansie",
-		"Lucky Shot.ShortName": "RNG",
-
-		// Lore (WiP)
-		"Introduction:Lore": "Nie jest prosto przeżyć na tym terenie istocie, która nie powinna się tu pojawić. A jednak. Przez błąd jej dziadka-jednorożca w bardzo skomplikowanym zaklęciu, pojawiła się w Tarkovie. Od początku chciała stąd uciec, ale po dłuższym czasie zamiast opracować drogę ucieczki, znalazła sposób jak się dobrze ukrywać - czarną pelerynę zakrywającą jej białą do przesady grzywę, znalazła swoje własne hobby w zbieraniu i tworzeniu nowych typów amunicji, a także poznała swojego pupila - Ciebie. Biorąc pod uwagę całe jej doświadczenie zebrane w Tarkovie, postanowiła tu zostać i odegrać się na gościach co stąpali jej po kopytach przez ten cały czas, który tu spędziła. Ten spokojny kucyk, bardziej od swojej ulubionej sterty amunicji, nienawidzi swoich wrogów. Zabij ich, dostarcz parę przedmiotów pomocnych w życiu Amonyi, a ta z chęcią podzieli się z Tobą jej zapasami amunicji, a nawet dostarczy Ci parę ciekawszych jej wariantów, które przydadzą Ci się w Twojej ucieczce z Tarkova!"
+		"Lucky Shot.ShortName": "RNG"
 	}
 }
