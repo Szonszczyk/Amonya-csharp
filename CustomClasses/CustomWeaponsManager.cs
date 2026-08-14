@@ -2,17 +2,15 @@
 using Amonya.Helpers;
 using Amonya.Loaders;
 using SPTarkov.DI.Annotations;
-using SPTarkov.Server.Core.Helpers;
+using SPTarkov.Server.Core.Helpers.Items;
 using SPTarkov.Server.Core.Models.Common;
-using SPTarkov.Server.Core.Models.Logging;
-using SPTarkov.Server.Core.Models.Utils;
 using System.Text.RegularExpressions;
 
 namespace Amonya.CustomClasses;
 
 [Injectable(InjectionType.Singleton)]
 public class CustomWeaponsManager(
-    ISptLogger<Amonya> logger,
+    CustomLogger logger,
     ConfigLoader configLoader,
     ItemHelper itemHelper,
     CustomBulletsManager customBulletsManager,
@@ -71,8 +69,8 @@ public class CustomWeaponsManager(
                 if (weapon.Category != categoryHandbook)
                 {
                     var weapCatAdjusted = AdjustWeaponCategory(weapon.Category, categoryHandbook);
-                    if (weapon.Category != weapCatAdjusted && configLoader.Config.Debug)
-                        logger.LogWithColor($"[{GetType().Namespace}] Adjusted {weapon.Name} category: {weapon.Category} => {weapCatAdjusted}", LogTextColor.Green, LogBackgroundColor.White);
+                    if (weapon.Category != weapCatAdjusted)
+                        logger.Debug($"Adjusted {weapon.Name} category: {weapon.Category} => {weapCatAdjusted}");
                     weapon.Category = weapCatAdjusted;
                 }
 
@@ -115,9 +113,9 @@ public class CustomWeaponsManager(
                 if (!hasChamber && weapon.Magazines.Count == 0) continue;
 
                 caliberList = [.. caliberList.Distinct()];
-                if (caliberList.Count == 0) {
-                    if (configLoader.Config.Debug)
-                        logger.LogWithColor($"[{GetType().Namespace}] Couldn't determinate caliber of weapon '{weapon.Name}'! Chambers: {hasChamber}, Magazines: {weapon.Magazines.Count}", LogTextColor.Red);
+                if (caliberList.Count == 0)
+                {
+                    logger.Debug($"Couldn't determinate caliber of weapon '{weapon.Name}'! Chambers: {hasChamber}, Magazines: {weapon.Magazines.Count}");
                     continue;
                 } else
                 {
@@ -147,7 +145,7 @@ public class CustomWeaponsManager(
                     baseWeapon.Copies.Add(id);
                 } else
                 {
-                    logger.LogWithColor($"[{GetType().Namespace}] Weapon {id}/{weaponCopy.Name} base weapon set in 07_Settings in missing in database!", LogTextColor.Red);
+                    logger.Error($"Weapon {id}/{weaponCopy.Name} base weapon set in 07_Settings in missing in database!");
                 }
                 continue;
             }
@@ -155,7 +153,7 @@ public class CustomWeaponsManager(
             if (baseWeaponsId.Count != 1)
             {
                 if (configLoader.Config.Debug)
-                    logger.LogWithColor($"[{GetType().Namespace}] Weapon determinated copy {id}/{weaponCopy.Name} matches {baseWeaponsId.Count} base weapons instead of 1", LogTextColor.Yellow);
+                    logger.Debug($"Weapon determinated copy {id}/{weaponCopy.Name} matches {baseWeaponsId.Count} base weapons instead of 1");
             }
             if (baseWeaponsId.Count > 0)
             {
@@ -367,7 +365,7 @@ public class CustomWeaponsManager(
                 if (filterList is null)
                 {
                     if (magazineId != "5448bc234bdc2d3c308b4569")
-                        logger.LogWithColor($"[{GetType().Namespace}] Magazine {magazineId} is missing filter in Cartridges!", LogTextColor.Red);
+                        logger.Error($"Magazine {magazineId} is missing filter in Cartridges!");
                     continue;
                 }
                 // don't add variant if original bullet is missing in filter

@@ -4,55 +4,46 @@ using Amonya.Helpers;
 using Amonya.Loaders;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
-using SPTarkov.Server.Core.Helpers;
-using SPTarkov.Server.Core.Models.Logging;
-using SPTarkov.Server.Core.Models.Utils;
-using SPTarkov.Server.Core.Servers;
-using SPTarkov.Server.Core.Services;
+using SPTarkov.Server.Core.Helpers.Server;
 using SPTarkov.Server.Core.Utils;
 using System.Reflection;
 
 namespace Amonya;
 
-[Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 2123)]
+[Injectable(TypePriority = OnLoadOrder.Preload + 2123)]
 public class AmonyaTrader(
-    DatabaseService databaseService,
-    ConfigServer configServer,
     CustomTraderCreator customTraderCreator,
-    LocaleService localeService,
     CustomLocales customLocales,
     ModDataStorage modDataStorage
 ) : IOnLoad
 {
-    public Task OnLoad()
+    public Task OnLoadAsync(CancellationToken cancellationToken)
     {
-        modDataStorage.Initialize(databaseService, configServer, localeService);
+        modDataStorage.Initialize();
 
-        customLocales.Initialize(localeService);
+        customLocales.Initialize();
         customTraderCreator.Initialize();
         return Task.CompletedTask;
     }
 }
 
-[Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 89123)]
+[Injectable(TypePriority = OnLoadOrder.Preload + 89123)]
 public class AmonyaBulletLoad(
     ModDataStorage modDataStorage,
-    LocaleService localeService,
     CustomBulletsManager customBulletsManager
 ) : IOnLoad
 {
-    public Task OnLoad()
+    public Task OnLoadAsync(CancellationToken cancellationToken)
     {
-        modDataStorage.RefreshDatabase(localeService);
+        modDataStorage.RefreshDatabase();
         customBulletsManager.Initialize();
         return Task.CompletedTask;
     }
 }
 
-[Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 97123)]
+[Injectable(TypePriority = OnLoadOrder.Preload + 97123)]
 public class Amonya(
-    ISptLogger<Amonya> logger,
-    DatabaseService databaseService,
+    CustomLogger logger,
     ConfigLoader configLoader,
     CustomBulletsManager customBulletsManager,
     CustomWeaponsManager customWeaponsManager,
@@ -65,13 +56,12 @@ public class Amonya(
     Fixes fixes,
     ModHelper modHelper,
     JsonUtil jsonUtil,
-    ModDataStorage modDataStorage,
-    LocaleService localeService
+    ModDataStorage modDataStorage
 ) : IOnLoad
 {
-    public Task OnLoad()
+    public Task OnLoadAsync(CancellationToken cancellationToken)
     {
-        modDataStorage.RefreshDatabase(localeService);
+        modDataStorage.RefreshDatabase();
         customWeaponsManager.LoadAllWeaponsAndMagazines();
         itemGenerator.GenerateItems();
         questGenerator.Initialize();
@@ -83,7 +73,7 @@ public class Amonya(
         if (configLoader.Config.EnableBulletQuests)
             questGenerator.GenerateQuests();
 
-        fixes.Initialize(databaseService);
+        fixes.Initialize();
 
         idDatabaseManager.SaveDatabase();
 
@@ -103,14 +93,14 @@ public class Amonya(
         if (configLoader.Config.DebugFiles.Items)
             File.WriteAllText(Path.Combine(modFolder, "Items.json"), jsonUtil.Serialize(customItemCreator.ItemsAdded, true));
 
-        logger.LogWithColor($"[{GetType().Namespace}] Mod finished loading{(customItemCreator.ItemsAdded.Count > 0 ? $". Created {customItemCreator.ItemsAdded.Count} custom items!" : "")}", LogTextColor.Green);
+        logger.Ok($"Mod finished loading{(customItemCreator.ItemsAdded.Count > 0 ? $". Created {customItemCreator.ItemsAdded.Count} custom items!" : "")}");
         if (questGenerator.questsGenerated > 0)
-            logger.LogWithColor($"[{GetType().Namespace}] Added {questGenerator.questsGenerated} custom quests!", LogTextColor.Green);
+            logger.Ok($"Added {questGenerator.questsGenerated} custom quests!");
         return Task.CompletedTask;
     }
 }
 
-[Injectable(TypePriority = OnLoadOrder.PostSptModLoader + 2)]
+[Injectable(TypePriority = OnLoadOrder.PostLoad + 2)]
 public class AmonyaSlotBulletVariants(
     CustomWeaponsManager customWeaponsManager,
     ModHelper modHelper,
@@ -118,7 +108,7 @@ public class AmonyaSlotBulletVariants(
     ConfigLoader configLoader
 ) : IOnLoad
 {
-    public Task OnLoad()
+    public Task OnLoadAsync(CancellationToken cancellationToken)
     {
         customWeaponsManager.RefreshLoadedWeaponMagazines();
         customWeaponsManager.SlotNewBulletsIntoItems();

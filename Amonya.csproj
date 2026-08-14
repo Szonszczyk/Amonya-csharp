@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <RootNamespace>Amonya</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <OutputType>Library</OutputType>
-    <Version>2.1.1</Version>
+    <Version>2.2.0</Version>
     <!-- The two lines below will set the output path for the binaries -->
     <OutputPath>bin\$(Configuration)\$(ProjectName)\$(AssemblyName)\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -14,9 +14,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SPTarkov.Common" Version="4.0.13" />
-    <PackageReference Include="SPTarkov.DI" Version="4.0.13" />
-    <PackageReference Include="SPTarkov.Server.Core" Version="4.0.13" />
+    <PackageReference Include="SPTarkov.Common" Version="4.1.2" />
+    <PackageReference Include="SPTarkov.DI" Version="4.1.2" />
+    <PackageReference Include="SPTarkov.Server.Core" Version="4.1.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +24,6 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="echo f | xcopy /s /y /f &quot;C:\Programowanie\SPT 4.0 Mods\Amonya\bin\Debug\Amonya\Amonya.dll&quot; &quot;C:\Games\SPT 4.0\SPT\user\mods\Amonya\Amonya.dll&quot;&#xD;&#xA;echo f | xcopy /s /y /f &quot;C:\Programowanie\SPT 4.0 Mods\Amonya\bin\Debug\Amonya\Amonya.pdb&quot; &quot;C:\Games\SPT 4.0\SPT\user\mods\Amonya\Amonya.pdb&quot;&#xD;&#xA;echo f | xcopy /s /y /f &quot;C:\Programowanie\SPT 4.0 Mods\Amonya\db\01_Variants&quot; &quot;C:\Games\SPT 4.0\SPT\user\mods\Amonya\db\01_Variants&quot;&#xD;&#xA;echo f | xcopy /s /y /f &quot;C:\Programowanie\SPT 4.0 Mods\Amonya\db\02_Items&quot; &quot;C:\Games\SPT 4.0\SPT\user\mods\Amonya\db\02_Items&quot;" />
+    <Exec Command="echo f | xcopy /s /y /f &quot;C:\Programowanie\SPT 4.0 Mods\Amonya\bin\Debug\Amonya\Amonya.dll&quot; &quot;C:\Games\SPT 4.1\SPT_Runtime\user\mods\Amonya\Amonya.dll&quot;&#xD;&#xA;echo f | xcopy /s /y /f &quot;C:\Programowanie\SPT 4.0 Mods\Amonya\bin\Debug\Amonya\Amonya.pdb&quot; &quot;C:\Games\SPT 4.1\SPT_Runtime\user\mods\Amonya\Amonya.pdb&quot;&#xD;&#xA;echo f | xcopy /s /y /f &quot;C:\Programowanie\SPT 4.0 Mods\Amonya\db\01_Variants&quot; &quot;C:\Games\SPT 4.1\SPT_Runtime\user\mods\Amonya\db\01_Variants&quot;&#xD;&#xA;echo f | xcopy /s /y /f &quot;C:\Programowanie\SPT 4.0 Mods\Amonya\db\02_Items&quot; &quot;C:\Games\SPT 4.1\SPT_Runtime\user\mods\Amonya\db\02_Items&quot;" />
   </Target>
 </Project>

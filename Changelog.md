@@ -1,3 +1,7 @@
+## Version 2.2.0 for SPT ~4.1.2
+
+- Initial release for SPT 4.1.2
+
 ## Version 2.1.1 for SPT ~4.0.13
 
 - Fixed rollbacked function of adding to special slots used by MoH items
@@ -6,7 +10,6 @@
 - Added first lore to 5.45x39 quest tree\
     Made by Razh
 - Old 5.45x39 pictures were moved to .44 Magnum modded caliber
-
 
 ## Version 2.1.0 for SPT 4.0.*
 
@@ -18,16 +21,16 @@
     If you do not see this option, update your config. Instructions can be found in the mod description
 
 ### Content Update
-- Added questlines for calibers introduced by [WTT-Armory](https://forge.sp-tarkov.com/mod/2246/wtt-armory)
+- Added questlines for calibers introduced by [WTT-Armory](https://sp-mod.com/mod/2246/wtt-armory)
     - 7.92x57mm - unlocked by completing 7.62x54R Beginner with 4 new quests and 2 bullet variants
     - .300 Winchester Magnum - unlocked by completing 7.62x51 Novice with 4 new quests and 3 bullet variants
     - .338 Norma - unlocked by completing .338 Beginner with 3 new quests and 2 bullet variants
     - .408 Cheyenne Tactical unlockable by completing 7.62x51 Expert with 4 new quests and 3 bullet variants
     - 25x59mm Grenade - unlocked by completing Introduction, but accessible in LL2 and above with 5 new quests and 2 bullet variants
     - .44 Remington Magnum - unlocked by completing .357 Beginner with 6 new quests and 2 bullet variants
-- Added questlines for caliber introduced by [SaintDeerWeapons](https://forge.sp-tarkov.com/mod/2590/saintdeerweapons)
+- Added questlines for caliber introduced by [SaintDeerWeapons](https://sp-mod.com/mod/2590/saintdeerweapons)
     - 5.8x42mm - unlocked by completing 5.56x45 Novice with 4 new quests and 3 bullet variants
-- If you are using [Danger Blicky](https://forge.sp-tarkov.com/mod/2536/danger-blicky) mod, you can access new 20x1mm questline
+- If you are using [Danger Blicky](https://sp-mod.com/mod/2536/danger-blicky) mod, you can access new 20x1mm questline
     - 20x1mm - unlocked by completing Introduction, but accessible in LL2 and above with 3 new quests and 2 bullet variants
 - Added 20x1mm Tazer bullet to Amonya LL2
 - Added Korean translation by ssal_pt and Russian translation by kokosik\

@@ -4,15 +4,13 @@ using Amonya.Interfaces;
 using Amonya.Loaders;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
-using SPTarkov.Server.Core.Models.Logging;
 using SPTarkov.Server.Core.Models.Spt.Mod;
-using SPTarkov.Server.Core.Models.Utils;
 
 namespace Amonya.Generators;
 
 [Injectable(InjectionType.Singleton)]
 public class BulletGenerator(
-    ISptLogger<Amonya> logger,
+    CustomLogger logger,
     ConfigLoader configLoader,
     ModDatabaseLoader modDatabaseLoader,
     IdDatabaseManager idDatabaseManager,
@@ -58,6 +56,7 @@ public class BulletGenerator(
                     customLocales.RegisterTag("caliberInfo.Name", caliberInfo.Name);
                     var newItem = new NewItemFromCloneDetails
                     {
+                        NewItemName = variantName,
                         ItemTplToClone = id,
                         ParentId = copiedItem.Parent,
                         HandbookParentId = copiedItemHandbook!.ParentId,
@@ -121,7 +120,7 @@ public class BulletGenerator(
                 }
             } else
             {
-                logger.LogWithColor($"[{GetType().Namespace}] Variant type {variantName} is missing one or more required properties! {config.Bullets is null}/{config.WeaponCategories is null}", LogTextColor.Red);
+                logger.Error($"Variant type {variantName} is missing one or more required properties! {config.Bullets is null}/{config.WeaponCategories is null}");
             }
         }
     }
