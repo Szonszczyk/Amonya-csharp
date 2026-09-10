@@ -60,10 +60,14 @@ public class CustomWeaponsManager(
                 var copiedItemHandbook = modDataStorage.Handbook.Items.Find(t => t.Id == id);
                 var categoryHandbook = copiedItemHandbook != null ? WeaponCategoriesHandbook.GetPlural(copiedItemHandbook.ParentId) : "HANDBOOK NOT FOUND";
 
+                // Locale keys can be missing for weapons added by other mods (e.g. a trader mod
+                // shipping an empty CustomLocales file). Indexing directly would crash the whole
+                // startup, so skip weapons without a Name and fall back to empty strings otherwise.
+                if (!modDataStorage.LocaleEn.TryGetValue($"{id} Name", out var weaponName)) continue;
                 var weapon = new WeaponsDatabase
                 {
-                    Name = StripHtml(modDataStorage.LocaleEn[$"{id} Name"]),
-                    ShortName = modDataStorage.LocaleEn[$"{id} ShortName"],
+                    Name = StripHtml(weaponName),
+                    ShortName = modDataStorage.LocaleEn.TryGetValue($"{id} ShortName", out var shortName) ? shortName : string.Empty,
                     Category = WeaponCategories.GetPlural(categoryId)
                 };
 
@@ -211,7 +215,8 @@ public class CustomWeaponsManager(
         var baseWeaponEx = modDatabaseLoader.DbAddSettings.BaseWeaponExceptions;
         if (baseWeaponEx.Contains(id)) return false;
 
-        var itemDesc = modDataStorage.LocaleEn[$"{id} Description"];
+        // Description may be missing for weapons added by other mods; treat as non-variant then.
+        var itemDesc = modDataStorage.LocaleEn.TryGetValue($"{id} Description", out var desc) ? desc : string.Empty;
         // If variant from DWV or is different paint - it is a copy
         if (itemDesc.Contains("Variant</b></color>") || weapon.Name.Contains('(')) return true;
         return false;
