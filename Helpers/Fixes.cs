@@ -16,9 +16,13 @@ namespace Amonya.Helpers
         ISptLogger<Amonya> logger,
         CustomBulletsManager customBulletsManager,
         IdDatabaseManager idDatabaseManager,
-        ConfigLoader configLoader
+        ConfigLoader configLoader,
+        ModsCompatibility modsCompatibility
     )
     {
+        private const string DwvModGuid = "com.szonszczyk.definitiveweaponvariants";
+        private const string Caliber127x108 = "Caliber127x108";
+
         private Dictionary<string, Location> Locations { get; set; } = [];
         private Dictionary<MongoId, TemplateItem> Items { get; set; } = [];
         public void Initialize(DatabaseService databaseService)
@@ -31,12 +35,20 @@ namespace Amonya.Helpers
 
         private void FixLocationStaticAmmo()
         {
+            // DWV (DefinitiveWeaponVariants) unconditionally adds Caliber127x108 to every
+            // location's StaticAmmo during its own load. If we add it first, DWV's Add()
+            // throws "An item with the same key has already been added" and the server
+            // fails to start. When DWV is installed, skip injecting this caliber so the
+            // two mods are order-independent.
+            var dwvInstalled = modsCompatibility.ModCheck(DwvModGuid);
+
             foreach (var (_, location) in Locations)
             {
                 if (location.StaticAmmo is null) continue;
                 foreach (var (caliberId, bullets) in customBulletsManager.BulletsInCaliber)
                 {
                     if (caliberId == "Airsoft") continue;
+                    if (dwvInstalled && caliberId == Caliber127x108) continue;
 
                     if (!location.StaticAmmo.TryGetValue(caliberId, out _))
                     {
