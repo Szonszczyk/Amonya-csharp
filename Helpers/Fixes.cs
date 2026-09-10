@@ -43,8 +43,7 @@ public class Fixes(
                             RelativeProbability = 1
                         });
                     }
-                    //logger.LogWithColor($"[{GetType().Namespace}] Providing for {caliberId}, containing {bullets.Count} bullets!", LogTextColor.Red);
-                    location.StaticAmmo.Add(caliberId, list);
+                    location.StaticAmmo.TryAdd(caliberId, list);
                 }
             }
         }

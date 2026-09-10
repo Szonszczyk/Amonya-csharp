@@ -58,10 +58,13 @@ public class CustomWeaponsManager(
                 var copiedItemHandbook = modDataStorage.Handbook.Items.Find(t => t.Id == id);
                 var categoryHandbook = copiedItemHandbook != null ? WeaponCategoriesHandbook.GetPlural(copiedItemHandbook.ParentId) : "HANDBOOK NOT FOUND";
 
+                modDataStorage.LocaleEn.TryGetValue($"{id} Name", out var weaponName);
+                modDataStorage.LocaleEn.TryGetValue($"{id} ShortName", out var weaponShortname);
+
                 var weapon = new WeaponsDatabase
                 {
-                    Name = StripHtml(modDataStorage.LocaleEn[$"{id} Name"]),
-                    ShortName = modDataStorage.LocaleEn[$"{id} ShortName"],
+                    Name = StripHtml(weaponName ?? $"{id} Name"),
+                    ShortName = weaponShortname ?? $"{id} ShortName",
                     Category = WeaponCategories.GetPlural(categoryId)
                 };
 

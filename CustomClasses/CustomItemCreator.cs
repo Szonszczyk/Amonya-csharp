@@ -85,7 +85,7 @@ public class CustomItemCreator(
                 if (pocket?.Properties?.Slots is null) continue;
                 foreach (var slot in pocket.Properties.Slots)
                 {
-                    slot?.Properties?.Filters?.First()?.Filter?.Add(itemId);
+                    slot?.Properties?.Filters?.FirstOrDefault()?.Filter?.Add(itemId);
                 }
             }
         }
