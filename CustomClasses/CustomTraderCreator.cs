@@ -1,12 +1,10 @@
 ﻿using Amonya.Helpers;
 using Amonya.Loaders;
 using SPTarkov.DI.Annotations;
-using SPTarkov.Server.Core.Helpers;
+using SPTarkov.Server.Core.Helpers.Server;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
-using SPTarkov.Server.Core.Models.Logging;
 using SPTarkov.Server.Core.Models.Spt.Config;
-using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Routers;
 using SPTarkov.Server.Core.Utils;
 using SPTarkov.Server.Core.Utils.Cloners;
@@ -17,7 +15,7 @@ namespace Amonya.CustomClasses
 {
     [Injectable(InjectionType.Singleton)]
     public class CustomTraderCreator(
-        ISptLogger<Amonya> logger,
+        CustomLogger logger,
         ICloner cloner,
         ImageRouter imageRouter,
         ModHelper modHelper,
@@ -87,7 +85,7 @@ namespace Amonya.CustomClasses
 
             if (!modDataStorage.Traders.TryAdd(traderDetailsToAdd.Id, traderDataToAdd))
             {
-                logger.LogWithColor($"[{GetType().Namespace}] Failed to add Amonya to databases!", LogTextColor.Red);
+                logger.Error($" Failed to add Amonya to databases!");
             }
         }
         private void AddTraderToLocales(TraderBase baseJson)

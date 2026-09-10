@@ -4,10 +4,8 @@ using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Enums;
-using SPTarkov.Server.Core.Models.Logging;
 using SPTarkov.Server.Core.Models.Spt.Mod;
-using SPTarkov.Server.Core.Models.Utils;
-using SPTarkov.Server.Core.Services.Mod;
+using SPTarkov.Server.Core.Services.Modding.Custom;
 using System.Reflection;
 
 
@@ -15,7 +13,7 @@ namespace Amonya.CustomClasses;
 
 [Injectable(InjectionType.Singleton)]
 public class CustomItemCreator(
-    ISptLogger<Amonya> logger,
+    CustomLogger logger,
     CustomItemService customItemService,
     ModDataStorage modDataStorage
 )
@@ -132,7 +130,7 @@ public class CustomItemCreator(
         }
         else
         {
-            logger.LogWithColor($"[{GetType().Namespace}] MasteryName '{itemConfig.MasteryName}' is incorrect!", LogTextColor.Red);
+            logger.Error($"MasteryName '{itemConfig.MasteryName}' is incorrect!");
         }
     }
     private void AddItemToTrader(string itemId, CustomBarterConfig barterConfig)
@@ -140,7 +138,7 @@ public class CustomItemCreator(
         var traderId = GetTraderIdByName(barterConfig.TraderId);
         if (traderId == null)
         {
-            logger.LogWithColor($"[{GetType().Namespace}] Trader name / Trader ID '{traderId}' is incorrect!", LogTextColor.Red);
+            logger.Error($"Trader name / Trader ID '{traderId}' is incorrect!");
             return;
         }
         var trader = modDataStorage.Traders[(MongoId)traderId];
@@ -150,7 +148,7 @@ public class CustomItemCreator(
             var addBarter = GetItemIdByName(addBarterId);
             if (addBarter == null)
             {
-                logger.LogWithColor($"[{GetType().Namespace}] Barter item of id '{addBarterId}' is incorrect! Item {itemId} was not added to trader", LogTextColor.Red);
+                logger.Error($"Barter item of id '{addBarterId}' is incorrect! Item {itemId} was not added to trader");
                 return;
             }
         }

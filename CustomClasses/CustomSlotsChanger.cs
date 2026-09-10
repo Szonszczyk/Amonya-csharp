@@ -4,16 +4,14 @@ using Amonya.Loaders;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
-using SPTarkov.Server.Core.Models.Logging;
 using SPTarkov.Server.Core.Models.Spt.Mod;
-using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Utils.Cloners;
 
 namespace Amonya.CustomClasses;
 
 [Injectable(InjectionType.Singleton)]
 public class CustomSlotsChanger(
-    ISptLogger<Amonya> logger,
+    CustomLogger logger,
     ICloner cloner,
     IdDatabaseManager idDatabaseManager,
     ModDataStorage modDataStorage
@@ -103,12 +101,12 @@ public class CustomSlotsChanger(
         if (cartridgesConfig == null) return null;
         if (cartridgesConfig.Count == null || cartridgesConfig.Count <= 0)
         {
-            logger.LogWithColor($"[{GetType().Namespace}] Item '{newItemName}' have incorrect cartridges count {cartridgesConfig.Count}!", LogTextColor.Red);
+            logger.Error($"Item '{newItemName}' have incorrect cartridges count {cartridgesConfig.Count}!");
             return null;
         }
         var newFilter = CreateFilterFromConfiguration(cartridgesConfig, "N/A", "Cartridges", copiedItem);
         if (newFilter.Count == 0) {
-            logger.LogWithColor($"[{GetType().Namespace}] Item '{newItemName}' have no valid ammo!", LogTextColor.Red);
+            logger.Error($"Item '{newItemName}' have no valid ammo!");
             return null;
         }
         var cartridges = new List<Slot>();
@@ -191,7 +189,7 @@ public class CustomSlotsChanger(
                 }
                 else
                 {
-                    logger.LogWithColor($"[{GetType().Namespace}] FromWeapon (item) '{filter}' found, but couldn't get filters from {type}!", LogTextColor.Red);
+                    logger.Error($"FromWeapon (item) '{filter}' found, but couldn't get filters from {type}!");
                 }
             }
         }
@@ -222,7 +220,7 @@ public class CustomSlotsChanger(
                 if (modDataStorage.Items.TryGetValue(idDatabaseId, out var idDatabaseItem)) return idDatabaseItem;
             }
         }
-        logger.LogWithColor($"[{GetType().Namespace}] Item '{text}' not found", LogTextColor.Red);
+        logger.Error($"Item '{text}' not found");
         return null;
     }
 }

@@ -5,15 +5,13 @@ using Amonya.Loaders;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
-using SPTarkov.Server.Core.Models.Logging;
 using SPTarkov.Server.Core.Models.Spt.Mod;
-using SPTarkov.Server.Core.Models.Utils;
 
 namespace Amonya.Generators
 {
     [Injectable(InjectionType.Singleton)]
     public class ItemGenerator(
-        ISptLogger<Amonya> logger,
+        CustomLogger logger,
         ModDatabaseLoader modDatabaseLoader,
         IdDatabaseManager idDatabaseManager,
         CustomItemCreator customItemCreator,
@@ -35,19 +33,20 @@ namespace Amonya.Generators
                 if (config is { Description: not null, ShortName: not null, ItemTplToClone: not null, HandbookPriceRoubles: not null, Color: not null } variant)
                 {
                     if (!MongoId.IsValidMongoId(variant.ItemTplToClone)) {
-                        logger.LogWithColor($"[{GetType().Namespace}] ItemTplToClone {variant.ItemTplToClone} is incorrect ({variantName})!", LogTextColor.Red);
+                        logger.Error($"ItemTplToClone {variant.ItemTplToClone} is incorrect ({variantName})!");
                         continue;
                     }
                     MongoId itemTplToClone = (MongoId)variant.ItemTplToClone;
                     TemplateItem copiedItem = modDataStorage.Items[itemTplToClone];
                     HandbookItem? copiedItemHandbook = modDataStorage.Handbook.Items.Find(t => t.Id == itemTplToClone);
                     if (copiedItemHandbook == null) {
-                        logger.LogWithColor($"[{GetType().Namespace}] Item {itemTplToClone} handbook entry is missing ({variantName})!", LogTextColor.Red);
+                        logger.Error($"Item {itemTplToClone} handbook entry is missing ({variantName})!");
                         continue;
                     }
                     var newId = idDatabaseManager.GetCustomId($"{variantName}:ID");
                     var newItem = new NewItemFromCloneDetails
                     {
+                        NewItemName = variantName,
                         ItemTplToClone = itemTplToClone,
                         ParentId = variant.Changes?.Parent != null ? variant.Changes.Parent : copiedItem.Parent,
                         HandbookParentId = copiedItemHandbook.ParentId,

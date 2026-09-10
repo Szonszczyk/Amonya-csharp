@@ -1,19 +1,19 @@
 ﻿using Amonya.Helpers;
 using Amonya.Loaders;
 using SPTarkov.DI.Annotations;
-using SPTarkov.Server.Core.Models.Logging;
 using SPTarkov.Server.Core.Models.Spt.Mod;
-using SPTarkov.Server.Core.Models.Utils;
-using SPTarkov.Server.Core.Services;
+using SPTarkov.Server.Core.Models.Spt.Tables;
+using SPTarkov.Server.Core.Services.Locales;
 using System.Text.RegularExpressions;
 
 namespace Amonya.CustomClasses
 {
     [Injectable(InjectionType.Singleton)]
     public class CustomLocales(
-        ISptLogger<Amonya> logger,
+        CustomLogger logger,
         ModDatabaseLoader modDatabaseLoader,
-        ModDataStorage modDataStorage
+        LocaleTable localeTable,
+        LocaleService localeService
     )
     {
         public readonly Dictionary<string, Dictionary<string, string>> newLocale = [];
@@ -22,9 +22,9 @@ namespace Amonya.CustomClasses
 
         private readonly Dictionary<string, Dictionary<string, string>> OriginalLocale = [];
         private HashSet<string> AllLangs { get; set; } = [];
-        public void Initialize(LocaleService localeService)
+        public void Initialize()
         {
-            AllLangs = [.. modDataStorage.Locale.Global.Keys];
+            AllLangs = [.. localeTable.Global.Keys];
 
             foreach (var (lang, _) in modDatabaseLoader.DbLocales)
             {
@@ -88,7 +88,7 @@ namespace Amonya.CustomClasses
 
                     if (tagText is null)
                     {
-                        logger.LogWithColor($"[{GetType().Namespace}/Locales] Tag not found: {tag}, Language: {lang}", LogTextColor.Yellow);
+                        logger.Warning($"Tag not found: {tag}, Language: {lang}");
                         tagText = tag;
                     }
 
@@ -108,7 +108,7 @@ namespace Amonya.CustomClasses
         {
             foreach (var langId in AllLangs)
             {
-                if (modDataStorage.Locale is not null && modDataStorage.Locale.Global.TryGetValue(langId, out var lazyloadedValue))
+                if (localeTable is not null && localeTable.Global.TryGetValue(langId, out var lazyloadedValue))
                 {
                     newLocale.TryGetValue(langId, out var newLocaleToAdd);
                     if (newLocaleToAdd is null)
