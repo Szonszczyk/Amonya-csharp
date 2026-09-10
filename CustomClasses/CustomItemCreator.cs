@@ -87,7 +87,10 @@ public class CustomItemCreator(
                 if (pocket?.Properties?.Slots is null) continue;
                 foreach (var slot in pocket.Properties.Slots)
                 {
-                    slot?.Properties?.Filters?.First()?.Filter?.Add(itemId);
+                    // Filters can be emptied by other mods (e.g. VSSL/SVM clearing special-slot filters),
+                    // so FirstOrDefault + null-conditional is required here to avoid a crash on empty collections.
+                    var filter = slot?.Properties?.Filters?.FirstOrDefault()?.Filter;
+                    filter?.Add(itemId);
                 }
             }
         }
