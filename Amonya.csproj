@@ -29,15 +29,7 @@
 		<Message Text="--- Starting Mod packaging for distribution ---" Importance="high" />
 		<RemoveDir Directories="$(TempPackageDir)" />
 		<MakeDir Directories="$(ModPackageDir)" />
-		<MakeDir Directories="$(ModPackageDir)\config;
-				 $(ModPackageDir)\db\01_Variants;
-				 $(ModPackageDir)\db\02_Items;
-				 $(ModPackageDir)\db\03_Quests;
-				 $(ModPackageDir)\db\04_Trader;
-				 $(ModPackageDir)\db\05_Calibers;
-				 $(ModPackageDir)\db\06_Locales;
-				 $(ModPackageDir)\db\07_Settings;
-				 $(ModPackageDir)\db\99_Ids" />
+		<MakeDir Directories="$(ModPackageDir)\config;&#xD;&#xA;				 $(ModPackageDir)\db\01_Variants;&#xD;&#xA;				 $(ModPackageDir)\db\02_Items;&#xD;&#xA;				 $(ModPackageDir)\db\03_Quests;&#xD;&#xA;				 $(ModPackageDir)\db\04_Trader;&#xD;&#xA;				 $(ModPackageDir)\db\05_Calibers;&#xD;&#xA;				 $(ModPackageDir)\db\06_Locales;&#xD;&#xA;				 $(ModPackageDir)\db\07_Settings;&#xD;&#xA;				 $(ModPackageDir)\db\99_Ids" />
 		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModPackageDir)" />
 		<Copy SourceFiles="$(ProjectDir)config\defaultConfig.json" DestinationFolder="$(ModPackageDir)\config" />
 		<Copy SourceFiles="$(ProjectDir)config\defaultQuestConfig.json" DestinationFolder="$(ModPackageDir)\config" />
@@ -75,6 +67,6 @@
 	</Target>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="echo f | xcopy /s /y /f &quot;C:\Programowanie\SPT 4.0 Mods\Amonya\bin\Debug\Amonya\Amonya.dll&quot; &quot;C:\Games\SPT 4.1\SPT_Runtime\user\mods\Amonya\Amonya.dll&quot;&#xD;&#xA;echo f | xcopy /s /y /f &quot;C:\Programowanie\SPT 4.0 Mods\Amonya\bin\Debug\Amonya\Amonya.pdb&quot; &quot;C:\Games\SPT 4.1\SPT_Runtime\user\mods\Amonya\Amonya.pdb&quot;&#xD;&#xA;echo f | xcopy /s /y /f &quot;C:\Programowanie\SPT 4.0 Mods\Amonya\db\01_Variants&quot; &quot;C:\Games\SPT 4.1\SPT_Runtime\user\mods\Amonya\db\01_Variants&quot;&#xD;&#xA;echo f | xcopy /s /y /f &quot;C:\Programowanie\SPT 4.0 Mods\Amonya\db\02_Items&quot; &quot;C:\Games\SPT 4.1\SPT_Runtime\user\mods\Amonya\db\02_Items&quot;" />
+    <Exec Command="echo f | xcopy /s /y /f &quot;C:\Games\SPT 4.0 Mods\Amonya\bin\Debug\Amonya\Amonya.dll&quot; &quot;C:\Games\SPT 4.1\SPT_Runtime\user\mods\Amonya\Amonya.dll&quot;&#xD;&#xA;echo f | xcopy /s /y /f &quot;C:\Games\SPT 4.0 Mods\Amonya\bin\Debug\Amonya\Amonya.pdb&quot; &quot;C:\Games\SPT 4.1\SPT_Runtime\user\mods\Amonya\Amonya.pdb&quot;&#xD;&#xA;echo f | xcopy /s /y /f &quot;C:\Games\SPT 4.0 Mods\Amonya\db\01_Variants&quot; &quot;C:\Games\SPT 4.1\SPT_Runtime\user\mods\Amonya\db\01_Variants&quot;&#xD;&#xA;echo f | xcopy /s /y /f &quot;C:\Games\SPT 4.0 Mods\Amonya\db\02_Items&quot; &quot;C:\Games\SPT 4.1\SPT_Runtime\user\mods\Amonya\db\02_Items&quot;" />
   </Target>
 </Project>

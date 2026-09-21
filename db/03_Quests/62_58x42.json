@@ -7,30 +7,37 @@
             "Name": "5.8x42mm",
             "ShortName": "5.8x42"
         },
-        "Mod": "com.massivesoft.saintdeerweapons",
+        "Mod": "com.wtt.contentbackport",
         "Quests": {
             "58x42Q1": {
                 "Unlocks": [
-                    "5.8x42mm DBU-141 "
+                    "5.8x42mm DBX95"
                 ],
                 "Diff": "2",
                 "Trader": 1
             },
             "58x42Q2": {
                 "Unlocks": [
-                    "5.8x42mm DBP-191 "
+                    "5.8x42mm DBP191"
                 ],
-                "Diff": "4",
+                "Diff": "3",
                 "Trader": 1
             },
             "58x42Q3": {
                 "Unlocks": [
-                    "5.8x42mm DVC-12 "
+                    "5.8x42mm DVX12"
+                ],
+                "Diff": "4",
+                "Trader": 1
+            },
+            "58x42Q4": {
+                "Unlocks": [
+                    "5.8x42mm DVC12"
                 ],
                 "Diff": "5",
                 "Trader": 2
             },
-            "58x42Q4": {
+            "58x42Q5": {
                 "Diff": "8",
                 "Trader": 3
             }

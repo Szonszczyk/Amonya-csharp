@@ -1,5 +1,6 @@
 ## Version 2.2.1 for SPT ~4.1.2
 
+- Added support for 5.8x42mm caliber from WTT-Content Backport
 - Fixed bug where too small Load Unload speed modifier in MoH magazines cause all magazines to stop working
     Default Load Unload speed modifier in MoH magazines was adjusted to -60/-65/-70
 - Fixed shotgun dispersion property for all weapons

@@ -58,7 +58,7 @@ public class Fixes(
             if (item?.Properties?.LoadUnloadModifier != null)
             {
                 configLoader.Config.MoHLoadingSpeed.TryGetValue(MoH, out var MoHLoadingSpeed);
-                if (MoHLoadingSpeed < 0 && MoHLoadingSpeed > -70)
+                if (MoHLoadingSpeed < 0 && MoHLoadingSpeed >= -70)
                 {
                     item.Properties.LoadUnloadModifier = MoHLoadingSpeed;
                 }
