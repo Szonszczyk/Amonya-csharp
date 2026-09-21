@@ -58,13 +58,14 @@ public class Fixes(
             if (item?.Properties?.LoadUnloadModifier != null)
             {
                 configLoader.Config.MoHLoadingSpeed.TryGetValue(MoH, out var MoHLoadingSpeed);
-                if (MoHLoadingSpeed < 0 && MoHLoadingSpeed > -100)
+                if (MoHLoadingSpeed < 0 && MoHLoadingSpeed > -70)
                 {
                     item.Properties.LoadUnloadModifier = MoHLoadingSpeed;
                 }
                 else
                 {
-                    logger.Error($"Value {MoHLoadingSpeed} provided in \"MoHLoadingSpeed\" config option is incorrect. Should be between 0 and -100");
+                    logger.Warning($"Value {MoHLoadingSpeed} provided in \"MoHLoadingSpeed\" config option is incorrect. Should be between 0 and -70. Using default (-69)");
+                    item.Properties.LoadUnloadModifier = -69;
                 }
             } else
             {

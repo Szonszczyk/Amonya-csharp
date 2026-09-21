@@ -19,9 +19,60 @@
     <PackageReference Include="SPTarkov.Server.Core" Version="4.1.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="db\98_Debug\" />
-  </ItemGroup>
+	<Target Name="PackageModForDistribution" AfterTargets="Build" Condition="'$(SkipModPackaging)' != 'true'">
+		<PropertyGroup>
+			<ModName Condition="'$(ModName)' == ''">$(AssemblyName)</ModName>
+			<ZipFileName Condition="'$(ZipFileName)' == ''">$(ModName).zip</ZipFileName>
+			<TempPackageDir Condition="'$(TempPackageDir)' == ''">$(ProjectDir)obj\Package</TempPackageDir>
+			<ModPackageDir Condition="'$(ModPackageDir)' == ''">$(TempPackageDir)\SPT_Runtime\user\mods\$(ModName)</ModPackageDir>
+		</PropertyGroup>
+		<Message Text="--- Starting Mod packaging for distribution ---" Importance="high" />
+		<RemoveDir Directories="$(TempPackageDir)" />
+		<MakeDir Directories="$(ModPackageDir)" />
+		<MakeDir Directories="$(ModPackageDir)\config;
+				 $(ModPackageDir)\db\01_Variants;
+				 $(ModPackageDir)\db\02_Items;
+				 $(ModPackageDir)\db\03_Quests;
+				 $(ModPackageDir)\db\04_Trader;
+				 $(ModPackageDir)\db\05_Calibers;
+				 $(ModPackageDir)\db\06_Locales;
+				 $(ModPackageDir)\db\07_Settings;
+				 $(ModPackageDir)\db\99_Ids" />
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModPackageDir)" />
+		<Copy SourceFiles="$(ProjectDir)config\defaultConfig.json" DestinationFolder="$(ModPackageDir)\config" />
+		<Copy SourceFiles="$(ProjectDir)config\defaultQuestConfig.json" DestinationFolder="$(ModPackageDir)\config" />
+
+		<ItemGroup>
+			<PackageDbFiles Include="$(ProjectDir)db\01_Variants\**\*">
+				<PackageDirectory>01_Variants</PackageDirectory>
+			</PackageDbFiles>
+			<PackageDbFiles Include="$(ProjectDir)db\02_Items\**\*">
+				<PackageDirectory>02_Items</PackageDirectory>
+			</PackageDbFiles>
+			<PackageDbFiles Include="$(ProjectDir)db\03_Quests\**\*">
+				<PackageDirectory>03_Quests</PackageDirectory>
+			</PackageDbFiles>
+			<PackageDbFiles Include="$(ProjectDir)db\04_Trader\**\*">
+				<PackageDirectory>04_Trader</PackageDirectory>
+			</PackageDbFiles>
+			<PackageDbFiles Include="$(ProjectDir)db\05_Calibers\**\*">
+				<PackageDirectory>05_Calibers</PackageDirectory>
+			</PackageDbFiles>
+			<PackageDbFiles Include="$(ProjectDir)db\06_Locales\**\*">
+				<PackageDirectory>06_Locales</PackageDirectory>
+			</PackageDbFiles>
+			<PackageDbFiles Include="$(ProjectDir)db\07_Settings\**\*">
+				<PackageDirectory>07_Settings</PackageDirectory>
+			</PackageDbFiles>
+			<PackageDbFiles Include="$(ProjectDir)db\99_Ids\**\*">
+				<PackageDirectory>99_Ids</PackageDirectory>
+			</PackageDbFiles>
+		</ItemGroup>
+		<Copy SourceFiles="@(PackageDbFiles)" DestinationFiles="@(PackageDbFiles->'$(ModPackageDir)\db\%(PackageDirectory)\%(RecursiveDir)%(Filename)%(Extension)')" />
+		<ZipDirectory SourceDirectory="$(TempPackageDir)" DestinationFile="$(ProjectDir)$(ZipFileName)" Overwrite="true" />
+		<RemoveDir Directories="$(TempPackageDir)" />
+		<Message Text="--- Mod successfully packaged at: $(ProjectDir)$(ZipFileName) ---" Importance="high" />
+	</Target>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="echo f | xcopy /s /y /f &quot;C:\Programowanie\SPT 4.0 Mods\Amonya\bin\Debug\Amonya\Amonya.dll&quot; &quot;C:\Games\SPT 4.1\SPT_Runtime\user\mods\Amonya\Amonya.dll&quot;&#xD;&#xA;echo f | xcopy /s /y /f &quot;C:\Programowanie\SPT 4.0 Mods\Amonya\bin\Debug\Amonya\Amonya.pdb&quot; &quot;C:\Games\SPT 4.1\SPT_Runtime\user\mods\Amonya\Amonya.pdb&quot;&#xD;&#xA;echo f | xcopy /s /y /f &quot;C:\Programowanie\SPT 4.0 Mods\Amonya\db\01_Variants&quot; &quot;C:\Games\SPT 4.1\SPT_Runtime\user\mods\Amonya\db\01_Variants&quot;&#xD;&#xA;echo f | xcopy /s /y /f &quot;C:\Programowanie\SPT 4.0 Mods\Amonya\db\02_Items&quot; &quot;C:\Games\SPT 4.1\SPT_Runtime\user\mods\Amonya\db\02_Items&quot;" />

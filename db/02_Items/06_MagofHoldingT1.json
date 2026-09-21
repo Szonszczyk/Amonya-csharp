@@ -4,7 +4,7 @@
         "ShortName": "MoH-L",
         "ItemTplToClone": "5cbdc23eae9215001136a407",
         "Properties": {
-            "LoadUnloadModifier": -94,
+            "LoadUnloadModifier": -70,
 		    "CheckTimeModifier": 0,
 		    "MalfunctionChance": 0,
 		    "ExtraSizeDown": 0,

@@ -1,7 +1,16 @@
+## Version 2.2.1 for SPT ~4.1.2
+
+- Fixed bug where too small Load Unload speed modifier in MoH magazines cause all magazines to stop working
+    Default Load Unload speed modifier in MoH magazines was adjusted to -60/-65/-70
+- Fixed shotgun dispersion property for all weapons
+    This fixed some weapons not being able to fire multiple projectiles using buckshot type ammunition
+
+----------
 ## Version 2.2.0 for SPT ~4.1.2
 
 - Initial release for SPT 4.1.2
 
+----------
 ## Version 2.1.1 for SPT ~4.0.13
 
 - Fixed rollbacked function of adding to special slots used by MoH items
@@ -11,6 +20,7 @@
     Made by Razh
 - Old 5.45x39 pictures were moved to .44 Magnum modded caliber
 
+----------
 ## Version 2.1.0 for SPT 4.0.*
 
 ### New functionality - Automatic addition of modded bullets to quests

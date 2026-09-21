@@ -47,7 +47,7 @@ public class CustomWeaponsManager(
                 var item = modDataStorage.Items[id];
 
                 // Add ShotgunDispersion to all weapons
-                if (item?.Properties?.ShotgunDispersion is not null && item.Properties.ShotgunDispersion == 0) item.Properties.ShotgunDispersion = 5;
+                if (item?.Properties?.shotgunDispersion is not null && item.Properties.shotgunDispersion == 0) item.Properties.shotgunDispersion = 5;
 
                 // Weapon should have chambers - even if it is empty
                 if (item?.Parent is null || item?.Properties?.Chambers is null) continue;
