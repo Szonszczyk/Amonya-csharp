@@ -5,6 +5,7 @@ using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Helpers.Items;
 using SPTarkov.Server.Core.Models.Common;
 using System.Text.RegularExpressions;
+using SPTarkov.Server.Core.Models.Spt.Mod;
 
 namespace Amonya.CustomClasses;
 
@@ -15,7 +16,8 @@ public class CustomWeaponsManager(
     ItemHelper itemHelper,
     CustomBulletsManager customBulletsManager,
     ModDatabaseLoader modDatabaseLoader,
-    ModDataStorage modDataStorage
+    ModDataStorage modDataStorage,
+    IReadOnlyList<SptMod> modlist
 )
 {
     public class WeaponsDatabase
@@ -35,8 +37,18 @@ public class CustomWeaponsManager(
     private Dictionary<MongoId, WeaponsDatabase> AllWeapons { get; set; } = [];
     private readonly Dictionary<MongoId, HashSet<string>> checkedMags = [];
 
+    private IReadOnlySet<string> dwvVariantIds = new HashSet<string>();
+
     public void LoadAllWeaponsAndMagazines()
     {
+        var dwv = modlist.FirstOrDefault(m => m.ModMetadata.ModGuid == "com.szonszczyk.definitiveweaponvariants");
+        var bridge = dwv?.Assemblies
+            .Select(a => a.GetType("DefinitiveWeaponVariants.Integrations.AmonyaIntegration", false))
+            .FirstOrDefault(t => t is not null);
+        dwvVariantIds = bridge?
+            .GetProperty("WeaponVariantIds")?
+            .GetValue(null) as IReadOnlySet<string>?? new HashSet<string>();
+
         var categoryIds = WeaponCategories.GetAllIds();
 
         foreach (var categoryId in categoryIds)
@@ -214,7 +226,7 @@ public class CustomWeaponsManager(
 
         var itemDesc = modDataStorage.LocaleEn[$"{id} Description"];
         // If variant from DWV or is different paint - it is a copy
-        if (itemDesc.Contains("Variant</b></color>") || weapon.Name.Contains('(')) return true;
+        if (itemDesc.Contains("Variant</b></color>") || dwvVariantIds.Contains(id.ToString()) || weapon.Name.Contains('(')) return true;
         return false;
     }
 

@@ -2,6 +2,7 @@
 using Amonya.Generators;
 using Amonya.Helpers;
 using Amonya.Loaders;
+using Amonya.Integrations;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Helpers.Server;
@@ -20,28 +21,13 @@ public class AmonyaTrader(
     public Task OnLoadAsync(CancellationToken cancellationToken)
     {
         modDataStorage.Initialize();
-
         customLocales.Initialize();
         customTraderCreator.Initialize();
         return Task.CompletedTask;
     }
 }
 
-[Injectable(TypePriority = OnLoadOrder.Preload + 89123)]
-public class AmonyaBulletLoad(
-    ModDataStorage modDataStorage,
-    CustomBulletsManager customBulletsManager
-) : IOnLoad
-{
-    public Task OnLoadAsync(CancellationToken cancellationToken)
-    {
-        modDataStorage.RefreshDatabase();
-        customBulletsManager.Initialize();
-        return Task.CompletedTask;
-    }
-}
-
-[Injectable(TypePriority = OnLoadOrder.Preload + 97123)]
+[Injectable(TypePriority = OnLoadOrder.Preload + 55123)]
 public class Amonya(
     CustomLogger logger,
     ConfigLoader configLoader,
@@ -62,6 +48,7 @@ public class Amonya(
     public Task OnLoadAsync(CancellationToken cancellationToken)
     {
         modDataStorage.RefreshDatabase();
+        customBulletsManager.Initialize();
         customWeaponsManager.LoadAllWeaponsAndMagazines();
         itemGenerator.GenerateItems();
         questGenerator.Initialize();
@@ -121,4 +108,11 @@ public class AmonyaSlotBulletVariants(
         }
         return Task.CompletedTask;
     }
+}
+
+// APBS finishes configuring its bot pools at PostLoad + 90010.
+[Injectable(TypePriority = OnLoadOrder.PostLoad + 90011)]
+public class AmonyaAPBSBlacklist(APBSIntegration integration) : IOnLoad
+{
+    public Task OnLoadAsync(CancellationToken cancellationToken) => integration.InitializeAsync(cancellationToken);
 }

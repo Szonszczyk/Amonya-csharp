@@ -15,7 +15,7 @@ Server mod for Single Player Tarkov that is adding Amonya - trader and quest giv
 
 ## Compatibility with SPT versions
 
-~4.0.4 - current version  
+~4.1.2 - current version  
 
 ## Bullet Variants
 

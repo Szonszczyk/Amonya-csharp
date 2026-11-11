@@ -9,6 +9,11 @@
   // If Amonya avatar is still the same after changing this option - In SPT Laucher go to Settings and click "Clean Temp Files"
   "EnableNonPonyMode": false, // true/false - default: false
 
+  // APBS - Acid's Progressive Bot System Integration
+  // Add all ammo registered by Amonya to every APBS ammo blacklist tier at server startup
+  // Disabling removes only entries added by this Amonya. Existing manual bans are preserved
+  "EnableAPBSAmmoBlacklist": false, // true/false - default: false
+
   // Setup of ammo being sold by Amonya
   "AmmoPrice": {
     // Price multiplier for bullets sold by Amonya

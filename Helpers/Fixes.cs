@@ -1,9 +1,10 @@
-﻿using Amonya.CustomClasses;
+﻿using Amonya.Constants;
+using Amonya.CustomClasses;
 using Amonya.Loaders;
 using SPTarkov.DI.Annotations;
+using SPTarkov.Server.Core.Helpers.Items;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Spt.Tables;
-
 
 namespace Amonya.Helpers;
 
@@ -14,13 +15,15 @@ public class Fixes(
     IdDatabaseManager idDatabaseManager,
     ConfigLoader configLoader,
     TemplateTable templateTable,
-    LocationTable locationTable
+    LocationTable locationTable,
+    ItemHelper itemHelper
 )
 {
     public void Initialize()
     {
         FixLocationStaticAmmo();
         AdjustCustomItems();
+        AdjustWeaponsShotgunDispersion();
     }
 
     private void FixLocationStaticAmmo()
@@ -72,6 +75,28 @@ public class Fixes(
                 logger.Error($"Item {MoH} provided in \"MoHLoadingSpeed\" config option is incorrect");
             }
         }
-        
+    }
+
+    private void AdjustWeaponsShotgunDispersion()
+    {
+        var weaponsAdjusted = 0;
+        var allWeapons = 0;
+        var categories = WeaponCategories.GetAllIds();
+        foreach (var category in categories)
+        {
+            var weapons = itemHelper.GetItemTplsOfBaseType(category);
+            foreach (var weapon in weapons)
+            {
+                allWeapons++;
+                templateTable.Items.TryGetValue(weapon, out var item);
+                
+                if (item?.Properties?.shotgunDispersion is null || item?.Properties?.shotgunDispersion == 0)
+                {
+                    item?.Properties?.shotgunDispersion = 5;
+                    weaponsAdjusted++;
+                }
+            }
+        }
+        logger.Debug($"Adjusted {weaponsAdjusted}/{allWeapons} weapons \"ShotgunDispersion\" property");
     }
 }

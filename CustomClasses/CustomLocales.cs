@@ -174,21 +174,24 @@ namespace Amonya.CustomClasses
         {
             var itemLocale = new Dictionary<string, LocaleDetails>();
 
-            foreach (var (langId, _) in newLocale)
+            foreach (var langId in AllLangs)
             {
+                var sourceLanguage = newLocale.ContainsKey(langId) ? langId : "en";
                 var newItemLocale = new LocaleDetails
                 {
-                    Name = ReplaceTags(Name, langId),
-                    ShortName = ReplaceTags(ShortName, langId),
-                    Description = ReplaceTags(Description, langId)
+                    Name = ReplaceTags(Name, sourceLanguage),
+                    ShortName = ReplaceTags(ShortName, sourceLanguage),
+                    Description = ReplaceTags(Description, sourceLanguage)
                 };
-                OriginalLocale[langId].Add($"{id} Name", newItemLocale.Name);
-                OriginalLocale[langId].Add($"{id} ShortName", newItemLocale.ShortName);
-                OriginalLocale[langId].Add($"{id} Description", newItemLocale.Description);
+                if (OriginalLocale.TryGetValue(langId, out var originalLocale))
+                {
+                    originalLocale.Add($"{id} Name", newItemLocale.Name);
+                    originalLocale.Add($"{id} ShortName", newItemLocale.ShortName);
+                    originalLocale.Add($"{id} Description", newItemLocale.Description);
+                }
                 itemLocale.Add(langId, newItemLocale);
             }
             return itemLocale;
         }
-
     }
 }

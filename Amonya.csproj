@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <OutputType>Library</OutputType>
-    <Version>2.2.0</Version>
+    <Version>2.2.1</Version>
     <!-- The two lines below will set the output path for the binaries -->
     <OutputPath>bin\$(Configuration)\$(ProjectName)\$(AssemblyName)\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -65,6 +65,37 @@
 		<RemoveDir Directories="$(TempPackageDir)" />
 		<Message Text="--- Mod successfully packaged at: $(ProjectDir)$(ZipFileName) ---" Importance="high" />
 	</Target>
+
+  <Target Name="PackageModForDistribution" AfterTargets="Build" Condition="'$(SkipModPackaging)' != 'true'">
+    <PropertyGroup>
+      <ModName Condition="'$(ModName)' == ''">$(AssemblyName)</ModName>
+      <ZipFileName Condition="'$(ZipFileName)' == ''">$(ModName).zip</ZipFileName>
+      <TempPackageDir Condition="'$(TempPackageDir)' == ''">$(ProjectDir)obj\Package</TempPackageDir>
+      <ModPackageDir Condition="'$(ModPackageDir)' == ''">$(TempPackageDir)\SPT_Runtime\user\mods\$(ModName)</ModPackageDir>
+    </PropertyGroup>
+    <Message Text="--- Starting Mod packaging for distribution ---" Importance="high" />
+    <ItemGroup>
+      <PackageFiles Include="$(ProjectDir)config\**\*;$(ProjectDir)db\**\*;$(ProjectDir)res\**\*" />
+      <PackageDirectories Include="$([System.IO.Directory]::GetDirectories('$(ProjectDir)config', '*', System.IO.SearchOption.AllDirectories))" />
+      <PackageDirectories Include="$([System.IO.Directory]::GetDirectories('$(ProjectDir)db', '*', System.IO.SearchOption.AllDirectories))" />
+      <PackageDirectories Include="$([System.IO.Directory]::GetDirectories('$(ProjectDir)res', '*', System.IO.SearchOption.AllDirectories))" />
+    </ItemGroup>
+    <ItemGroup>
+      <PackageFiles Update="@(PackageFiles)">
+        <PackageRelativePath>$([MSBuild]::MakeRelative('$(ProjectDir)', '%(PackageFiles.Identity)'))</PackageRelativePath>
+      </PackageFiles>
+      <PackageDirectories Update="@(PackageDirectories)">
+        <PackageRelativePath>$([MSBuild]::MakeRelative('$(ProjectDir)', '%(PackageDirectories.Identity)'))</PackageRelativePath>
+      </PackageDirectories>
+    </ItemGroup>
+    <RemoveDir Directories="$(TempPackageDir)" />
+    <MakeDir Directories="$(ModPackageDir)\config;$(ModPackageDir)\db;$(ModPackageDir)\res;@(PackageDirectories->'$(ModPackageDir)\%(PackageRelativePath)')" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModPackageDir)" />
+    <Copy SourceFiles="@(PackageFiles)" DestinationFiles="@(PackageFiles->'$(ModPackageDir)\%(PackageRelativePath)')" />
+    <ZipDirectory SourceDirectory="$(TempPackageDir)" DestinationFile="$(ProjectDir)$(ZipFileName)" Overwrite="true" />
+    <RemoveDir Directories="$(TempPackageDir)" />
+    <Message Text="--- Mod successfully packaged at: $(ProjectDir)$(ZipFileName) ---" Importance="high" />
+  </Target>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="echo f | xcopy /s /y /f &quot;C:\Games\SPT 4.0 Mods\Amonya\bin\Debug\Amonya\Amonya.dll&quot; &quot;C:\Games\SPT 4.1\SPT_Runtime\user\mods\Amonya\Amonya.dll&quot;&#xD;&#xA;echo f | xcopy /s /y /f &quot;C:\Games\SPT 4.0 Mods\Amonya\bin\Debug\Amonya\Amonya.pdb&quot; &quot;C:\Games\SPT 4.1\SPT_Runtime\user\mods\Amonya\Amonya.pdb&quot;&#xD;&#xA;echo f | xcopy /s /y /f &quot;C:\Games\SPT 4.0 Mods\Amonya\db\01_Variants&quot; &quot;C:\Games\SPT 4.1\SPT_Runtime\user\mods\Amonya\db\01_Variants&quot;&#xD;&#xA;echo f | xcopy /s /y /f &quot;C:\Games\SPT 4.0 Mods\Amonya\db\02_Items&quot; &quot;C:\Games\SPT 4.1\SPT_Runtime\user\mods\Amonya\db\02_Items&quot;" />

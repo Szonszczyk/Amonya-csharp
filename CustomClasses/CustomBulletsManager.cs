@@ -70,8 +70,7 @@ public class CustomBulletsManager(
 
         if (caliber is null)
         {
-            if (configLoader.Config.Debug)
-                logger.Error($"Bullet {id} is missing caliber!");
+            logger.Debug($"Bullet {id} is missing caliber!");
             return;
         }
 
@@ -82,15 +81,14 @@ public class CustomBulletsManager(
 
         if (itemHandbook is null || itemHandbook.Price is null)
         {
-            if (configLoader.Config.Debug)
-                logger.Warning($"Bullet {id} is missing Handbook entry!");
+            logger.Debug($"Bullet {id} is missing Handbook entry!");
             return;
         }
         modDataStorage.LocaleEn.TryGetValue($"{id} Name", out var name);
         modDataStorage.LocaleEn.TryGetValue($"{id} ShortName", out var shortName);
-        if (name is null && configLoader.Config.Debug)
+        if (name is null && !isVariant)
         {
-           logger.Warning($"Bullet {id} is missing locale entry!");
+           logger.Debug($"Bullet {id} is missing locale entry!");
         }
         if (name is not null && name.Contains("shrapnel", StringComparison.CurrentCultureIgnoreCase) && !name.Contains("shrapnel-", StringComparison.CurrentCultureIgnoreCase)) return;
         var bullet = new BulletsDatabase
@@ -128,8 +126,7 @@ public class CustomBulletsManager(
 
         if (!BulletCalibers.TryGetValue(id, out string? caliber))
         {
-            if (configLoader.Config.Debug)
-                logger.Error($"Bullet {id} found in filter, is not existing");
+            logger.Debug($"Bullet {id} found in filter, is not existing");
             return null;
         }
 
@@ -168,8 +165,7 @@ public class CustomBulletsManager(
             var value = bulletItem?.Properties?.GetType()?.GetProperty(prop)?.GetValue(bulletItem?.Properties);
             if (value is null)
             {
-                if (configLoader.Config.Debug)
-                    logger.Error($"Value for '{bulletItem?.Id}' property '{prop}' is missing!");
+                logger.Debug($"Value for '{bulletItem?.Id}' property '{prop}' is missing!");
                 continue;
             }
             rating += weight * Convert.ToDouble(value);

@@ -1,10 +1,14 @@
 ## Version 2.2.1 for SPT ~4.1.2
 
+- Added APBS blacklist generation, you can enable this option in config\
+    If you do not see this option, update your config. Instructions can be found in the mod description
+- Fixed incorrect fallback logic for unsupported languages picking wrong language for bullet names\
+    Having Korean bullet names when using Czech language is a mindfuck indeed, knowing that I can't use any of them lol
+- Added fix for ShotgunDispersion property not correctly set on all weapons, fixing Ratshot bullets spread using certain weapons\
+    Fix that was removed in SPT 4.0 is back, heh? 
 - Added support for 5.8x42mm caliber from WTT-Content Backport
-- Fixed bug where too small Load Unload speed modifier in MoH magazines cause all magazines to stop working
+- Fixed bug where too small Load Unload speed modifier in MoH magazines cause all magazines to stop working\
     Default Load Unload speed modifier in MoH magazines was adjusted to -60/-65/-70
-- Fixed shotgun dispersion property for all weapons
-    This fixed some weapons not being able to fire multiple projectiles using buckshot type ammunition
 
 ----------
 ## Version 2.2.0 for SPT ~4.1.2

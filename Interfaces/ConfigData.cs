@@ -3,6 +3,7 @@
 public class ConfigData
 {
     public bool EnableNonPonyMode { get; set; } = false;
+    public bool EnableAPBSAmmoBlacklist { get; set; } = false;
 
     public AmmoPriceConfig AmmoPrice { get; set; } = new AmmoPriceConfig();
 
