@@ -2,8 +2,8 @@
     "Mortar": {
         "FlavourText": "\"Use this, do the crime\"",
         "Description": "Explosive bullet with very low initial speed allowing you to shoot enemies even behind buildings",
-		"Explanation": "Specialized High-explosive bullet to kill enemies behind covers or call an artillery strike on boss position",
-		"ShortName": "HT",
+        "Explanation": "Specialized High-explosive bullet to kill enemies behind covers or call an artillery strike on boss position",
+        "ShortName": "HT",
         "Properties": {
             "AmmoLifeTimeSec": 40,
             "AmmoTooltipClass": "HighExplosive",

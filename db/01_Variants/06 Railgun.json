@@ -2,8 +2,8 @@
     "Railgun": {
         "FlavourText": "A coin flipped by lightning itself, tearing through the battlefield faster than sound",
         "Description": "Explosive round with high initial speed",
-		"Explanation": "A high-end prototype capable of lethal impact even near the target. Extremely powerful but prohibitively expensive",
-		"ShortName": "ION",
+        "Explanation": "A high-end prototype capable of lethal impact even near the target. Extremely powerful but prohibitively expensive",
+        "ShortName": "ION",
         "Properties": {
             "AmmoLifeTimeSec": 4,
             "AmmoTooltipClass": "HighExplosive",

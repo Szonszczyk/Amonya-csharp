@@ -2,8 +2,8 @@
     "Bloody": {
         "FlavourText": "A cruel round designed to leave enemies bleeding out long after impact",
         "Description": "Guaranteed light bleeding, with a 50% chance of heavy bleeding with slightly decreased penetration power. Virtually useless against armor",
-		"Explanation": "Effective against unarmored or high-health targets, especially when time is on your side",
-		"ShortName": "♥",
+        "Explanation": "Effective against unarmored or high-health targets, especially when time is on your side",
+        "ShortName": "♥",
         "Properties": {
             "LightBleedingDelta": 1,
             "HeavyBleedingDelta": 0.5,
