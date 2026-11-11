@@ -1,7 +1,18 @@
+## Version 2.2.1 for SPT ~4.1.2
+
+- Added APBS blacklist generation, you can enable this option in config\
+    If you do not see this option, update your config. Instructions can be found in the mod description
+- Fixed incorrect fallback logic for unsupported languages picking wrong language for bullet names\
+    Having Korean bullet names when using Czech language is a mindfuck indeed, knowing that I can't use any of them lol
+- Added fix for ShotgunDispersion property not correctly set on all weapons, fixing Ratshot bullets spread using certain weapons\
+    Fix that was removed in SPT 4.0 is back, heh? 
+
+-------
 ## Version 2.2.0 for SPT ~4.1.2
 
 - Initial release for SPT 4.1.2
 
+-------
 ## Version 2.1.1 for SPT ~4.0.13
 
 - Fixed rollbacked function of adding to special slots used by MoH items
@@ -11,6 +22,7 @@
     Made by Razh
 - Old 5.45x39 pictures were moved to .44 Magnum modded caliber
 
+-------
 ## Version 2.1.0 for SPT 4.0.*
 
 ### New functionality - Automatic addition of modded bullets to quests
