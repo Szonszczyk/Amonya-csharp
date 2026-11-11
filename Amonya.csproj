@@ -51,6 +51,6 @@
   </Target>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="echo f | xcopy /s /y /f &quot;C:\Games\SPT 4.0 Mods\Amonya\bin\Debug\Amonya\Amonya.dll&quot; &quot;C:\Games\SPT 4.1\SPT_Runtime\user\mods\Amonya\Amonya.dll&quot;&#xD;&#xA;echo f | xcopy /s /y /f &quot;C:\Games\SPT 4.0 Mods\Amonya\bin\Debug\Amonya\Amonya.pdb&quot; &quot;C:\Games\SPT 4.1\SPT_Runtime\user\mods\Amonya\Amonya.pdb&quot;&#xD;&#xA;echo f | xcopy /s /y /f &quot;C:\Games\SPT 4.0 Mods\Amonya\db\01_Variants&quot; &quot;C:\Games\SPT 4.1\SPT_Runtime\user\mods\Amonya\db\01_Variants&quot;&#xD;&#xA;echo f | xcopy /s /y /f &quot;C:\Games\SPT 4.0 Mods\Amonya\db\02_Items&quot; &quot;C:\Games\SPT 4.1\SPT_Runtime\user\mods\Amonya\db\02_Items&quot;" />
+    <Exec Command="echo f | xcopy /s /y /f &quot;C:\Programowanie\SPT 4.0 Mods\Amonya\bin\Debug\Amonya\Amonya.dll&quot; &quot;C:\Games\SPT 4.1\SPT_Runtime\user\mods\Amonya\Amonya.dll&quot;&#xD;&#xA;echo f | xcopy /s /y /f &quot;C:\Programowanie\SPT 4.0 Mods\Amonya\bin\Debug\Amonya\Amonya.pdb&quot; &quot;C:\Games\SPT 4.1\SPT_Runtime\user\mods\Amonya\Amonya.pdb&quot;&#xD;&#xA;echo f | xcopy /s /y /f &quot;C:\Programowanie\SPT 4.0 Mods\Amonya\db\01_Variants&quot; &quot;C:\Games\SPT 4.1\SPT_Runtime\user\mods\Amonya\db\01_Variants&quot;&#xD;&#xA;echo f | xcopy /s /y /f &quot;C:\Programowanie\SPT 4.0 Mods\Amonya\db\02_Items&quot; &quot;C:\Games\SPT 4.1\SPT_Runtime\user\mods\Amonya\db\02_Items&quot;" />
   </Target>
 </Project>
